@@ -1,0 +1,5 @@
+{
+	"name": "proiect-mcpp",
+	"version": "0.0.0",
+	"dependencies": ["sqlite-orm","gtest"]
+}
