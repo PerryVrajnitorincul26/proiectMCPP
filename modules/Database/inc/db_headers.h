@@ -120,6 +120,7 @@ inline auto movie_table() {
     );
 }
 
+
 class link_row {
 public:
     link_row(int mMovieId, int mImbdId, int mTmdbId);
@@ -151,7 +152,7 @@ public:
 
 
 inline auto genome_tag_table() {
-    return make_table("genome_tag",
+    return make_table("genome_tags",
                       make_column("tag_id", &genome_tag_row::m_tag_id),
                       make_column("tag", &genome_tag_row::m_tag)
     );
