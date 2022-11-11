@@ -19,6 +19,8 @@ set(PROJECT_SOURCES
         src/mainwindow.cpp
         inc/mainwindow.h
         src/mainwindow.ui
+        inc/User.h
+        src/User.cpp
         src/Movie.cpp inc/Movie.h)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
