@@ -23,6 +23,8 @@ set(PROJECT_SOURCES
         src/User.cpp
         src/Movie.cpp inc/Movie.h)
 
+add_executable(movietest inc/Movie.h src/Movie.cpp)
+
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(untitled4
         MANUAL_FINALIZATION

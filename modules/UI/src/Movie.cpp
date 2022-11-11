@@ -72,4 +72,19 @@ void Movie::removeGenre(const std::string &genre){
     this->m_genres.erase(std::remove(this->m_genres.begin(), this->m_genres.end(), genre), this->m_genres.end());
 }
 
+std::string Movie::genresToString() {
+    if(this->m_genres.size()==0)
+        return "";
+    std::string result;
+    int nr=this->m_genres.size();
+    for(auto str: this->m_genres){
+        for(char c: str)
+            result.push_back(c);
+        if(nr>1)
+        result.push_back('|');
+        nr--;
+    }
+    return result;
+}
+
 

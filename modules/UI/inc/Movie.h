@@ -31,6 +31,8 @@ public:
 
     void addGenre(const std::string& genre);
 
+    std::string genresToString(); ///returns a string of genres delimited with | to fit in the movie_row classe's genres string
+
     void removeGenre(const std::string& genre);
 
     ~Movie();
