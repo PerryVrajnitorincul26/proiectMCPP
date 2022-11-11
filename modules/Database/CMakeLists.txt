@@ -1,7 +1,12 @@
 cmake_minimum_required(VERSION 3.16)
 #add_executable(dbtest src/dbtest.cpp)
-add_library(db_lib SHARED src/dblib.cpp src/dblib.h)
+
+set(CMAKE_CXX_STANDARD 17)
+find_package(SqliteOrm CONFIG REQUIRED)
+add_library(db_lib SHARED src/db_headers.cpp inc/db_headers.h moviedatabase.cpp moviedatabase.h)
+target_include_directories(db_lib PRIVATE inc src)
+target_link_libraries(db_lib PRIVATE sqlite_orm::sqlite_orm)
 add_executable(dbtest src/dbtest.cpp)
 target_include_directories(dbtest PRIVATE inc src)
-find_package(SqliteOrm CONFIG REQUIRED)
+
 target_link_libraries(dbtest PRIVATE sqlite_orm::sqlite_orm db_lib)
