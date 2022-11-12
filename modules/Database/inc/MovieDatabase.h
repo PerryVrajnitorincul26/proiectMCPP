@@ -65,8 +65,11 @@ public:
 
     std::unique_ptr<std::vector<user_row>> searchUsersByUsername(const std::string &src) const;
 
-
     std::unique_ptr<std::vector<user_rating_row>> getUserReviews(int u_id) const;
+
+    void signup(const user_row &user);
+
+    void signup(const std::string &username, const std::string &password, const std::string &region = "Romania");
 };
 
 #endif //MCPP_MOVIEDATABASE_H

@@ -3,10 +3,14 @@
 //
 
 #include<sqlite_orm/sqlite_orm.h>
+#include<iostream>
+#include "db_headers.h"
+#include "MovieDatabase.h"
 //This is the database modules and as such this makes sense imho.
+
 using namespace sqlite_orm;
 
-int main()
-{
-
+int main() {
+    auto &ref = MovieDatabase::movieDatabase();
+    auto user = ref.getUserById(1);
 }

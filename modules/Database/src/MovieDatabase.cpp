@@ -66,8 +66,13 @@ std::unique_ptr<std::vector<user_rating_row>> MovieDatabase::getUserReviews(int 
  */
 std::unique_ptr<user_row> MovieDatabase::getUserByUsername(const std::string &username) const {
     try {
+        auto user = std::move(dbPtr->get_all<user_row>(where(c(&user_row::m_username) == username)));
+        if(!user.empty())
         return std::make_unique<user_row>(
-                std::move(dbPtr->get_all<user_row>(where(c(&user_row::m_username) == username))[0]));
+                std::move(dbPtr->get_all<user_row>(where(c(&user_row::m_username) == username)).at(0)));
+        else{
+            return {nullptr};
+        }
     }
     catch (std::system_error &e) {
         std::cout << e.what() << std::endl;
@@ -88,4 +93,33 @@ bool MovieDatabase::login(const std::string &username, const std::string &passwo
         std::cout << e.what() << std::endl;
     }
     return false;
+}
+
+void MovieDatabase::signup(const user_row &user) {
+    try {
+        auto testval = this->getUserByUsername(user.m_username);
+        if (testval == nullptr)
+            dbPtr->insert(user);
+        else {
+            throw std::invalid_argument("Username already taken");
+        }
+    }
+    catch (std::system_error &e) {
+        std::cout << e.what() << std::endl;
+    }
+}
+
+void MovieDatabase::signup(const std::string &username, const std::string &password, const std::string &region) {
+    user_row user(0,username,password,region);
+    try {
+        auto testval = this->getUserByUsername(user.m_username);
+        if (testval == nullptr)
+            dbPtr->insert(user);
+        else {
+            throw std::invalid_argument("Username already taken");
+        }
+    }
+    catch (std::system_error &e) {
+        std::cout << e.what() << std::endl;
+    }
 }
