@@ -17,9 +17,13 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 set(PROJECT_SOURCES
         src/main.cpp
         src/mainwindow.cpp
+        src/dialog.cpp
+        inc/dialog.h
+        src/dialog.ui
         inc/mainwindow.h
         src/mainwindow.ui
         src/Movie.cpp inc/Movie.h)
+
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(untitled4
