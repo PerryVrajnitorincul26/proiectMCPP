@@ -34,7 +34,8 @@ inline auto user_table() {
                       make_column("username", &user_row::m_username),
                       make_column("password", &user_row::m_password),
                       make_column("region", &user_row::m_region),
-                      primary_key(&user_row::m_user_id)
+                      primary_key(&user_row::m_user_id),
+                      unique(&user_row::m_username)
     );
 }
 
@@ -52,7 +53,7 @@ public:
 
 inline auto movie_table() {
     return make_table("movie",
-                      make_column("movie_id", &movie_row::m_movie_id),
+                      make_column("movie_id", &movie_row::m_movie_id,primary_key()),
                       make_column("title", &movie_row::m_title),
                       make_column("genres", &movie_row::m_genres)
     );
