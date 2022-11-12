@@ -15,7 +15,7 @@
 #define MCPP_DBLIB_H
 using namespace sqlite_orm;
 
-
+//USER
 class user_row {
 public:
     user_row(int mUserId, const std::string &mUsername, const std::string &mPassword, const std::string &mRegion);
@@ -33,74 +33,12 @@ inline auto user_table() {
                       make_column("user_id", &user_row::m_user_id),
                       make_column("username", &user_row::m_username),
                       make_column("password", &user_row::m_password),
-                      make_column("region", &user_row::m_region)
+                      make_column("region", &user_row::m_region),
+                      primary_key(&user_row::m_user_id)
     );
 }
 
-class watchlist_row {
-public:
-    watchlist_row(int mUserId, int mMovieId, double mRating, const std::string &mDateModified);
-
-    watchlist_row();
-
-    int m_user_id;
-    int m_movie_id;
-    double m_rating;
-    std::string m_date_modified;
-};
-
-inline auto watchlist_table() {
-    return make_table("watchlist",
-                      make_column("user_id", &watchlist_row::m_user_id),
-                      make_column("movie_id", &watchlist_row::m_movie_id),
-                      make_column("rating", &watchlist_row::m_rating),
-                      make_column("date_modified", &watchlist_row::m_date_modified)
-    );
-}
-
-class community_tag_row {
-public:
-    community_tag_row(int mUserId, int mMovieId, const std::string &mTag, const std::string &mTimestamp);
-
-    community_tag_row();
-
-    int m_user_id;
-    int m_movie_id;
-    std::string m_tag;
-    std::string m_timestamp;
-};
-
-inline auto community_tag_table() {
-    return make_table("community_tag",
-                      make_column("user_id", &community_tag_row::m_user_id),
-                      make_column("movie_id", &community_tag_row::m_movie_id),
-                      make_column("tag", &community_tag_row::m_tag),
-                      make_column("timestamp", &community_tag_row::m_timestamp)
-    );
-}
-
-class user_rating_row {
-public:
-    user_rating_row(int mUserId, int mMovieId, const std::string &mRating, const std::string &mTimestamp);
-
-    user_rating_row();
-
-    int m_user_id;
-    int m_movie_id;
-    std::string m_rating;
-    std::string m_timestamp;
-};
-
-inline auto rating_table() {
-    return make_table(
-            "rating", //TODO: this is a name mismatch and i'd like it fixed in the DB since user_rating is clearer.
-            make_column("user_id", &user_rating_row::m_user_id),
-            make_column("movie_id", &user_rating_row::m_movie_id),
-            make_column("rating", &user_rating_row::m_rating),
-            make_column("timestamp", &user_rating_row::m_timestamp)
-    );
-}
-
+//MOVIE
 class movie_row {
 public:
     movie_row(int mMovieId, const std::string &mTitle, const std::string &mGenres);
@@ -120,7 +58,80 @@ inline auto movie_table() {
     );
 }
 
+//WATCHLIST
+class watchlist_row {
+public:
+    watchlist_row(int mUserId, int mMovieId, double mRating, const std::string &mDateModified);
 
+    watchlist_row();
+
+    int m_user_id;
+    int m_movie_id;
+    double m_rating;
+    std::string m_date_modified;
+};
+
+inline auto watchlist_table() {
+    return make_table("watchlist",
+                      make_column("user_id", &watchlist_row::m_user_id),
+                      make_column("movie_id", &watchlist_row::m_movie_id),
+                      make_column("rating", &watchlist_row::m_rating),
+                      make_column("date_modified", &watchlist_row::m_date_modified),
+                      primary_key(&watchlist_row::m_user_id, &watchlist_row::m_movie_id),
+                      foreign_key(&watchlist_row::m_movie_id).references(&movie_row::m_movie_id)
+    );
+}
+
+//COMMUNITY TAG
+class community_tag_row {
+public:
+    community_tag_row(int mUserId, int mMovieId, const std::string &mTag, const std::string &mTimestamp);
+
+    community_tag_row();
+
+    int m_user_id;
+    int m_movie_id;
+    std::string m_tag;
+    std::string m_timestamp;
+};
+
+inline auto community_tag_table() {
+    return make_table("community_tag",
+                      make_column("user_id", &community_tag_row::m_user_id),
+                      make_column("movie_id", &community_tag_row::m_movie_id),
+                      make_column("tag", &community_tag_row::m_tag),
+                      make_column("timestamp", &community_tag_row::m_timestamp),
+                      foreign_key(&community_tag_row::m_movie_id).references(&movie_row::m_movie_id),
+                      foreign_key(&community_tag_row::m_user_id).references(&user_row::m_user_id)
+    );
+}
+
+//RATING
+class user_rating_row {
+public:
+    user_rating_row(int mUserId, int mMovieId, const std::string &mRating, const std::string &mTimestamp);
+
+    user_rating_row();
+
+    int m_user_id;
+    int m_movie_id;
+    std::string m_rating;
+    std::string m_timestamp;
+};
+
+inline auto rating_table() {
+    return make_table(
+            "rating", //TODO: this is a name mismatch and i'd like it fixed in the DB since user_rating is clearer.
+            make_column("user_id", &user_rating_row::m_user_id),
+            make_column("movie_id", &user_rating_row::m_movie_id),
+            make_column("rating", &user_rating_row::m_rating),
+            make_column("timestamp", &user_rating_row::m_timestamp),
+            primary_key(&user_rating_row::m_user_id, &user_rating_row::m_movie_id),
+            foreign_key(&user_rating_row::m_movie_id).references(&movie_row::m_movie_id)
+    );
+}
+
+//LINK
 class link_row {
 public:
     link_row(int mMovieId, int mImbdId, int mTmdbId);
@@ -136,10 +147,13 @@ inline auto link_table() {
     return make_table("link",
                       make_column("movie_id", &link_row::m_movie_id),
                       make_column("imdb_id", &link_row::m_imbd_id),
-                      make_column("tmdb_id", &link_row::m_tmdb_id)
+                      make_column("tmdb_id", &link_row::m_tmdb_id),
+                      primary_key(&link_row::m_movie_id),
+                      foreign_key(&link_row::m_movie_id).references(&movie_row::m_movie_id)
     );
 }
 
+//GENOME TAG
 class genome_tag_row {
 public:
     genome_tag_row(int mTagId, const std::string &mTag);
@@ -150,14 +164,15 @@ public:
     std::string m_tag;
 };
 
-
 inline auto genome_tag_table() {
     return make_table("genome_tags",
                       make_column("tag_id", &genome_tag_row::m_tag_id),
-                      make_column("tag", &genome_tag_row::m_tag)
+                      make_column("tag", &genome_tag_row::m_tag),
+                      primary_key(&genome_tag_row::m_tag_id)
     );
 }
 
+//GENOME SCORE
 class genome_scores_row {
 public:
     genome_scores_row(int mMovieId, int mTagId, double mRelevance);
@@ -173,7 +188,9 @@ inline auto genome_scores_table() {
     return make_table("genome_scores",
                       make_column("movie_id", &genome_scores_row::m_movie_id),
                       make_column("tag_id", &genome_scores_row::m_tag_id),
-                      make_column("relevance", &genome_scores_row::m_relevance)
+                      make_column("relevance", &genome_scores_row::m_relevance),
+                      primary_key(&genome_scores_row::m_movie_id, &genome_scores_row::m_tag_id),
+                      foreign_key(&genome_scores_row::m_movie_id).references(&movie_row::m_movie_id)
     );
 }
 
@@ -183,7 +200,6 @@ inline auto init_storage(const std::string &path) {
 }
 
 using Storage = decltype(init_storage(""));
-
 
 
 #endif //MCPP_DBLIB_H
