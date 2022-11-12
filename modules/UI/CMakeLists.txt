@@ -22,7 +22,11 @@ set(PROJECT_SOURCES
         src/dialog.ui
         inc/mainwindow.h
         src/mainwindow.ui
+        inc/User.h
+        src/User.cpp
         src/Movie.cpp inc/Movie.h)
+
+add_executable(movietest inc/Movie.h src/Movie.cpp)
 
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
