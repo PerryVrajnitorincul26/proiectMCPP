@@ -2,7 +2,6 @@
 #define DIALOG_H
 
 #include <QDialog>
-
 namespace Ui {
 class Dialog;
 }
@@ -16,10 +15,13 @@ public:
     ~Dialog();
 
 private slots:
-    void on_pushButton_clicked();
+
+   void on_pushButton_SignUp_clicked();
 
 private:
     Ui::Dialog *ui;
+
+
 };
 
 #endif // DIALOG_H

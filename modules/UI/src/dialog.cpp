@@ -1,5 +1,7 @@
 #include "dialog.h"
 #include "ui_dialog.h"
+#include "User.h"
+#include "QMessageBox"
 
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
@@ -11,22 +13,22 @@ Dialog::Dialog(QWidget *parent) :
 Dialog::~Dialog()
 {
     delete ui;
-}
-
-void Dialog::on_pushButton_clicked()
-{
 
 }
 
-class User
+
+
+void Dialog::on_pushButton_SignUp_clicked()
 {
-public:
-    User() {}
-    User(const User &other);
+    QString label_Region=ui->lineEdit_Region->text();
+    QString label_Username=ui->lineEdit_UsernameRegister->text();
+    QString label_Password=ui->lineEdit_PasswordRegister->text();
+if(label_Username=='a')
+QMessageBox::warning(this,"SignUp","Username already used");
+if(label_Username!='a')
+QMessageBox::information(this,"SignUp","Account succesfully made!");
 
-    User &operator=(const User &other);
 
-private:
-    QString Region,Username,Password;
 
-};
+}
+
