@@ -12,5 +12,8 @@ using namespace sqlite_orm;
 
 int main() {
     auto &ref = MovieDatabase::movieDatabase();
-    auto user = ref.getUserById(1);
+    auto sal = ref.moviesByUserWishlist(1);
+
+
 }
+

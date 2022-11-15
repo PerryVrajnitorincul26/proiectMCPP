@@ -2,18 +2,20 @@
 #include "./ui_mainwindow.h"
 #include "QMessageBox"
 #include "dialog.h"
+#include "db_headers.h"
+#include "MovieDatabase.h"
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
 	, ui(new Ui::MainWindow)
 {
-	ui->setupUi(this);
-	qDebug() << "merge";
+    ui->setupUi(this);
+
 
 }
 
 MainWindow::~MainWindow()
 {
-	delete ui;
+    delete ui;
 }
 
 

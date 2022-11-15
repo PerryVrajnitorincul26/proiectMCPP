@@ -53,23 +53,35 @@ public:
      * @param m_id id of movie object
      * @return movie_row object with corresponding m_id
      */
-    std::unique_ptr<movie_row> getMovieById(int m_id) const;
+    [[nodiscard]] std::unique_ptr<movie_row> getMovieById(int m_id) const;
 
-    std::unique_ptr<std::vector<movie_row>> searchMovieTitles(const std::string &src) const;
+    [[nodiscard]] std::unique_ptr<std::vector<movie_row>> searchMovieTitles(const std::string &src) const;
 
-    std::unique_ptr<user_row> getUserById(int u_id) const;
+    [[nodiscard]] std::unique_ptr<user_row> getUserById(int u_id) const;
 
-    std::unique_ptr<user_row> getUserByUsername(const std::string &username) const;
+    [[nodiscard]] std::unique_ptr<user_row> getUserByUsername(const std::string &username) const;
 
-    bool login(const std::string &username, const std::string &password) const;
+    [[nodiscard]] std::unique_ptr<user_row> login(const std::string &username, const std::string &password) const;
 
-    std::unique_ptr<std::vector<user_row>> searchUsersByUsername(const std::string &src) const;
+    [[nodiscard]] std::unique_ptr<std::vector<user_row>> searchUsersByUsername(const std::string &src) const;
 
-    std::unique_ptr<std::vector<user_rating_row>> getUserReviews(int u_id) const;
+    [[nodiscard]] std::unique_ptr<std::vector<user_rating_row>> getUserReviews(int u_id) const;
 
-    void signup(const user_row &user);
+    [[nodiscard]] std::unique_ptr<watchlist_row> getWatchEntry(int u_id, int m_id) const;
 
-    void signup(const std::string &username, const std::string &password, const std::string &region = "Romania");
+    [[nodiscard]] std::unique_ptr<std::vector<watchlist_row>> watchlistByUser(int u_id) const;
+
+    [[nodiscard]] std::unique_ptr<std::vector<movie_row>> moviesByUserWishlist(int u_id) const;
+
+    void signup(const user_row &user) const;
+
+    void signup(const std::string &username, const std::string &password, const std::string &region = "Romania") const;
+
+
+
+    void watch(const watchlist_row &entry) const;
+
+    void watch(int user_id, int movie_id, double rating, const std::string &date_modified) const;
 };
 
 #endif //MCPP_MOVIEDATABASE_H

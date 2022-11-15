@@ -67,10 +67,10 @@ std::unique_ptr<std::vector<user_rating_row>> MovieDatabase::getUserReviews(int 
 std::unique_ptr<user_row> MovieDatabase::getUserByUsername(const std::string &username) const {
     try {
         auto user = std::move(dbPtr->get_all<user_row>(where(c(&user_row::m_username) == username)));
-        if(!user.empty())
-        return std::make_unique<user_row>(
-                std::move(dbPtr->get_all<user_row>(where(c(&user_row::m_username) == username)).at(0)));
-        else{
+        if (!user.empty())
+            return std::make_unique<user_row>(
+                    std::move(dbPtr->get_all<user_row>(where(c(&user_row::m_username) == username)).at(0)));
+        else {
             return {nullptr};
         }
     }
@@ -80,22 +80,22 @@ std::unique_ptr<user_row> MovieDatabase::getUserByUsername(const std::string &us
     return {nullptr};
 }
 
-bool MovieDatabase::login(const std::string &username, const std::string &password) const {
+std::unique_ptr<user_row> MovieDatabase::login(const std::string &username, const std::string &password) const {
     try {
         auto usr = dbPtr->get_all<user_row>(
                 where(c(&user_row::m_username) == username && c(&user_row::m_password) == password));
         if (usr.empty())
-            return false;
+            return {nullptr};
         else
-            return true;
+            return std::make_unique<user_row>(std::move(usr.front()));
     }
     catch (std::system_error &e) {
         std::cout << e.what() << std::endl;
     }
-    return false;
+    return {nullptr};
 }
 
-void MovieDatabase::signup(const user_row &user) {
+void MovieDatabase::signup(const user_row &user) const {
     try {
         auto testval = this->getUserByUsername(user.m_username);
         if (testval == nullptr)
@@ -109,8 +109,8 @@ void MovieDatabase::signup(const user_row &user) {
     }
 }
 
-void MovieDatabase::signup(const std::string &username, const std::string &password, const std::string &region) {
-    user_row user(0,username,password,region);
+void MovieDatabase::signup(const std::string &username, const std::string &password, const std::string &region) const {
+    user_row user(0, username, password, region);
     try {
         auto testval = this->getUserByUsername(user.m_username);
         if (testval == nullptr)
@@ -122,4 +122,56 @@ void MovieDatabase::signup(const std::string &username, const std::string &passw
     catch (std::system_error &e) {
         std::cout << e.what() << std::endl;
     }
+}
+
+std::unique_ptr<std::vector<watchlist_row>> MovieDatabase::watchlistByUser(int u_id) const {
+    try {
+        return std::make_unique<std::vector<watchlist_row>>(
+                dbPtr->get_all<watchlist_row>(where(c(&watchlist_row::m_user_id) == u_id)));
+    }
+    catch (std::system_error &e) {
+        std::cout << e.what() << std::endl;
+    }
+    return {nullptr};
+}
+
+/*!
+ * TODO: TEST THIS FUNCTION IN GTEST
+ * @param u_id
+ * @return
+ */
+std::unique_ptr<std::vector<movie_row>> MovieDatabase::moviesByUserWishlist(int u_id) const {
+    try {
+        return std::make_unique<std::vector<movie_row>>(std::move(dbPtr->get_all<movie_row>(
+                inner_join<watchlist_row>(
+                        on(c(&movie_row::m_movie_id) == &watchlist_row::m_movie_id)),
+                where(c(&watchlist_row::m_user_id) == u_id))));
+    }
+    catch (std::system_error &e) {
+        std::cout << e.what() << std::endl;
+    }
+    return {nullptr};
+}
+
+void MovieDatabase::watch(const watchlist_row &entry) const {
+    try {
+            dbPtr->replace(entry);
+        }
+    catch (std::system_error &e) {
+        std::cout << e.what() << std::endl;
+    }
+}
+
+void MovieDatabase::watch(int user_id, int movie_id, double rating, const std::string &date_modified) const {
+    return this->watch(std::move(watchlist_row{user_id, movie_id, rating, date_modified}));
+}
+
+std::unique_ptr<watchlist_row> MovieDatabase::getWatchEntry(int u_id, int m_id) const {
+    try {
+        return std::make_unique<watchlist_row>(std::move(dbPtr->get<watchlist_row>(u_id, m_id)));
+    }
+    catch (std::system_error &e) {
+        std::cout << e.what() << std::endl;
+    }
+    return {nullptr};
 }
