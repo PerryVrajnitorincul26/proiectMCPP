@@ -20,7 +20,7 @@ private slots:
     void on_pushButton_SignIn_clicked();
 
 
-    void showDebug();
+//    void showDebug();
 
 private:
     Ui::MainWindow *ui;

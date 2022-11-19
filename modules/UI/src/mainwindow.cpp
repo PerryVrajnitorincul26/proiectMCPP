@@ -4,12 +4,12 @@
 #include "dialog.h"
 #include "db_headers.h"
 #include "MovieDatabase.h"
+
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
 	, ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
 
 }
 

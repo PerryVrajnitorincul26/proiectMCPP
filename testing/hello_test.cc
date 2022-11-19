@@ -16,7 +16,7 @@ TEST(HelloTest, BasicAssertions) {
 TEST(HeloTest,db_get_user){
     auto &db = MovieDatabase::instance();
     db.dbPtr->remove_all<user_row>();
-    db.signup({1,"SchimbaAstaCand","StiSaFolosestiGtest","Visi"});
+    db.signup({1,"SchimbaAstaCand","StiSaFolosestiGtest","Visi"}); //inca nu stiu bro
     auto z = db.getUserByUsername("SchimbaAstaCand");
     EXPECT_EQ(db.getUserById(-1),nullptr);
     EXPECT_NE(z, nullptr);
@@ -26,8 +26,8 @@ TEST(HeloTest,User_creation){
     auto &db = MovieDatabase::instance();
     //This will have to changed at some point when we make dbPtr private.
     db.dbPtr->remove_all<user_row>();
-    db.signup({1,"VisiNuStie","SaFoloseascaGtest","Aici"});
-    EXPECT_ANY_THROW(db.signup({1,"VisiNuStie","SaFoloseascaGtest","Aici"}));
+    db.signup({1,"VisiIncaNuStie","SaFoloseascaGtest","Aici"});
+    EXPECT_ANY_THROW(db.signup({1,"VisiIncaNuStie","SaFoloseascaGtest","Aici"}));
     db.signup("MateiAScris","AcestTest");
     EXPECT_ANY_THROW(db.signup("MateiAScris","AcestTest"));
 }

@@ -18,7 +18,7 @@ using namespace sqlite_orm;
 class MovieDatabase {
 private:
     MovieDatabase() {
-        dbPtr = std::make_unique<Storage>(init_storage("identifier.sqlite"));
+        dbPtr = std::make_unique<Storage>(init_storage("C:\\Users\\Iusaq\\DataGripProjects\\db_moviescouter\\moviescouter.sqlite"));
         std::cout << "database created" << std::endl;
     }
 
