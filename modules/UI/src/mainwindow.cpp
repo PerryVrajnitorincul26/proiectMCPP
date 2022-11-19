@@ -5,6 +5,7 @@
 #include "db_headers.h"
 #include "MovieDatabase.h"
 
+
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
 	, ui(new Ui::MainWindow)
@@ -25,15 +26,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_SignIn_clicked()
 {
-    QString label_user=ui->lineEdit_user->text();
-    QString label_password=ui->lineEdit_pass->text();
-    if(label_user=="a"&& label_password=="b")
-        QMessageBox::information(this,"Login","user and pass good");
-    else
-    {
-       Dialog dialog;
-       dialog.setModal(true);
-       dialog.exec();
+    auto &dbRef = MovieDatabase::instance();
+    auto response = dbRef.login(ui->lineEdit_user->text().toStdString(),ui->lineEdit_pass->text().toStdString());
+    if(response == nullptr) {
+        QMessageBox::information(this, "Login Error", "Account not found - create one!");
+        Dialog dialog;
+        dialog.setModal(true);
+        dialog.exec();
     }
 }
 
