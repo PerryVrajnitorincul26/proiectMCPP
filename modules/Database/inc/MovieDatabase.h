@@ -75,6 +75,10 @@ public:
 
     [[nodiscard]] std::unique_ptr<std::vector<community_tag_row>> tagsByUser(int u_id) const;
 
+    [[nodiscard]] std::unique_ptr<link_row> getLinkEntry(int m_id) const;
+
+    [[nodiscard]] std::unique_ptr<genome_tag_row> getTagEntry(int tag_id) const;
+
     void signup(const user_row &user) const;
 
     void signup(const std::string &username, const std::string &password, const std::string &region = "Romania") const;
@@ -86,6 +90,8 @@ public:
     void watch(const watchlist_row &entry) const;
 
     void watch(int user_id, int movie_id, double rating, const std::string &date_modified) const;
+
+
 };
 
 #endif //MCPP_MOVIEDATABASE_H

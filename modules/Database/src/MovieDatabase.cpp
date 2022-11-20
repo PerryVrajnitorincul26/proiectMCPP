@@ -6,7 +6,7 @@
 
 std::unique_ptr<movie_row> MovieDatabase::getMovieById(int m_id) const {
     try {
-        return std::make_unique<movie_row>(std::move(dbPtr->get<movie_row>(m_id)));
+        return (dbPtr->get_pointer<movie_row>(m_id));
     }
     catch (std::system_error &e) {
         std::cout << e.what() << std::endl;
@@ -28,7 +28,7 @@ std::unique_ptr<std::vector<movie_row>> MovieDatabase::searchMovieTitles(const s
 
 std::unique_ptr<user_row> MovieDatabase::getUserById(int u_id) const {
     try {
-        return std::make_unique<user_row>(std::move(dbPtr->get<user_row>(u_id)));
+        return dbPtr->get_pointer<user_row>(u_id);
     }
     catch (std::system_error &e) {
         std::cout << e.what() << std::endl;
@@ -168,7 +168,7 @@ void MovieDatabase::watch(int user_id, int movie_id, double rating, const std::s
 
 std::unique_ptr<watchlist_row> MovieDatabase::getWatchEntry(int u_id, int m_id) const {
     try {
-        return std::make_unique<watchlist_row>(std::move(dbPtr->get<watchlist_row>(u_id, m_id)));
+        return dbPtr->get_pointer<watchlist_row>(u_id, m_id);
     }
     catch (std::system_error &e) {
         std::cout << e.what() << std::endl;
@@ -201,4 +201,24 @@ void MovieDatabase::addCommunityTag(const community_tag_row &tagRow) const {
 
 void MovieDatabase::addCommunityTag(int user_id, int movie_id, const std::string& tag, const std::string& timestamp) const {
     addCommunityTag({user_id, movie_id, tag, timestamp});
+}
+
+std::unique_ptr<link_row> MovieDatabase::getLinkEntry(int m_id) const {
+    try {
+        dbPtr->get_pointer<link_row>(m_id);
+    }
+    catch (std::system_error &e) {
+        std::cout << e.what() << std::endl;
+    }
+    return {nullptr};
+}
+
+std::unique_ptr<genome_tag_row> MovieDatabase::getTagEntry(int tag_id) const {
+    try {
+        dbPtr->get_pointer<genome_tag_row>(tag_id);
+    }
+    catch (std::system_error &e) {
+        std::cout << e.what() << std::endl;
+    }
+    return {nullptr};
 }
