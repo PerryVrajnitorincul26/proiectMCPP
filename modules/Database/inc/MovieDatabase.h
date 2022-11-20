@@ -18,14 +18,14 @@ using namespace sqlite_orm;
 class MovieDatabase {
 private:
     MovieDatabase() {
-        dbPtr = std::make_unique<Storage>(init_storage("C:\\Users\\Iusaq\\DataGripProjects\\db_moviescouter\\moviescouter.sqlite"));
+        dbPtr = std::make_unique<Storage>(init_storage("identifier.sqlite"));
         std::cout << "database created" << std::endl;
     }
 
 
 public:
     /*!
-     * This should make it impossible to create anything other reference to this class. As such we avoid duplicating
+     * This should make it impossible to create anything other than references to this class. As such we avoid duplicating
      * any information regarding the database.
      */
     MovieDatabase(MovieDatabase &) = delete;
@@ -73,11 +73,15 @@ public:
 
     [[nodiscard]] std::unique_ptr<std::vector<movie_row>> moviesByUserWishlist(int u_id) const;
 
+    [[nodiscard]] std::unique_ptr<std::vector<community_tag_row>> tagsByUser(int u_id) const;
+
     void signup(const user_row &user) const;
 
     void signup(const std::string &username, const std::string &password, const std::string &region = "Romania") const;
 
+    void addCommunityTag(const community_tag_row &tagRow) const;
 
+    void addCommunityTag(int user_id,int movie_id,std::string tag, std::string timestamp = "ieri") const;
 
     void watch(const watchlist_row &entry) const;
 

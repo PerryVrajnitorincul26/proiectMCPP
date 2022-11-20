@@ -155,8 +155,8 @@ std::unique_ptr<std::vector<movie_row>> MovieDatabase::moviesByUserWishlist(int 
 
 void MovieDatabase::watch(const watchlist_row &entry) const {
     try {
-            dbPtr->replace(entry);
-        }
+        dbPtr->replace(entry);
+    }
     catch (std::system_error &e) {
         std::cout << e.what() << std::endl;
     }
@@ -169,6 +169,17 @@ void MovieDatabase::watch(int user_id, int movie_id, double rating, const std::s
 std::unique_ptr<watchlist_row> MovieDatabase::getWatchEntry(int u_id, int m_id) const {
     try {
         return std::make_unique<watchlist_row>(std::move(dbPtr->get<watchlist_row>(u_id, m_id)));
+    }
+    catch (std::system_error &e) {
+        std::cout << e.what() << std::endl;
+    }
+    return {nullptr};
+}
+
+std::unique_ptr<std::vector<community_tag_row>> MovieDatabase::tagsByUser(int u_id) const {
+    try {
+        return std::make_unique<std::vector<community_tag_row>>(
+                std::move(dbPtr->get_all<community_tag_row>(where(c(&community_tag_row::m_user_id) == u_id))));
     }
     catch (std::system_error &e) {
         std::cout << e.what() << std::endl;
