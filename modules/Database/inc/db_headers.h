@@ -20,6 +20,10 @@ class user_row {
 public:
     user_row(int mUserId, const std::string &mUsername, const std::string &mPassword, const std::string &mRegion);
 
+    bool operator==(const user_row &rhs) const;
+
+    bool operator!=(const user_row &rhs) const;
+
     user_row();
 
     int m_user_id;
@@ -46,6 +50,10 @@ public:
 
     movie_row();
 
+    bool operator==(const movie_row &rhs) const;
+
+    bool operator!=(const movie_row &rhs) const;
+
     int m_movie_id;
     std::string m_title;
     std::string m_genres; //NOTE: This is a string of multiple genres associated with a film separated by "|" (pipe character)
@@ -65,6 +73,10 @@ public:
     watchlist_row(int mUserId, int mMovieId, double mRating, const std::string &mDateModified);
 
     watchlist_row();
+
+    bool operator==(const watchlist_row &rhs) const;
+
+    bool operator!=(const watchlist_row &rhs) const;
 
     int m_user_id;
     int m_movie_id;
@@ -90,6 +102,10 @@ public:
 
     community_tag_row();
 
+    bool operator==(const community_tag_row &rhs) const;
+
+    bool operator!=(const community_tag_row &rhs) const;
+
     int m_user_id;
     int m_movie_id;
     std::string m_tag;
@@ -113,6 +129,10 @@ public:
     user_rating_row(int mUserId, int mMovieId, const std::string &mRating, const std::string &mTimestamp);
 
     user_rating_row();
+
+    bool operator==(const user_rating_row &rhs) const;
+
+    bool operator!=(const user_rating_row &rhs) const;
 
     int m_user_id;
     int m_movie_id;
@@ -139,6 +159,10 @@ public:
 
     link_row();
 
+    bool operator==(const link_row &rhs) const;
+
+    bool operator!=(const link_row &rhs) const;
+
     int m_movie_id;
     int m_imbd_id;
     int m_tmdb_id;
@@ -161,6 +185,10 @@ public:
 
     genome_tag_row();
 
+    bool operator==(const genome_tag_row &rhs) const;
+
+    bool operator!=(const genome_tag_row &rhs) const;
+
     int m_tag_id;
     std::string m_tag;
 };
@@ -179,6 +207,10 @@ public:
     genome_scores_row(int mMovieId, int mTagId, double mRelevance);
 
     genome_scores_row();
+
+    bool operator==(const genome_scores_row &rhs) const;
+
+    bool operator!=(const genome_scores_row &rhs) const;
 
     int m_movie_id;
     int m_tag_id;

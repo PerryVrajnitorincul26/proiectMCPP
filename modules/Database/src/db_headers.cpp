@@ -14,11 +14,28 @@ user_row::user_row() {
 
 }
 
+bool user_row::operator==(const user_row &rhs) const {
+    return m_user_id == rhs.m_user_id;
+}
+
+bool user_row::operator!=(const user_row &rhs) const {
+    return !(rhs == *this);
+}
+
 watchlist_row::watchlist_row(int mUserId, int mMovieId, double mRating, const std::string &mDateModified) : m_user_id(
         mUserId), m_movie_id(mMovieId), m_rating(mRating), m_date_modified(mDateModified) {}
 
 watchlist_row::watchlist_row() {
 
+}
+
+bool watchlist_row::operator==(const watchlist_row &rhs) const {
+    return m_user_id == rhs.m_user_id &&
+           m_movie_id == rhs.m_movie_id;
+}
+
+bool watchlist_row::operator!=(const watchlist_row &rhs) const {
+    return !(rhs == *this);
 }
 
 community_tag_row::community_tag_row(int mUserId, int mMovieId, const std::string &mTag, const std::string &mTimestamp)
@@ -28,11 +45,30 @@ community_tag_row::community_tag_row() {
 
 }
 
+bool community_tag_row::operator==(const community_tag_row &rhs) const {
+    return m_user_id == rhs.m_user_id &&
+           m_movie_id == rhs.m_movie_id &&
+           m_tag == rhs.m_tag;
+}
+
+bool community_tag_row::operator!=(const community_tag_row &rhs) const {
+    return !(rhs == *this);
+}
+
 user_rating_row::user_rating_row(int mUserId, int mMovieId, const std::string &mRating, const std::string &mTimestamp)
         : m_user_id(mUserId), m_movie_id(mMovieId), m_rating(mRating), m_timestamp(mTimestamp) {}
 
 user_rating_row::user_rating_row() {
 
+}
+
+bool user_rating_row::operator==(const user_rating_row &rhs) const {
+    return m_user_id == rhs.m_user_id &&
+           m_movie_id == rhs.m_movie_id;
+}
+
+bool user_rating_row::operator!=(const user_rating_row &rhs) const {
+    return !(rhs == *this);
 }
 
 movie_row::movie_row(int mMovieId, const std::string &mTitle, const std::string &mGenres) : m_movie_id(mMovieId),
@@ -43,11 +79,27 @@ movie_row::movie_row() {
 
 }
 
+bool movie_row::operator==(const movie_row &rhs) const {
+    return m_movie_id == rhs.m_movie_id;
+}
+
+bool movie_row::operator!=(const movie_row &rhs) const {
+    return !(rhs == *this);
+}
+
 link_row::link_row(int mMovieId, int mImbdId, int mTmdbId) : m_movie_id(mMovieId), m_imbd_id(mImbdId),
                                                              m_tmdb_id(mTmdbId) {}
 
 link_row::link_row() {
 
+}
+
+bool link_row::operator==(const link_row &rhs) const {
+    return m_movie_id == rhs.m_movie_id;
+}
+
+bool link_row::operator!=(const link_row &rhs) const {
+    return !(rhs == *this);
 }
 
 genome_tag_row::genome_tag_row(int mTagId, const std::string &mTag) : m_tag_id(mTagId), m_tag(mTag) {}
@@ -56,10 +108,27 @@ genome_tag_row::genome_tag_row(int mTagId, const std::string &mTag) : m_tag_id(m
 genome_tag_row::genome_tag_row() {
 }
 
+bool genome_tag_row::operator==(const genome_tag_row &rhs) const {
+    return m_tag_id == rhs.m_tag_id;
+}
+
+bool genome_tag_row::operator!=(const genome_tag_row &rhs) const {
+    return !(rhs == *this);
+}
+
 genome_scores_row::genome_scores_row(int mMovieId, int mTagId, double mRelevance) : m_movie_id(mMovieId),
                                                                                     m_tag_id(mTagId),
                                                                                     m_relevance(mRelevance) {}
 
 genome_scores_row::genome_scores_row() {
 
+}
+
+bool genome_scores_row::operator==(const genome_scores_row &rhs) const {
+    return m_movie_id == rhs.m_movie_id &&
+           m_tag_id == rhs.m_tag_id;
+}
+
+bool genome_scores_row::operator!=(const genome_scores_row &rhs) const {
+    return !(rhs == *this);
 }
