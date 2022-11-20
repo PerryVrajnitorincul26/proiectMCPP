@@ -81,7 +81,7 @@ public:
 
     void addCommunityTag(const community_tag_row &tagRow) const;
 
-    void addCommunityTag(int user_id,int movie_id,std::string tag, std::string timestamp = "ieri") const;
+    void addCommunityTag(int user_id,int movie_id,const std::string& tag, const std::string& timestamp = "ieri") const;
 
     void watch(const watchlist_row &entry) const;
 
