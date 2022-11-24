@@ -26,8 +26,7 @@ set(PROJECT_SOURCES
         src/User.cpp
         src/Movie.cpp inc/Movie.h
         src/QnetworkAcces.cpp
-        inc/QnetworkAcces.h
-        src/mainQNetwork.cpp)
+        )
 
 add_executable(movietest inc/Movie.h src/Movie.cpp)
 

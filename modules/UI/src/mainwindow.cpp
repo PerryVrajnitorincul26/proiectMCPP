@@ -35,4 +35,3 @@ void MainWindow::on_pushButton_SignIn_clicked()
         dialog.exec();
     }
 }
-

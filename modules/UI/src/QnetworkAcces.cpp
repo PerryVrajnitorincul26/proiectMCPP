@@ -17,19 +17,19 @@ QnetworkAcces::QnetworkAcces(QObject *parent) : QObject(parent) {
 void QnetworkAcces::authenticationRequired(QNetworkReply *reply, QAuthenticator *authenticator) {
     Q_UNUSED(reply);
     Q_UNUSED(authenticator);
-    qInfo()<<"authenticationRequired";
+    qInfo() << "authenticationRequired";
 
 }
 
 void QnetworkAcces::encrypted(QNetworkReply *reply) {
     Q_UNUSED(reply);
-    qInfo()<<"encrypted";
+    qInfo() << "encrypted";
 
 }
 
 void QnetworkAcces::finished(QNetworkReply *reply) {
-   Q_UNUSED(reply);
-    qInfo()<<"finished";
+    Q_UNUSED(reply);
+    qInfo() << "finished";
 
 
 }
@@ -38,28 +38,28 @@ void
 QnetworkAcces::preSharedKeyAuthenticationRequired(QNetworkReply *reply, QSslPreSharedKeyAuthenticator *authenticator) {
     Q_UNUSED(reply);
     Q_UNUSED(authenticator);
-    qInfo()<<"preSharedKeyAuthenticationRequired";
+    qInfo() << "preSharedKeyAuthenticationRequired";
 
 }
 
 void QnetworkAcces::proxyAuthenticationRequired(const QNetworkProxy &proxy, QAuthenticator *authenticator) {
     Q_UNUSED(proxy);
     Q_UNUSED(authenticator);
-    qInfo()<<"proxyAuthenticationRequired";
+    qInfo() << "proxyAuthenticationRequired";
 
 }
 
 void QnetworkAcces::sslErrors(QNetworkReply *reply, const QList<QSslError> &errors) {
     Q_UNUSED(reply);
     Q_UNUSED(errors);
-    qInfo()<<"sslErrors";
+    qInfo() << "sslErrors";
 
 }
 
 void QnetworkAcces::readyRead() {
-qInfo()<<"ReadyRead";
-QNetworkReply* reply = qobject_cast<QNetworkReply*>(sender());
-if(reply) qInfo()<<reply->readAll();
+    qInfo() << "ReadyRead";
+    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+    if (reply) qInfo() << reply->readAll();
 }
 
 void QnetworkAcces::get(QString location) {
