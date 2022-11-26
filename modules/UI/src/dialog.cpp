@@ -1,6 +1,5 @@
 #include "dialog.h"
 #include "ui_dialog.h"
-#include "User.h"
 #include "QMessageBox"
 #include "MovieDatabase.h"
 
