@@ -31,3 +31,9 @@ TEST(HeloTest,User_creation){
     db.signup("MateiAScris","AcestTest");
     EXPECT_ANY_THROW(db.signup("MateiAScris","AcestTest"));
 }
+
+TEST(HeloTest,MovieSearch){
+    auto &db = MovieDatabase::instance();
+    auto tmp = db.searchMovieTitles("at");
+    EXPECT_NE(tmp,nullptr);
+}

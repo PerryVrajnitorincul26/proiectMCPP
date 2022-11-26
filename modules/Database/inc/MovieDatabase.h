@@ -8,9 +8,14 @@
 #include "db_headers.h"
 #include "sqlite_orm/sqlite_orm.h"
 #include <iostream>
-
 using namespace sqlite_orm;
 
+
+#define STRINGIFY(x) #x
+#define STR(y) STRINGIFY(y)
+#ifndef dbfile
+#error  dbfile MUST Be defined
+#endif
 /*!
  * Singleton that contains a pointer to the database object.
  * @warning You should only be able to create references to this object by calling ::instance.
@@ -18,10 +23,9 @@ using namespace sqlite_orm;
 class MovieDatabase {
 private:
     MovieDatabase() {
-        dbPtr = std::make_unique<Storage>(init_storage("identifier.sqlite"));
+        dbPtr = std::make_unique<Storage>(init_storage((STR(dbfile))));
         std::cout << "database created" << std::endl;
     }
-
 
 public:
     /*!
@@ -85,7 +89,8 @@ public:
 
     void addCommunityTag(const community_tag_row &tagRow) const;
 
-    void addCommunityTag(int user_id,int movie_id,const std::string& tag, const std::string& timestamp = "ieri") const;
+    void
+    addCommunityTag(int user_id, int movie_id, const std::string &tag, const std::string &timestamp = "ieri") const;
 
     void watch(const watchlist_row &entry) const;
 
