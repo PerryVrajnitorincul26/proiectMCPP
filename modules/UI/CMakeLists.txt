@@ -30,7 +30,7 @@ set(PROJECT_SOURCES
         inc/moviestable.h
         src/moviestable.cpp
         src/moviestable.ui
-        src/MoviesTableView.cpp inc/MoviesTableView.h
+        src/MoviesTableModel.cpp inc/MoviesTableModel.h
        )
 
 add_executable(movietest inc/Movie.h src/Movie.cpp)
