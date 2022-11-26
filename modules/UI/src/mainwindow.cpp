@@ -5,6 +5,8 @@
 #include "db_headers.h"
 #include "MovieDatabase.h"
 
+#include "moviestable.h"
+
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
@@ -20,18 +22,18 @@ MainWindow::~MainWindow()
 }
 
 
-
-
-
-
 void MainWindow::on_pushButton_SignIn_clicked()
 {
     auto &dbRef = MovieDatabase::instance();
     auto response = dbRef.login(ui->lineEdit_user->text().toStdString(),ui->lineEdit_pass->text().toStdString());
     if(response == nullptr) {
         QMessageBox::information(this, "Login Error", "Account not found - create one!");
-        Dialog dialog;
-        dialog.setModal(true);
-        dialog.exec();
+//        Dialog dialog;
+//        dialog.setModal(true);
+//        dialog.exec();
     }
+
+    MoviesTable moviesTable(this);
+    moviesTable.setModal(true);
+    moviesTable.exec();
 }

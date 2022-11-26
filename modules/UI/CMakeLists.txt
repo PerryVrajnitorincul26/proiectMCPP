@@ -26,7 +26,12 @@ set(PROJECT_SOURCES
         src/User.cpp
         src/Movie.cpp inc/Movie.h
         src/QnetworkAcces.cpp
-        )
+        inc/QnetworkAcces.h
+        inc/moviestable.h
+        src/moviestable.cpp
+        src/moviestable.ui
+        src/MoviesTableView.cpp inc/MoviesTableView.h
+       )
 
 add_executable(movietest inc/Movie.h src/Movie.cpp)
 
@@ -53,6 +58,7 @@ else()
         )
     endif()
 endif()
+
 target_link_directories(untitled4 PRIVATE ../Database)
 target_link_directories(movietest PRIVATE ../Database)
 target_include_directories(untitled4 PRIVATE inc)
