@@ -1,13 +1,13 @@
 //
 // Created by Iusaq on 11/26/2022.
 //
-#include "MoviesTableView.h"
+#include "MoviesTableModel.h"
 
-MoviesTableView::MoviesTableView(QObject *parent) : QAbstractTableModel(parent) {
+MoviesTableModel::MoviesTableModel(QObject *parent) : QAbstractTableModel(parent) {
 
 }
 
-void MoviesTableView::populateData(const QList<QString> &movieTitle,const QList<QString> &movieGenres)
+void MoviesTableModel::populateData(const QList<QString> &movieTitle,const QList<QString> &movieGenres)
 {
     m_movie_title.clear();
     m_movie_title = movieTitle;
@@ -16,19 +16,19 @@ void MoviesTableView::populateData(const QList<QString> &movieTitle,const QList<
     return;
 }
 
-int MoviesTableView::rowCount(const QModelIndex &parent) const
+int MoviesTableModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
     return m_movie_title.length();
 }
 
-int MoviesTableView::columnCount(const QModelIndex &parent) const
+int MoviesTableModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
     return 2;
 }
 
-QVariant MoviesTableView::data(const QModelIndex &index, int role) const
+QVariant MoviesTableModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid() || role != Qt::DisplayRole) {
         return QVariant();
@@ -41,7 +41,7 @@ QVariant MoviesTableView::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-QVariant MoviesTableView::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant MoviesTableModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal) {
         if (section == 0) {

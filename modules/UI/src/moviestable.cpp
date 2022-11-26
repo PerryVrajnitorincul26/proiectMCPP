@@ -1,7 +1,7 @@
 #include "moviestable.h"
 #include "ui_moviestable.h"
 #include "MovieDatabase.h"
-#include "MoviesTableView.h"
+#include "MoviesTableModel.h"
 #include <QString>
 
 MoviesTable::MoviesTable(QWidget *parent) :
@@ -19,6 +19,8 @@ MoviesTable::~MoviesTable()
 void MoviesTable::on_pushButton_clicked()
 {
 
+    std::string titleToSearch = ui->titleInput->text().toStdString();
+    std::string genreToSearch = ui->genreInput->text().toStdString();
     QList<QString> moviesTitles;
     QList<QString> moviesGenres;
 
@@ -26,7 +28,7 @@ void MoviesTable::on_pushButton_clicked()
     view->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     auto &dbRef = MovieDatabase::instance();
-    auto searchResult = dbRef.searchMovieTitles("at");
+    auto searchResult = dbRef.searchMovieTitles(titleToSearch);
 
     for(auto &item: *searchResult){
         QString id = QString::number(item.m_movie_id);
@@ -36,7 +38,7 @@ void MoviesTable::on_pushButton_clicked()
         moviesGenres.append(genres);
     }
 
-    MoviesTableView *model = new MoviesTableView(this);
+    MoviesTableModel *model = new MoviesTableModel(this);
     model->populateData(moviesTitles, moviesGenres);
 
     ui->tableView->setModel(model);

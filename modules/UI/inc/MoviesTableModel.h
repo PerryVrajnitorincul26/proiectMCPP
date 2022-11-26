@@ -2,19 +2,19 @@
 // Created by Iusaq on 11/26/2022.
 //
 
-#ifndef MCPP_MOVIESTABLEVIEW_H
-#define MCPP_MOVIESTABLEVIEW_H
+#ifndef MCPP_MOVIESTABLEMODEL_H
+#define MCPP_MOVIESTABLEMODEL_H
 
 #include <QAbstractTableModel>
 
 namespace Ui {
-    class MoviesTableView;
+    class MoviesTableModel;
 }
-class MoviesTableView: public QAbstractTableModel {
+class MoviesTableModel: public QAbstractTableModel {
     Q_OBJECT
 
 public:
-    MoviesTableView(QObject *parent = 0);
+    MoviesTableModel(QObject *parent = 0);
 
     void populateData(const QList<QString> &movieTitle,const QList<QString> &movieGenres);
 
@@ -31,4 +31,4 @@ private:
 };
 
 
-#endif //MCPP_MOVIESTABLEVIEW_H
+#endif //MCPP_MOVIESTABLEMODEL_H
