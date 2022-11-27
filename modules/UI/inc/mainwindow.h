@@ -26,6 +26,7 @@ private:
     Ui::MainWindow *ui;
 
     void verifyInputFields();
+    void verifyExistingUser();
 
 };
 #endif // MAINWINDOW_H

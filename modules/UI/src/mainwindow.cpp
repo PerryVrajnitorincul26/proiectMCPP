@@ -28,9 +28,9 @@ void MainWindow::on_pushButton_SignIn_clicked()
     auto response = dbRef.login(ui->lineEdit_user->text().toStdString(),ui->lineEdit_pass->text().toStdString());
 
     verifyInputFields();
+    verifyExistingUser();
 
     if(response == nullptr) {
-        QMessageBox::information(this, "Login Error", "Account not found - create one!");
         Dialog dialog;
         dialog.setModal(true);
         dialog.exec();
@@ -48,4 +48,13 @@ void MainWindow::verifyInputFields() {
         QMessageBox::information(this, "Login Error", "Please insert username");
     else if(ui->lineEdit_pass->text().toStdString().empty())
         QMessageBox::information(this, "Login Error", "Please insert password");
+}
+
+void MainWindow::verifyExistingUser() {
+    auto &dbRef = MovieDatabase::instance();
+    auto response = dbRef.login(ui->lineEdit_user->text().toStdString(),ui->lineEdit_pass->text().toStdString());
+
+    if(response == nullptr)
+        QMessageBox::information(this, "Login Error", "Account not found - create one!");
+    else QMessageBox::information(this, "Login successful", "Account was found!");
 }
