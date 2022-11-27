@@ -5,13 +5,13 @@
 #ifndef MCPP_QNETWORKACCES_H
 #define MCPP_QNETWORKACCES_H
 
-#include "../../../../../Qt/6.4.0/mingw_64/include/QtCore/QObject"
-#include "../../../../../Qt/6.4.0/mingw_64/include/QtNetwork/QNetworkAccessManager"
-#include "../../../../../Qt/6.4.0/mingw_64/include/QtCore/QDebug"
-#include "../../../../../Qt/6.4.0/mingw_64/include/QtNetwork/QNetworkProxy"
-#include "../../../../../Qt/6.4.0/mingw_64/include/QtNetwork/QNetworkReply"
-#include "../../../../../Qt/6.4.0/mingw_64/include/QtNetwork/QNetworkRequest"
-#include "../../../../../Qt/6.4.0/mingw_64/include/QtNetwork/QAuthenticator"
+#include <QObject>
+#include <QNetworkAccessManager>
+#include <QDebug>
+#include <QNetworkProxy>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QAuthenticator>
 
 class QnetworkAcces : public QObject {
     Q_OBJECT

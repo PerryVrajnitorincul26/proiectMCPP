@@ -55,7 +55,7 @@ bool community_tag_row::operator!=(const community_tag_row &rhs) const {
     return !(rhs == *this);
 }
 
-user_rating_row::user_rating_row(int mUserId, int mMovieId, const std::string &mRating, const std::string &mTimestamp)
+user_rating_row::user_rating_row(int mUserId, int mMovieId, double mRating, const std::string &mTimestamp)
         : m_user_id(mUserId), m_movie_id(mMovieId), m_rating(mRating), m_timestamp(mTimestamp) {}
 
 user_rating_row::user_rating_row() {

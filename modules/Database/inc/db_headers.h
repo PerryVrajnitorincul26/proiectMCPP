@@ -126,7 +126,7 @@ inline auto community_tag_table() {
 //RATING
 class user_rating_row {
 public:
-    user_rating_row(int mUserId, int mMovieId, const std::string &mRating, const std::string &mTimestamp);
+    user_rating_row(int mUserId, int mMovieId, double mRating, const std::string &mTimestamp);
 
     user_rating_row();
 
@@ -136,7 +136,7 @@ public:
 
     int m_user_id;
     int m_movie_id;
-    std::string m_rating;
+    double m_rating;
     std::string m_timestamp;
 };
 

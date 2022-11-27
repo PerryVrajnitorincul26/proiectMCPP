@@ -83,16 +83,18 @@ public:
 
     [[nodiscard]] std::unique_ptr<genome_tag_row> getTagEntry(int tag_id) const;
 
-    void signup(const user_row &user) const;
+    [[nodiscard]] std::unique_ptr<genome_scores_row> getMovieTagRelevance(int tag_id, int movie_id) const;
 
-    void signup(const std::string &username, const std::string &password, const std::string &region = "Romania") const;
+    [[nodiscard]] std::unique_ptr<user_row> signup(const user_row &user) const;
+
+    [[nodiscard]] std::unique_ptr<user_row> signup(const std::string &username, const std::string &password, const std::string &region = "Romania") const;
 
     void addCommunityTag(const community_tag_row &tagRow) const;
 
     void
     addCommunityTag(int user_id, int movie_id, const std::string &tag, const std::string &timestamp = "ieri") const;
 
-    void watch(const watchlist_row &entry) const;
+    void watch(const user_rating_row &entry) const;
 
     void watch(int user_id, int movie_id, double rating, const std::string &date_modified) const;
 
