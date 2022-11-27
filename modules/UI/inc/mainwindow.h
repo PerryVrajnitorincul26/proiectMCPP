@@ -25,5 +25,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
+    void verifyInputFields();
+
 };
 #endif // MAINWINDOW_H
