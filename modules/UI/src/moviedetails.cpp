@@ -5,7 +5,7 @@
 // You may need to build the project (run Qt uic code generator) to get "ui_MovieDetails.h" resolved
 
 #include "moviedetails.h"
-#include "ui_MovieDetails.h"
+#include "ui_moviedetails.h"
 
 
 MovieDetails::MovieDetails(QWidget *parent) :

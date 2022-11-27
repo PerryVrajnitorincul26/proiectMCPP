@@ -4,7 +4,7 @@
 #include "dialog.h"
 #include "db_headers.h"
 #include "MovieDatabase.h"
-
+#include <QHBoxLayout>
 #include "moviestable.h"
 
 
@@ -31,9 +31,12 @@ void MainWindow::on_pushButton_SignIn_clicked()
     verifyExistingUser();
 
     if(response == nullptr) {
-        Dialog dialog;
-        dialog.setModal(true);
-        dialog.exec();
+        auto tempDialog = new QDialog();
+        auto myDialog = new Dialog();
+        auto myLayout = new QHBoxLayout();
+        tempDialog->setLayout(myLayout);
+        myLayout->addWidget(myDialog);
+        tempDialog->exec();
     }
 
 //    MoviesTable moviesTable(this);

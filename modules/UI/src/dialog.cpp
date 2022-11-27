@@ -4,9 +4,9 @@
 #include "MovieDatabase.h"
 
 Dialog::Dialog(QWidget *parent) :
-        QDialog(parent),
+        QWidget(parent),
         ui(new Ui::Dialog) {
-    ui->setupUi(this);
+        ui->setupUi(this);
 }
 
 Dialog::~Dialog() {
