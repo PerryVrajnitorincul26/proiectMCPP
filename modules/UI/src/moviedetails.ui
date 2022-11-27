@@ -38,9 +38,9 @@
      </layout>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="GiveRating">
       <property name="text">
-       <string>PushButton</string>
+       <string>Give</string>
       </property>
      </widget>
     </item>

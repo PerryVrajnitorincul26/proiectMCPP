@@ -87,4 +87,12 @@ std::string Movie::genresToString() {
     return result;
 }
 
+double Movie::getUserReview() const {
+    return m_userReview;
+}
+
+void Movie::setUserReview(const double &userReview) {
+    m_userReview = userReview;
+}
+
 

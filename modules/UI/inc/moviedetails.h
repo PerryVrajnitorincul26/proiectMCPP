@@ -18,6 +18,8 @@ Q_OBJECT
 public:
     explicit MovieDetails(QWidget *parent = nullptr);
 
+    double on_pushButton_clicked();
+
     ~MovieDetails() override;
 
 private:

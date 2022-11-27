@@ -14,6 +14,7 @@
 class Movie {
     std::string m_title;
     std::vector<std::string> m_genres;
+    double m_userReview;
 public:
     Movie(const std::string &title, const std::vector<std::string> &genres);
 
@@ -25,7 +26,11 @@ public:
 
     const std::string &getTitle() const;
 
+    double getUserReview() const;
+
     void setTitle(const std::string &title);
+
+    void setUserReview(const double &review);
 
     const std::vector<std::string> &getGenres() const;
 

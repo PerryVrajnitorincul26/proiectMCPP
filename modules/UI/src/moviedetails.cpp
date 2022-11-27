@@ -16,3 +16,7 @@ MovieDetails::MovieDetails(QWidget *parent) :
 MovieDetails::~MovieDetails() {
     delete ui;
 }
+
+double MovieDetails::on_pushButton_clicked() {
+    return ui->doubleSpinBox->value();
+}
