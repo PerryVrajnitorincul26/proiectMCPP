@@ -17,15 +17,17 @@ MovieDetails::~MovieDetails() {
     delete ui;
 }
 
-double MovieDetails::on_pushButton_clicked() {
+double MovieDetails::on_GiveRating_clicked() {
     auto &ref = MovieDatabase::instance();
     reviewObj->m_rating = ui->doubleSpinBox->value();
     ref.watch(*reviewObj);
     return ui->doubleSpinBox->value();
 }
 
-MovieDetails::MovieDetails(int mid, int cid, QWidget *parent) {
+MovieDetails::MovieDetails(int mid, int cid, QWidget *parent) : MovieDetails(parent) {
     auto &ref = MovieDatabase::instance();
     this->reviewObj = ref.getWatchEntry(cid, mid);
-
+    if (this->reviewObj == nullptr) {
+        this->reviewObj = std::make_unique<user_rating_row>(user_rating_row(cid, mid, 0.0f));
+    }
 }

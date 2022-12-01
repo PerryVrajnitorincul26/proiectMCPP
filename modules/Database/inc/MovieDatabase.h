@@ -96,7 +96,7 @@ public:
 
     std::unique_ptr<user_rating_row> watch(const user_rating_row &entry) const;
 
-    std::unique_ptr<user_rating_row> watch(int user_id, int movie_id, double rating, const std::string &date_modified) const;
+    std::unique_ptr<user_rating_row> watch(int user_id, int movie_id, double rating, const std::string &date_modified = "none") const;
 
 
 };

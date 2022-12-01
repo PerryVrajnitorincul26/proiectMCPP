@@ -16,7 +16,8 @@ class MoviesTableModel: public QAbstractTableModel {
 public:
     MoviesTableModel(QObject *parent = 0);
 
-    void populateData(const QList<QString> &movieTitle,const QList<QString> &movieGenres);
+    void populateData(const QList<QString> &movieTitle, const QList<QString> &movieGenres,
+                      const QList<int> movieID);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
     int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
@@ -27,6 +28,7 @@ public:
 private:
     QList<QString> m_movie_title;
     QList<QString> m_movie_genres;
+    QList<int> m_movie_id;
 
 };
 

@@ -7,30 +7,33 @@ MoviesTableModel::MoviesTableModel(QObject *parent) : QAbstractTableModel(parent
 
 }
 
-void MoviesTableModel::populateData(const QList<QString> &movieTitle,const QList<QString> &movieGenres)
-{
+void MoviesTableModel::populateData(const QList<QString> &movieTitle, const QList<QString> &movieGenres,
+                                    const QList<int> movieID) {
     m_movie_title.clear();
     m_movie_title = movieTitle;
     m_movie_genres.clear();
     m_movie_genres = movieGenres;
-    return;
+    m_movie_id.clear();
+    m_movie_id = movieID;
 }
 
-int MoviesTableModel::rowCount(const QModelIndex &parent) const
-{
+int MoviesTableModel::rowCount(const QModelIndex &parent) const {
     Q_UNUSED(parent);
     return m_movie_title.length();
 }
 
-int MoviesTableModel::columnCount(const QModelIndex &parent) const
-{
+int MoviesTableModel::columnCount(const QModelIndex &parent) const {
     Q_UNUSED(parent);
     return 2;
 }
 
-QVariant MoviesTableModel::data(const QModelIndex &index, int role) const
-{
-    if (!index.isValid() || role != Qt::DisplayRole) {
+QVariant MoviesTableModel::data(const QModelIndex &index, int role) const {
+    if (!index.isValid())
+        return QVariant();
+    if (role == -1) {
+        return m_movie_id[index.row()];
+    }
+    if (role != Qt::DisplayRole) {
         return QVariant();
     }
     if (index.column() == 0) {
@@ -41,8 +44,7 @@ QVariant MoviesTableModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-QVariant MoviesTableModel::headerData(int section, Qt::Orientation orientation, int role) const
-{
+QVariant MoviesTableModel::headerData(int section, Qt::Orientation orientation, int role) const {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal) {
         if (section == 0) {
             return QString("Title");

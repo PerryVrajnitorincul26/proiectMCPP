@@ -27,9 +27,9 @@ TEST(HeloTest,User_creation){
     //This will have to changed at some point when we make dbPtr private.
     db.dbPtr->remove_all<user_row>();
     db.signup({1,"VisiIncaNuStie","SaFoloseascaGtest","Aici"});
-    EXPECT_ANY_THROW(db.signup({1,"VisiIncaNuStie","SaFoloseascaGtest","Aici"}));
+    EXPECT_EQ(db.signup({1,"VisiIncaNuStie","SaFoloseascaGtest","Aici"}),nullptr);
     db.signup("MateiAScris","AcestTest");
-    EXPECT_ANY_THROW(db.signup("MateiAScris","AcestTest"));
+    EXPECT_EQ(db.signup("MateiAScris","AcestTest"),nullptr);
 }
 
 TEST(HeloTest,MovieSearch){

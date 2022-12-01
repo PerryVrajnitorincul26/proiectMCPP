@@ -24,7 +24,7 @@ public:
 
     explicit MovieDetails(int mid, int cid, QWidget *parent = nullptr);
 
-    double on_pushButton_clicked();
+    double on_GiveRating_clicked();
 
     ~MovieDetails() override;
 

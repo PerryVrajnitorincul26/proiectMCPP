@@ -156,8 +156,9 @@ std::unique_ptr<user_rating_row> MovieDatabase::watch(const user_rating_row &ent
 
 std::unique_ptr<user_rating_row>
 MovieDatabase::watch(int user_id, int movie_id, double rating, const std::string &date_modified) const {
-    this->watch({user_id, movie_id, rating, date_modified});
+    return this->watch({user_id, movie_id, rating, date_modified});
 }
+
 
 std::unique_ptr<user_rating_row> MovieDatabase::getWatchEntry(int u_id, int m_id) const {
     try {
