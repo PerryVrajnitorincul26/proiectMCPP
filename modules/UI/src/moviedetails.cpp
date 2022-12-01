@@ -18,5 +18,14 @@ MovieDetails::~MovieDetails() {
 }
 
 double MovieDetails::on_pushButton_clicked() {
+    auto &ref = MovieDatabase::instance();
+    reviewObj->m_rating = ui->doubleSpinBox->value();
+    ref.watch(*reviewObj);
     return ui->doubleSpinBox->value();
+}
+
+MovieDetails::MovieDetails(int mid, int cid, QWidget *parent) {
+    auto &ref = MovieDatabase::instance();
+    this->reviewObj = ref.getWatchEntry(cid, mid);
+
 }

@@ -71,7 +71,7 @@ public:
 
     [[nodiscard]] std::unique_ptr<std::vector<user_rating_row>> getUserReviews(int u_id) const;
 
-    [[nodiscard]] std::unique_ptr<watchlist_row> getWatchEntry(int u_id, int m_id) const;
+    [[nodiscard]] std::unique_ptr<user_rating_row> getWatchEntry(int u_id, int m_id) const;
 
     [[nodiscard]] std::unique_ptr<std::vector<watchlist_row>> watchlistByUser(int u_id) const;
 
@@ -89,14 +89,14 @@ public:
 
     [[nodiscard]] std::unique_ptr<user_row> signup(const std::string &username, const std::string &password, const std::string &region = "Romania") const;
 
-    void addCommunityTag(const community_tag_row &tagRow) const;
+    std::unique_ptr<community_tag_row> addCommunityTag(const community_tag_row &tagRow) const;
 
-    void
+    std::unique_ptr<community_tag_row>
     addCommunityTag(int user_id, int movie_id, const std::string &tag, const std::string &timestamp = "ieri") const;
 
-    void watch(const user_rating_row &entry) const;
+    std::unique_ptr<user_rating_row> watch(const user_rating_row &entry) const;
 
-    void watch(int user_id, int movie_id, double rating, const std::string &date_modified) const;
+    std::unique_ptr<user_rating_row> watch(int user_id, int movie_id, double rating, const std::string &date_modified) const;
 
 
 };

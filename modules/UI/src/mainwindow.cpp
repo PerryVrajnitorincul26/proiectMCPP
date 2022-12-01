@@ -38,10 +38,10 @@ void MainWindow::on_pushButton_SignIn_clicked()
         myLayout->addWidget(myDialog);
         tempDialog->exec();
     }
+    else{
+        this->current_user = std::move(response);
+    }
 
-//    MoviesTable moviesTable(this);
-//    moviesTable.setModal(true);
-//    moviesTable.exec();
 }
 
 void MainWindow::verifyInputFields() {
@@ -60,4 +60,10 @@ void MainWindow::verifyExistingUser() {
     if(response == nullptr)
         QMessageBox::information(this, "Login Error", "Account not found - create one!");
     else QMessageBox::information(this, "Login successful", "Account was found!");
+}
+
+void MainWindow::on_searchDemo_clicked() {
+    MoviesTable moviesTable(this);
+    moviesTable.setModal(true);
+    moviesTable.exec();
 }

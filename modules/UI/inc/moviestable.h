@@ -2,6 +2,8 @@
 #define MOVIESTABLE_H
 
 #include <QDialog>
+#include <MovieDatabase.h>
+#include <db_headers.h>
 
 namespace Ui {
 class MoviesTable;

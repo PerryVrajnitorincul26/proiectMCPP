@@ -19,10 +19,10 @@ void MoviesTable::on_pushButton_clicked() {
 
     std::string titleToSearch = ui->titleInput->text().toStdString();
     std::string genreToSearch = ui->genreInput->text().toStdString();
-    QList <QString> moviesTitles;
-    QList <QString> moviesGenres;
+    QList<QString> moviesTitles;
+    QList<QString> moviesGenres;
 
-    QTableView * view = new QTableView;
+    QTableView *view = new QTableView;
     view->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     auto &dbRef = MovieDatabase::instance();
@@ -48,8 +48,7 @@ void MoviesTable::on_pushButton_clicked() {
         message.append(" results");
 
         ui->msgLabel->setText(QString::fromStdString(message));
-    }
-        else {
+    } else {
         ui->msgLabel->setText("No results have been found!");
     }
 }

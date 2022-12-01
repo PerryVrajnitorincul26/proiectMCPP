@@ -6,6 +6,8 @@
 #define MCPP_MOVIEDETAILS_H
 
 #include <QWidget>
+#include <MovieDatabase.h>
+#include <db_headers.h>
 
 
 QT_BEGIN_NAMESPACE
@@ -15,8 +17,12 @@ QT_END_NAMESPACE
 class MovieDetails : public QWidget {
 Q_OBJECT
 
+    std::unique_ptr<user_rating_row> reviewObj;
+
 public:
     explicit MovieDetails(QWidget *parent = nullptr);
+
+    explicit MovieDetails(int mid, int cid, QWidget *parent = nullptr);
 
     double on_pushButton_clicked();
 

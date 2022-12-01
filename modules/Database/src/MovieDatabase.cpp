@@ -143,22 +143,25 @@ std::unique_ptr<std::vector<movie_row>> MovieDatabase::moviesByUserWishlist(int 
     return {nullptr};
 }
 
-void MovieDatabase::watch(const user_rating_row &entry) const {
+std::unique_ptr<user_rating_row> MovieDatabase::watch(const user_rating_row &entry) const {
     try {
         dbPtr->replace<user_rating_row>(entry);
+        return dbPtr->get_pointer<user_rating_row>(entry.m_user_id, entry.m_movie_id);
     }
     catch (std::system_error &e) {
         std::cout << e.what() << std::endl;
     }
+    return {nullptr};
 }
 
-void MovieDatabase::watch(int user_id, int movie_id, double rating, const std::string &date_modified) const {
+std::unique_ptr<user_rating_row>
+MovieDatabase::watch(int user_id, int movie_id, double rating, const std::string &date_modified) const {
     this->watch({user_id, movie_id, rating, date_modified});
 }
 
-std::unique_ptr<watchlist_row> MovieDatabase::getWatchEntry(int u_id, int m_id) const {
+std::unique_ptr<user_rating_row> MovieDatabase::getWatchEntry(int u_id, int m_id) const {
     try {
-        return dbPtr->get_pointer<watchlist_row>(u_id, m_id);
+        return dbPtr->get_pointer<user_rating_row>(u_id, m_id);
     }
     catch (std::system_error &e) {
         std::cout << e.what() << std::endl;
@@ -177,19 +180,21 @@ std::unique_ptr<std::vector<community_tag_row>> MovieDatabase::tagsByUser(int u_
     return {nullptr};
 }
 
-void MovieDatabase::addCommunityTag(const community_tag_row &tagRow) const {
+std::unique_ptr<community_tag_row> MovieDatabase::addCommunityTag(const community_tag_row &tagRow) const {
     try {
         dbPtr->remove_all<watchlist_row>(where(c(&community_tag_row::m_tag) == tagRow.m_tag &&
                                                c(&community_tag_row::m_movie_id) == tagRow.m_movie_id) &&
                                          c(&community_tag_row::m_user_id) == tagRow.m_user_id);
-        dbPtr->insert(tagRow);
+        auto temp = dbPtr->insert(tagRow);
+        return dbPtr->get_pointer<community_tag_row>(temp);
     }
     catch (std::system_error &e) {
         std::cout << e.what() << std::endl;
     }
+    return {nullptr};
 }
 
-void
+std::unique_ptr<community_tag_row>
 MovieDatabase::addCommunityTag(int user_id, int movie_id, const std::string &tag, const std::string &timestamp) const {
     addCommunityTag({user_id, movie_id, tag, timestamp});
 }
