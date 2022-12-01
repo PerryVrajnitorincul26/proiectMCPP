@@ -55,3 +55,11 @@ void MoviesTable::on_pushButton_clicked() {
 
 
 
+void MoviesTable::on_pushButton_back_clicked() {
+    emit homeClicked();
+}
+
+
+
+
+
