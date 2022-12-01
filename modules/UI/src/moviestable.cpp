@@ -67,3 +67,11 @@ MoviesTable::MoviesTable(int uid, QWidget *parent) : MoviesTable(parent) {
 
 
 
+void MoviesTable::on_pushButton_back_clicked() {
+    emit homeClicked();
+}
+
+
+
+
+

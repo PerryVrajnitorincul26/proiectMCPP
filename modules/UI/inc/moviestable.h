@@ -27,11 +27,15 @@ public:
 private slots:
 
     void on_pushButton_clicked();
+    void on_pushButton_back_clicked();
 
     void on_tableView_clicked(const QModelIndex &pos);
 
 private:
     Ui::MoviesTable *ui;
+
+signals:
+    void homeClicked();
 };
 
 #endif // MOVIESTABLE_H

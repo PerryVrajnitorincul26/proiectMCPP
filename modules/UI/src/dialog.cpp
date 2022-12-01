@@ -22,3 +22,11 @@ void Dialog::on_pushButton_SignUp_clicked() {
 
 }
 
+void Dialog::on_pushButton_home_clicked() {
+    emit HomeClicked();
+
+}
+
+
+
+
