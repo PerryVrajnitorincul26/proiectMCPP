@@ -1,7 +1,8 @@
 #ifndef DIALOG_H
 #define DIALOG_H
 
-#include <QDialog>
+#include <QWidget>
+
 
 namespace Ui {
 class Dialog;
@@ -18,11 +19,14 @@ public:
 private slots:
 
    void on_pushButton_SignUp_clicked();
+   void on_pushButton_home_clicked();
 
 private:
     Ui::Dialog *ui;
 
+signals:
 
+    void HomeClicked();
 };
 
 #endif // DIALOG_H

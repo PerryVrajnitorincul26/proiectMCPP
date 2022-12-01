@@ -17,7 +17,7 @@
    <item row="0" column="0">
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="page">
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -69,6 +69,19 @@
         <string>Page Sign In</string>
        </property>
       </widget>
+      <widget class="QPushButton" name="pushButton_back">
+       <property name="geometry">
+        <rect>
+         <x>480</x>
+         <y>560</y>
+         <width>75</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Back</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QWidget" name="page_3">
       <widget class="QLabel" name="label_3">
@@ -84,6 +97,19 @@
         <string>Page Sign Up</string>
        </property>
       </widget>
+      <widget class="QPushButton" name="pushButton_back_2">
+       <property name="geometry">
+        <rect>
+         <x>560</x>
+         <y>590</y>
+         <width>75</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Back</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QWidget" name="page_4">
       <widget class="QLabel" name="label_4">
@@ -97,6 +123,19 @@
        </property>
        <property name="text">
         <string>Show Movie list</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_back_3">
+       <property name="geometry">
+        <rect>
+         <x>570</x>
+         <y>590</y>
+         <width>75</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Back</string>
        </property>
       </widget>
      </widget>
