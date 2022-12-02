@@ -6,12 +6,12 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(PROJECT_SOURCES
         src/main.cpp
-        src/mainwindow.cpp
-        src/dialog.cpp
-        inc/dialog.h
-        src/dialog.ui
-        inc/mainwindow.h
-        src/mainwindow.ui
+        src/SignIn.cpp
+        src/SignUp.cpp
+        inc/SignUp.h
+        src/SignUp.ui
+        inc/SignIn.h
+        src/SignIn.ui
         inc/User.h
         src/User.cpp
         src/Movie.cpp inc/Movie.h

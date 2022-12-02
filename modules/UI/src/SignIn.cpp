@@ -1,28 +1,28 @@
-#include "mainwindow.h"
-#include "./ui_mainwindow.h"
+#include "SignIn.h"
+#include "./ui_SignIn.h"
 #include "QMessageBox"
-#include "dialog.h"
+#include "SignUp.h"
 #include "db_headers.h"
 #include "MovieDatabase.h"
 #include <QHBoxLayout>
 #include "moviestable.h"
 
 
-MainWindow::MainWindow(QWidget* parent)
-	: QMainWindow(parent)
-	, ui(new Ui::MainWindow)
+SignIn::SignIn(QWidget* parent)
+	: QWidget(parent)
+	, ui(new Ui::SignIn)
 {
     ui->setupUi(this);
 
 }
 
-MainWindow::~MainWindow()
+SignIn::~SignIn()
 {
     delete ui;
 }
 
 
-void MainWindow::on_pushButton_SignIn_clicked()
+void SignIn::on_pushButton_SignIn_clicked()
 {
     auto &dbRef = MovieDatabase::instance();
     auto response = dbRef.login(ui->lineEdit_user->text().toStdString(),ui->lineEdit_pass->text().toStdString());
@@ -32,7 +32,7 @@ void MainWindow::on_pushButton_SignIn_clicked()
 
     if(response == nullptr) {
         auto tempDialog = new QDialog();
-        auto myDialog = new Dialog();
+        auto myDialog = new SignUp();
         auto myLayout = new QHBoxLayout();
         tempDialog->setLayout(myLayout);
         myLayout->addWidget(myDialog);
@@ -44,7 +44,7 @@ void MainWindow::on_pushButton_SignIn_clicked()
 
 }
 
-void MainWindow::verifyInputFields() {
+void SignIn::verifyInputFields() {
     if(ui->lineEdit_user->text().toStdString().empty() && ui->lineEdit_pass->text().toStdString().empty())
         QMessageBox::information(this, "Login Error", "Please insert username and password");
     else if(ui->lineEdit_user->text().toStdString().empty())
@@ -53,7 +53,7 @@ void MainWindow::verifyInputFields() {
         QMessageBox::information(this, "Login Error", "Please insert password");
 }
 
-void MainWindow::verifyExistingUser() {
+void SignIn::verifyExistingUser() {
     auto &dbRef = MovieDatabase::instance();
     auto response = dbRef.login(ui->lineEdit_user->text().toStdString(),ui->lineEdit_pass->text().toStdString());
 
@@ -62,7 +62,7 @@ void MainWindow::verifyExistingUser() {
     else QMessageBox::information(this, "Login successful", "Account was found!");
 }
 
-void MainWindow::on_searchDemo_clicked() {
+void SignIn::on_searchDemo_clicked() {
     MoviesTable moviesTable(this);
     moviesTable.setModal(true);
     moviesTable.exec();

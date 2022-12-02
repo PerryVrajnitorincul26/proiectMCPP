@@ -5,16 +5,16 @@
 
 
 namespace Ui {
-class Dialog;
+class SignUp;
 }
 
-class Dialog : public QWidget
+class SignUp : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit Dialog(QWidget *parent = nullptr);
-    ~Dialog();
+    explicit SignUp(QWidget *parent = nullptr);
+    ~SignUp();
 
 private slots:
 
@@ -22,7 +22,7 @@ private slots:
    void on_pushButton_home_clicked();
 
 private:
-    Ui::Dialog *ui;
+    Ui::SignUp *ui;
 
 signals:
 

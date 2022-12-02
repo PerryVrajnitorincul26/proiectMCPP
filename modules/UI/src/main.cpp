@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "SignIn.h"
 #include "QnetworkAcces.h"
 #include <QApplication>
 
@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     data.append("&");
     data.append("param2=foo");
     qnetworkAcces.post("https://postman-echo.com/post", data);
-    MainWindow w;
+    SignIn w;
     w.show();
     return a.exec();
 }

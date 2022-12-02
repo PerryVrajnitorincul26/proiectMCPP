@@ -5,16 +5,16 @@
 #include <db_headers.h>
 #include <MovieDatabase.h>
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui { class SignIn; }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
+class SignIn : public QWidget
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    SignIn(QWidget *parent = nullptr);
+    ~SignIn();
     std::unique_ptr<user_row> current_user=nullptr;
 
 private slots:
@@ -27,7 +27,7 @@ private slots:
 //    void showDebug();
 
 private:
-    Ui::MainWindow *ui;
+    Ui::SignIn *ui;
 
     void verifyInputFields();
     void verifyExistingUser();

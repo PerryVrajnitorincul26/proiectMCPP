@@ -2,7 +2,7 @@
 #define WRAPPER_H
 
 #include <QWidget>
-#include "dialog.h"
+#include "SignUp.h"
 #include "moviestable.h"
 
 namespace Ui {
@@ -27,7 +27,7 @@ private slots:
 
 private:
     Ui::Wrapper *ui;
-    Dialog _dialog;
+    SignUp _dialog;
     MoviesTable _moviestable;
 };
 
