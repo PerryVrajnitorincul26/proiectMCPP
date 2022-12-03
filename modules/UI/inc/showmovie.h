@@ -17,6 +17,10 @@ public:
 
 private:
     Ui::ShowMovie *ui;
+
+private slots:
+    void on_pushButton_close_clicked();
+
 };
 
 #endif // SHOWMOVIE_H

@@ -1,6 +1,7 @@
 #include "moviestable.h"
 #include "ui_moviestable.h"
 
+
 MoviesTable::MoviesTable(QWidget *parent) :
         QDialog(parent),
         ui(new Ui::MoviesTable) {
@@ -69,6 +70,11 @@ MoviesTable::MoviesTable(int uid, QWidget *parent) : MoviesTable(parent) {
 
 void MoviesTable::on_pushButton_back_clicked() {
     emit homeClicked();
+}
+
+void MoviesTable::on_pushButton_details_clicked() {
+    _showmovie= new ShowMovie(this);
+_showmovie->show();
 }
 
 

@@ -9,7 +9,7 @@
 #include "moviedetails.h"
 #include <QString>
 #include <QDebug>
-
+#include "showmovie.h"
 namespace Ui {
     class MoviesTable;
 }
@@ -28,11 +28,12 @@ private slots:
 
     void on_pushButton_clicked();
     void on_pushButton_back_clicked();
-
+    void on_pushButton_details_clicked();
     void on_tableView_clicked(const QModelIndex &pos);
 
 private:
     Ui::MoviesTable *ui;
+    ShowMovie *_showmovie;
 
 signals:
     void homeClicked();

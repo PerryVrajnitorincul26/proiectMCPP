@@ -18,3 +18,8 @@ ShowMovie::~ShowMovie()
 {
     delete ui;
 }
+
+void ShowMovie::on_pushButton_close_clicked() {
+    close();
+
+}
