@@ -61,6 +61,8 @@ public:
 
     [[nodiscard]] std::unique_ptr<std::vector<movie_row>> searchMovieTitles(const std::string &src) const;
 
+    [[nodiscard]] std::unique_ptr<std::vector<movie_row>> searchMovieGenres(const std::string &src) const;
+
     [[nodiscard]] std::unique_ptr<user_row> getUserById(int u_id) const;
 
     [[nodiscard]] std::unique_ptr<user_row> getUserByUsername(const std::string &username) const;

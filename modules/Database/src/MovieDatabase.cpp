@@ -229,3 +229,14 @@ std::unique_ptr<genome_scores_row> MovieDatabase::getMovieTagRelevance(int tag_i
     }
     return {nullptr};
 }
+
+std::unique_ptr<std::vector<movie_row>> MovieDatabase::searchMovieGenres(const std::string &src) const {
+    try {
+        return std::make_unique<std::vector<movie_row>>(std::move(
+                dbPtr->get_all<movie_row>(where(like(&movie_row::m_genres, "%" + src + "%")))));
+    }
+    catch (std::system_error &e) {
+        std::cout << e.what() << std::endl;
+    }
+    return {nullptr};
+}
