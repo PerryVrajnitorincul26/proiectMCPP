@@ -9,8 +9,10 @@ Wrapper::Wrapper(QWidget *parent) :
     ui->stackedWidget->setCurrentIndex(0);
     ui->stackedWidget->insertWidget(2, & _dialog);
     ui->stackedWidget->insertWidget(3,& _moviestable);
+    ui->stackedWidget->insertWidget(1,&_signin);
     connect(&_dialog, SIGNAL(HomeClicked()),this,SLOT(moveHome()));
     connect(&_moviestable, SIGNAL(homeClicked()),this, SLOT(moveHome()));
+    connect(&_signin, SIGNAL(HomeClicked()), this,SLOT(moveHome()));
 }
 
 Wrapper::~Wrapper()

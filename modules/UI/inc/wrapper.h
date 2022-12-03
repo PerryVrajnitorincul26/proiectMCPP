@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "SignUp.h"
 #include "moviestable.h"
+#include "SignIn.h"
 
 namespace Ui {
 class Wrapper;
@@ -29,6 +30,7 @@ private:
     Ui::Wrapper *ui;
     SignUp _dialog;
     MoviesTable _moviestable;
+    SignIn _signin;
 };
 
 #endif // WRAPPER_H

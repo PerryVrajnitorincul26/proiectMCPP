@@ -22,6 +22,7 @@ private slots:
 
     void on_pushButton_SignIn_clicked();
     void on_searchDemo_clicked();
+    void on_pushButton_back_clicked();
 
 
 //    void showDebug();
@@ -31,6 +32,9 @@ private:
 
     void verifyInputFields();
     void verifyExistingUser();
+
+signals:
+    void HomeClicked();
 
 };
 #endif // MAINWINDOW_H

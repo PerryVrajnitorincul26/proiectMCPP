@@ -67,3 +67,8 @@ void SignIn::on_searchDemo_clicked() {
     moviesTable.setModal(true);
     moviesTable.exec();
 }
+
+void SignIn::on_pushButton_back_clicked() {
+    emit HomeClicked();
+
+}

@@ -53,6 +53,13 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
+           <widget class="QPushButton" name="pushButton_back">
+            <property name="text">
+             <string>Back</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="searchDemo">
             <property name="text">
              <string>Search Demo</string>
