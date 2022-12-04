@@ -37,4 +37,31 @@ std::vector<std::string> User::GetLikedGenres() const
 	return m_likedGenres;
 }
 
-User::~User() {};
+User::~User() {}
+
+void User::setMUsername(const std::string &mUsername) {
+    m_username = mUsername;
+}
+
+void User::setMPassword(const std::string &mPassword) {
+    m_password = mPassword;
+}
+
+void User::setMRegion(const std::string &mRegion) {
+    m_region = mRegion;
+}
+
+void User::setMLikedGenres(const std::vector<std::string> &mLikedGenres) {
+    m_likedGenres = mLikedGenres;
+}
+
+bool User::operator==(const User &rhs) const {
+    return m_username == rhs.m_username &&
+           m_password == rhs.m_password &&
+           m_region == rhs.m_region &&
+           m_likedGenres == rhs.m_likedGenres;
+}
+
+bool User::operator!=(const User &rhs) const {
+    return !(rhs == *this);
+};

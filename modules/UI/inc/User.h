@@ -15,8 +15,22 @@ public:
 	User(const std::string &username, const std::string &password, const std::string &region);
 
 	std::string GetUsername() const;
-	std::string GetPassword() const;
-	std::string GetRegion() const;
+
+    bool operator==(const User &rhs) const;
+
+    bool operator!=(const User &rhs) const;
+
+    std::string GetPassword() const;
+
+    void setMUsername(const std::string &mUsername);
+
+    void setMPassword(const std::string &mPassword);
+
+    void setMRegion(const std::string &mRegion);
+
+    void setMLikedGenres(const std::vector<std::string> &mLikedGenres);
+
+    std::string GetRegion() const;
 	std::vector<std::string> GetLikedGenres() const;
 
 	~User();
