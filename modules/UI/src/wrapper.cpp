@@ -1,24 +1,27 @@
 #include "wrapper.h"
 #include "ui_wrapper.h"
+#include "MovieDTO.h"
 
 Wrapper::Wrapper(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::Wrapper)
-{
+        QWidget(parent),
+        ui(new Ui::Wrapper) {
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
-    ui->stackedWidget->insertWidget(1,&_signin);
+    ui->stackedWidget->insertWidget(1, &_signin);
 
-    ui->stackedWidget->insertWidget(2, & _dialog);
-    ui->stackedWidget->insertWidget(3,& _moviestable);
+    ui->stackedWidget->insertWidget(2, &_dialog);
+    ui->stackedWidget->insertWidget(3, &_moviestable);
 
-    connect(&_dialog, SIGNAL(HomeClicked()),this,SLOT(moveHome()));
-    connect(&_moviestable, SIGNAL(homeClicked()),this, SLOT(moveHome()));
-    connect(&_signin, SIGNAL(HomeClicked()), this,SLOT(moveHome()));
+    connect(&_dialog, SIGNAL(HomeClicked()), this, SLOT(moveHome()));
+    connect(&_moviestable, SIGNAL(homeClicked()), this, SLOT(moveHome()));
+    connect(&_signin, SIGNAL(HomeClicked()), this, SLOT(moveHome()));
+
+    auto tmp = QString("a");
+    auto val = new MovieDTO(tmp);
+    val->setMovie();
 }
 
-Wrapper::~Wrapper()
-{
+Wrapper::~Wrapper() {
     delete ui;
 }
 
@@ -28,13 +31,12 @@ void Wrapper::on_pushButton_goSignIn_clicked() {
 }
 
 void Wrapper::on_pushButton_goSignUp_clicked() {
-ui->stackedWidget->setCurrentIndex(2);
+    ui->stackedWidget->setCurrentIndex(2);
 }
 
 
-
 void Wrapper::on_pushButton_goMovieList_clicked() {
-ui->stackedWidget->setCurrentIndex(3);
+    ui->stackedWidget->setCurrentIndex(3);
 }
 
 void Wrapper::on_pushButton_back_clicked() {

@@ -24,7 +24,11 @@ set(PROJECT_SOURCES
         src/MoviesTableModel.cpp inc/MoviesTableModel.h
         src/moviedetails.cpp inc/moviedetails.h src/moviedetails.ui
         src/showmovie.cpp src/showmovie.ui inc/showmovie.h
-        src/wrapper.cpp src/wrapper.ui inc/wrapper.h)
+        src/wrapper.cpp src/wrapper.ui inc/wrapper.h
+        src/MovieDTO.cpp inc/MovieDTO.h
+        )
+
+
 
 add_executable(movietest inc/Movie.h src/Movie.cpp)
 

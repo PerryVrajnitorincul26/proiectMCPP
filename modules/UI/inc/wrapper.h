@@ -5,7 +5,7 @@
 #include "SignUp.h"
 #include "moviestable.h"
 #include "SignIn.h"
-
+#include "MovieDTO.h"
 namespace Ui {
 class Wrapper;
 }
