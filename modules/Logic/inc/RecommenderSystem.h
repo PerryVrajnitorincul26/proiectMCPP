@@ -11,8 +11,16 @@ class RecommenderSystem {
     std::vector<std::string> userLikedMovies;
 
 public:
+    RecommenderSystem(const std::vector<std::string> &userLikedGenres, const std::vector<std::string> &userLikedMovies);
+
+    RecommenderSystem();
 
     std::vector<std::string> GetUserLikedGenres() const;
-
     std::vector<std::string> GetUserLikedMovies() const;
+
+    void setUserLikedGenres(const std::vector<std::string> &userLikedGenres);
+
+    void setUserLikedMovies(const std::vector<std::string> &userLikedMovies);
+
+    std::unique_ptr<std::vector<movie_row>> recommendedByGenres(std::string genre);
 };

@@ -1,8 +1,31 @@
-//
-// Created by perry on 12/2/22. It's my turn to write boilerplate guys :).
-//
+
 #include "RecommenderSystem.h"
 #include <iostream>
+
 int main(){
-    std::cout<<"Hello ML goodbye leisure time";
+
+    RecommenderSystem test;
+    std::vector<std::string> userLikedGenres;
+    for(int i=0;i<3;i++)
+    {
+        std::string genre;
+        std::cin>>genre;
+        userLikedGenres.push_back(genre);
+    }
+    test.setUserLikedGenres(userLikedGenres);
+
+    for(int i=0;i<test.GetUserLikedGenres().size();i++)
+    {
+        auto result = test.recommendedByGenres(userLikedGenres[i]);
+        if(!result->empty())
+        {
+            for(auto &movies: *result)
+                std::cout<<movies.m_title<<" ";
+            std::cout<<"\n";
+        }
+    }
+
+
+
+    return 0;
 }
