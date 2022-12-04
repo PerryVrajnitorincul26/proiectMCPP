@@ -16,7 +16,7 @@ void MovieDTO::setMovie() {
     dataManager = new QNetworkAccessManager();
     auto test = connect(dataManager, &QNetworkAccessManager::finished, this, &MovieDTO::dataDownloaded);
     qDebug()<<test;
-    QNetworkRequest *myReq = new QNetworkRequest({"https://services.nvd.nist.gov/rest/json/cves/2.0"});
+    QNetworkRequest *myReq = new QNetworkRequest({"https://api.themoviedb.org/3/movie/550?api_key=7f62067bb2dd1e52cee2dca20be9759a"});
     QNetworkReply *a;
     a = dataManager->get(*myReq);
     auto tmp = a->error();
