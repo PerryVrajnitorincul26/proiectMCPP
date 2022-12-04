@@ -22,5 +22,8 @@ public:
 
     void setUserLikedMovies(const std::vector<std::string> &userLikedMovies);
 
-    std::unique_ptr<std::vector<movie_row>> recommendedByGenres(std::string genre);
+    std::unique_ptr<std::vector<movie_row>> recommendedByLikedGenres(std::string genre);
+    std::vector<std::unique_ptr<std::vector<movie_row>>> recommendedByLikedMovies();
+
+    virtual ~RecommenderSystem();
 };
