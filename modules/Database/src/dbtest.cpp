@@ -12,7 +12,7 @@ using namespace sqlite_orm;
 
 int main() {
     auto &ref = MovieDatabase::movieDatabase();
-    auto sal = ref.moviesByUserWishlist(1);
+    auto sal = ref.moviesRatedByUser(1);
 
 
 }

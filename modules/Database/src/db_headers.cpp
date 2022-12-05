@@ -132,3 +132,22 @@ bool genome_scores_row::operator==(const genome_scores_row &rhs) const {
 bool genome_scores_row::operator!=(const genome_scores_row &rhs) const {
     return !(rhs == *this);
 }
+
+user_scores_row::user_scores_row(int mUserId, int mTagId, double mRelevance) : m_user_id(mUserId),
+                                                                               m_tag_id(mTagId),
+                                                                               m_relevance(mRelevance) {
+
+}
+
+user_scores_row::user_scores_row() {
+
+}
+
+bool user_scores_row::operator==(const user_scores_row &rhs) const {
+    return m_user_id == rhs.m_user_id &&
+           m_tag_id == rhs.m_tag_id;
+}
+
+bool user_scores_row::operator!=(const user_scores_row &rhs) const {
+    return !(rhs == *this);
+}

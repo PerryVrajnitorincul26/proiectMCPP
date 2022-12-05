@@ -14,16 +14,15 @@ std::unique_ptr<movie_row> MovieDatabase::getMovieById(int m_id) const {
     return {nullptr};
 }
 
-std::unique_ptr<std::vector<movie_row>> MovieDatabase::searchMovieTitles(const std::string &src) const {
+std::vector<std::unique_ptr<movie_row>> MovieDatabase::searchMovieTitles(const std::string &src) const {
     ///I think this shouldn't involve copying anything but i may be wrong
     try {
-        return std::make_unique<std::vector<movie_row>>(std::move(
-                dbPtr->get_all<movie_row>(where(like(&movie_row::m_title, "%" + src + "%")))));
+        return dbPtr->get_all_pointer<movie_row>(where(like(&movie_row::m_title, "%" + src + "%")));
     }
     catch (std::system_error &e) {
         std::cout << e.what() << std::endl;
     }
-    return {nullptr};
+    return {};
 }
 
 std::unique_ptr<user_row> MovieDatabase::getUserById(int u_id) const {
@@ -130,17 +129,17 @@ std::unique_ptr<std::vector<watchlist_row>> MovieDatabase::watchlistByUser(int u
  * @param u_id
  * @return
  */
-std::unique_ptr<std::vector<movie_row>> MovieDatabase::moviesByUserWishlist(int u_id) const {
+std::vector<std::unique_ptr<movie_row>> MovieDatabase::moviesRatedByUser(int u_id) const {
     try {
-        return std::make_unique<std::vector<movie_row>>(std::move(dbPtr->get_all<movie_row>(
-                inner_join<watchlist_row>(
-                        on(c(&movie_row::m_movie_id) == &watchlist_row::m_movie_id)),
-                where(c(&watchlist_row::m_user_id) == u_id))));
+        return dbPtr->get_all_pointer<movie_row>(
+                inner_join<user_rating_row>(
+                        on(c(&movie_row::m_movie_id) == &user_rating_row::m_movie_id)),
+                where(c(&user_rating_row::m_user_id) == u_id));
     }
     catch (std::system_error &e) {
         std::cout << e.what() << std::endl;
     }
-    return {nullptr};
+    return {};
 }
 
 std::unique_ptr<user_rating_row> MovieDatabase::watch(const user_rating_row &entry) const {
@@ -170,22 +169,21 @@ std::unique_ptr<user_rating_row> MovieDatabase::getWatchEntry(int u_id, int m_id
     return {nullptr};
 }
 
-std::unique_ptr<std::vector<community_tag_row>> MovieDatabase::tagsByUser(int u_id) const {
+std::vector<std::unique_ptr<community_tag_row>> MovieDatabase::tagsByUser(int u_id) const {
     try {
-        return std::make_unique<std::vector<community_tag_row>>(
-                std::move(dbPtr->get_all<community_tag_row>(where(c(&community_tag_row::m_user_id) == u_id))));
+        return dbPtr->get_all_pointer<community_tag_row>(where(c(&community_tag_row::m_user_id) == u_id));
     }
     catch (std::system_error &e) {
         std::cout << e.what() << std::endl;
     }
-    return {nullptr};
+    return {};
 }
 
 std::unique_ptr<community_tag_row> MovieDatabase::addCommunityTag(const community_tag_row &tagRow) const {
     try {
-        dbPtr->remove_all<watchlist_row>(where(c(&community_tag_row::m_tag) == tagRow.m_tag &&
-                                               c(&community_tag_row::m_movie_id) == tagRow.m_movie_id) &&
-                                         c(&community_tag_row::m_user_id) == tagRow.m_user_id);
+        dbPtr->remove_all<community_tag_row>(where(c(&community_tag_row::m_tag) == tagRow.m_tag &&
+                                                   c(&community_tag_row::m_movie_id) == tagRow.m_movie_id) &&
+                                             c(&community_tag_row::m_user_id) == tagRow.m_user_id);
         auto temp = dbPtr->insert(tagRow);
         return dbPtr->get_pointer<community_tag_row>(temp);
     }
@@ -230,13 +228,92 @@ std::unique_ptr<genome_scores_row> MovieDatabase::getMovieTagRelevance(int tag_i
     return {nullptr};
 }
 
-std::unique_ptr<std::vector<movie_row>> MovieDatabase::searchMovieGenres(const std::string &src) const {
+std::vector<std::unique_ptr<movie_row>> MovieDatabase::searchMovieGenres(const std::string &src) const {
     try {
-        return std::make_unique<std::vector<movie_row>>(std::move(
-                dbPtr->get_all<movie_row>(where(like(&movie_row::m_genres, "%" + src + "%")))));
+        return dbPtr->get_all_pointer<movie_row>(where(like(&movie_row::m_genres, "%" + src + "%")));
+    }
+    catch (std::system_error &e) {
+        std::cout << e.what() << std::endl;
+    }
+    return {};
+}
+
+std::unique_ptr<user_scores_row> MovieDatabase::getUserTagRelevance(int tag_id, int user_id) const {
+    try {
+        return dbPtr->get_pointer<user_scores_row>(tag_id, user_id);
     }
     catch (std::system_error &e) {
         std::cout << e.what() << std::endl;
     }
     return {nullptr};
 }
+
+std::vector<std::unique_ptr<genome_scores_row>> MovieDatabase::getMovieTags(int movie_id) const {
+    try {
+        return dbPtr->get_all_pointer<genome_scores_row>(where(c(&genome_scores_row::m_movie_id) == movie_id));
+    }
+    catch (std::system_error &e) {
+        std::cout << e.what() << std::endl;
+    }
+    return {};
+}
+
+std::vector<std::unique_ptr<user_scores_row>> MovieDatabase::getUserTags(int user_id) const {
+    try {
+        return dbPtr->get_all_pointer<user_scores_row>(where(c(&user_scores_row::m_user_id) == user_id));
+    }
+    catch (std::system_error &e) {
+        std::cout << e.what() << std::endl;
+    }
+    return {};
+}
+
+std::unique_ptr<genome_scores_row> MovieDatabase::setMovieTagRelevance(const genome_scores_row &rhs) {
+    try {
+        dbPtr->replace<genome_scores_row>(rhs);
+        return dbPtr->get_pointer<genome_scores_row>(rhs.m_movie_id, rhs.m_tag_id);
+    }
+    catch (std::system_error &e) {
+        std::cout << e.what() << std::endl;
+    }
+    return {nullptr};
+}
+
+std::unique_ptr<user_scores_row>
+MovieDatabase::setUserTagRelevance(const user_scores_row &rhs) {
+    try {
+        dbPtr->replace<user_scores_row>(rhs);
+        return dbPtr->get_pointer<user_scores_row>(rhs.m_user_id, rhs.m_tag_id);
+    }
+    catch (std::system_error &e) {
+        std::cout << e.what() << std::endl;
+    }
+    return {nullptr};
+}
+
+std::unique_ptr<genome_scores_row> MovieDatabase::setMovieTagRelevance(int movie_id, int tag_id, double relevance) {
+    return this->setMovieTagRelevance({movie_id, tag_id, relevance});
+}
+
+std::unique_ptr<user_scores_row> MovieDatabase::setUserTagRelevance(int user_id, int tag_id, double relevance) {
+    return this->setUserTagRelevance({user_id, tag_id, relevance});
+}
+
+std::vector<std::unique_ptr<genome_scores_row>>
+MovieDatabase::setMovieTagRelevance(const std::vector<genome_scores_row> &a) {
+    std::vector<std::unique_ptr<genome_scores_row>> returnVector;
+    for (const auto &entry: a) {
+        returnVector.push_back(setMovieTagRelevance(entry));
+    }
+    return returnVector;
+}
+
+std::vector<std::unique_ptr<user_scores_row>>
+MovieDatabase::setUserTagRelevance(const std::vector<user_scores_row> &a) {
+    std::vector<std::unique_ptr<user_scores_row>> returnVector;
+    for (const auto &entry: a) {
+        returnVector.push_back(setUserTagRelevance(entry));
+    }
+    return returnVector;
+}
+
