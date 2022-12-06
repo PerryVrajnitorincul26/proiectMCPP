@@ -37,10 +37,11 @@ int main(){
     auto result = test.recommendedByLikedMovies();
     for(auto &genres: result)
     {
-        if(!genres->empty())
+        auto result = test.recommendedByGenres(userLikedGenres[i]);
+        if(!result.empty())
         {
-            for(auto &movies: *genres)
-                std::cout<<movies.m_title<<" ";
+            for(auto &movies: result)
+                std::cout<<movies->m_title<<" ";
             std::cout<<"\n";
         }
     }

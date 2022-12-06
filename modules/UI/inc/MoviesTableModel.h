@@ -10,8 +10,8 @@
 namespace Ui {
     class MoviesTableModel;
 }
-class MoviesTableModel: public QAbstractTableModel {
-    Q_OBJECT
+class MoviesTableModel : public QAbstractTableModel {
+Q_OBJECT
 
 public:
     MoviesTableModel(QObject *parent = 0);
@@ -20,9 +20,11 @@ public:
                       const QList<int> movieID);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
+
     int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
+
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
 
 private:

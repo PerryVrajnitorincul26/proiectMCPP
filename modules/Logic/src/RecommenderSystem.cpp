@@ -8,11 +8,10 @@ std::vector<std::string> RecommenderSystem::GetUserLikedMovies() const {
     return userLikedMovies;
 }
 
-std::unique_ptr<std::vector<movie_row>> RecommenderSystem::recommendedByLikedGenres(std::string genre) {
+std::vector<std::unique_ptr<movie_row>> RecommenderSystem::recommendedByLikedGenres(std::string genre) {
     auto &dbRef = MovieDatabase::instance();
 
-    std::unique_ptr<std::vector<movie_row>> searchResult;
-    searchResult = dbRef.searchMovieGenres(genre);
+    auto searchResult = dbRef.searchMovieGenres(genre);
 
     return searchResult;
 }

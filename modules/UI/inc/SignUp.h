@@ -1,5 +1,4 @@
-#ifndef DIALOG_H
-#define DIALOG_H
+#pragma once
 
 #include <QWidget>
 
@@ -29,4 +28,3 @@ signals:
     void HomeClicked();
 };
 
-#endif // DIALOG_H

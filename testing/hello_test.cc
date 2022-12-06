@@ -35,5 +35,5 @@ TEST(HeloTest,User_creation){
 TEST(HeloTest,MovieSearch){
     auto &db = MovieDatabase::instance();
     auto tmp = db.searchMovieTitles("at");
-    EXPECT_NE(tmp,nullptr);
+    EXPECT_FALSE(tmp.empty());
 }

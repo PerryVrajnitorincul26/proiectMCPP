@@ -23,11 +23,11 @@ void MoviesTable::on_pushButton_clicked() {
     auto &dbRef = MovieDatabase::instance();
     auto searchResult = dbRef.searchMovieTitles(titleToSearch);
 
-    if (!searchResult->empty()) {
-        for (auto &item: *searchResult) {
-            int id = item.m_movie_id;
-            QString title = QString::fromStdString(item.m_title);
-            QString genres = QString::fromStdString(item.m_genres);
+    if (!searchResult.empty()) {
+        for (auto &item: searchResult) {
+            int id = item->m_movie_id;
+            QString title = QString::fromStdString(item->m_title);
+            QString genres = QString::fromStdString(item->m_genres);
             moviesTitles.append(title);
             moviesGenres.append(genres);
             moviesId.append(id);
@@ -42,7 +42,7 @@ void MoviesTable::on_pushButton_clicked() {
         ui->tableView->horizontalHeader()->setVisible(true);
         ui->tableView->show();
         std::string message("We found ");
-        message.append(std::to_string(searchResult->size()));
+        message.append(std::to_string(searchResult.size()));
         message.append(" results");
 
         ui->msgLabel->setText(QString::fromStdString(message));

@@ -227,9 +227,33 @@ inline auto genome_scores_table() {
     );
 }
 
+class user_scores_row {
+public:
+    user_scores_row(int mMovieId, int mTagId, double mRelevance);
+
+    user_scores_row();
+
+    bool operator==(const user_scores_row &rhs) const;
+
+    bool operator!=(const user_scores_row &rhs) const;
+
+    int m_user_id;
+    int m_tag_id;
+    double m_relevance;
+};
+
+inline auto user_scores_table() {
+    return make_table("user_scores",
+                      make_column("user_id", &user_scores_row::m_user_id),
+                      make_column("tag_id", &user_scores_row::m_tag_id),
+                      make_column("relevance", &user_scores_row::m_relevance),
+                      primary_key(&user_scores_row::m_user_id, &user_scores_row::m_tag_id),
+                      foreign_key(&user_scores_row::m_user_id).references(&user_row::m_user_id)
+    );
+}
 inline auto init_storage(const std::string &path) {
     return make_storage(path, user_table(), watchlist_table(), community_tag_table(), rating_table(), movie_table(),
-                        link_table(), genome_tag_table(), genome_scores_table());
+                        link_table(), genome_tag_table(), genome_scores_table(), user_scores_table());
 }
 
 using Storage = decltype(init_storage(""));
