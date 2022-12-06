@@ -31,16 +31,15 @@ RecommenderSystem::RecommenderSystem(const std::vector<std::string> &userLikedGe
 RecommenderSystem::RecommenderSystem() {}
 
 //basic recommandation based on liked films
-std::vector<std::unique_ptr<std::vector<movie_row>>> RecommenderSystem::recommendedByLikedMovies() {
+std::vector<std::vector<std::unique_ptr<movie_row>>> RecommenderSystem::recommendedByLikedMovies() {
     auto &dbRef = MovieDatabase::instance();
-    std::vector<std::unique_ptr<std::vector<movie_row>>> result;
+    std::vector<std::vector<std::unique_ptr<movie_row>>> result;
 
-    for(auto &likedMovie: userLikedMovies)
-    {
-        auto movie = *dbRef.searchMovieTitles(likedMovie);
-        auto genres = movie[0].m_genres;
+    for (auto &likedMovie: userLikedMovies) {
+        auto movie = dbRef.searchMovieTitles(likedMovie);
+        auto genres = movie[0]->m_genres;
 
-        auto recommendedMovies = dbRef.searchMovieGenres(genres);
+        std::vector<std::unique_ptr<movie_row>> recommendedMovies = dbRef.searchMovieGenres(genres);
         result.push_back(std::move(recommendedMovies));
     }
 
