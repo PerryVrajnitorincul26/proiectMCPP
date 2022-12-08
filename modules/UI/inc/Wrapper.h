@@ -3,8 +3,8 @@
 
 #include <QWidget>
 #include "SignUp.h"
-#include "moviestable.h"
 #include "SignIn.h"
+#include "MoviesTable.h"
 
 namespace Ui {
 class Wrapper;

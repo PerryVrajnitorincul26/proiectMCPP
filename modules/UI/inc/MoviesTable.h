@@ -6,10 +6,10 @@
 #include <db_headers.h>
 #include "MovieDatabase.h"
 #include "MoviesTableModel.h"
-#include "moviedetails.h"
+#include "MovieDetails.h"
 #include <QString>
 #include <QDebug>
-#include "showmovie.h"
+#include "ShowMovie.h"
 namespace Ui {
     class MoviesTable;
 }

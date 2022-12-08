@@ -46,6 +46,19 @@
     </item>
    </layout>
   </widget>
+  <widget class="QLabel" name="posterLabel">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>210</y>
+     <width>201</width>
+     <height>141</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>POSTER MUST APPEAR HERE</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

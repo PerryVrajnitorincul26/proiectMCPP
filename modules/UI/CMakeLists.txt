@@ -15,16 +15,13 @@ set(PROJECT_SOURCES
         inc/User.h
         src/User.cpp
         src/Movie.cpp inc/Movie.h
-        inc/QnetworkAcces.h
-        src/QnetworkAcces.cpp
-        inc/QnetworkAcces.h
-        inc/moviestable.h
-        src/moviestable.cpp
-        src/moviestable.ui
+        inc/MoviesTable.h
+        src/MoviesTable.cpp
+        src/MoviesTable.ui
         src/MoviesTableModel.cpp inc/MoviesTableModel.h
-        src/moviedetails.cpp inc/moviedetails.h src/moviedetails.ui
-        src/showmovie.cpp src/showmovie.ui inc/showmovie.h
-        src/wrapper.cpp src/wrapper.ui inc/wrapper.h)
+        src/MovieDetails.cpp inc/MovieDetails.h src/MovieDetails.ui
+        src/ShowMovie.cpp src/ShowMovie.ui inc/ShowMovie.h
+        src/Wrapper.cpp src/Wrapper.ui inc/Wrapper.h src/TMDB.cpp inc/TMDB.h)
 
 add_executable(movietest inc/Movie.h src/Movie.cpp)
 

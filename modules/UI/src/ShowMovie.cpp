@@ -1,7 +1,7 @@
-#include "showmovie.h"
-#include "ui_showmovie.h"
+#include "ShowMovie.h"
+#include "ui_ShowMovie.h"
 #include "QPixmap"
-#include "moviedetails.h"
+#include "MovieDetails.h"
 ShowMovie::ShowMovie(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ShowMovie)

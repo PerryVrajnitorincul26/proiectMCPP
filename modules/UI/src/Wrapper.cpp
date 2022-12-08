@@ -1,5 +1,6 @@
-#include "wrapper.h"
-#include "ui_wrapper.h"
+#include "Wrapper.h"
+#include "ui_Wrapper.h"
+#include "TMDB.h"
 
 Wrapper::Wrapper(QWidget *parent) :
     QWidget(parent),
@@ -15,6 +16,7 @@ Wrapper::Wrapper(QWidget *parent) :
     connect(&_dialog, SIGNAL(HomeClicked()),this,SLOT(moveHome()));
     connect(&_moviestable, SIGNAL(homeClicked()),this, SLOT(moveHome()));
     connect(&_signin, SIGNAL(HomeClicked()), this,SLOT(moveHome()));
+
 }
 
 Wrapper::~Wrapper()

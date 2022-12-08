@@ -4,13 +4,25 @@
 
 // You may need to build the project (run Qt uic code generator) to get "ui_MovieDetails.h" resolved
 
-#include "moviedetails.h"
-#include "ui_moviedetails.h"
+#include "MovieDetails.h"
+#include "ui_MovieDetails.h"
+#include "TMDB.h"
 
 
 MovieDetails::MovieDetails(QWidget *parent) :
         QWidget(parent), ui(new Ui::MovieDetails) {
     ui->setupUi(this);
+
+    TMDB *movie = new TMDB(862);
+    if (movie->pixmap == nullptr)
+        qDebug() << "Image not loaded...";
+    ui->posterLabel->setPixmap(*movie->pixmap);
+    //ui->posterLabel->setMask(movie->pixmap->mask());
+
+    ui->posterLabel->show();
+
+    update();
+
 }
 
 MovieDetails::~MovieDetails() {
