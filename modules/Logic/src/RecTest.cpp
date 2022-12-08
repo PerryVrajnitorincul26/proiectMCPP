@@ -4,7 +4,7 @@
 
 int main(){
 
-    RecommenderSystem test;
+    RecommenderSystem test(3);
     std::vector<std::string> userLikedGenres;
 //    for(int i=0;i<3;i++)
 //    {
@@ -34,17 +34,18 @@ int main(){
     }
     test.setUserLikedMovies(userLikedMovies);
 
-    auto result = test.recommendedByLikedMovies();
-    for(auto &genres: result)
-    {
-        auto result = test.recommendedByGenres(userLikedGenres[i]);
-        if(!result.empty())
-        {
-            for(auto &movies: result)
-                std::cout<<movies->m_title<<" ";
-            std::cout<<"\n";
-        }
-    }
+    //auto result = test.recommendedByLikedMovies();
+    //for(auto &genres: result)
+    //{
+    //    auto result = test.recommendedByLikedGenres(userLikedGenres[genres]);
+    //    if(!result.empty())
+    //    {
+    //        for(auto &movies: result)
+    //            std::cout<<movies->m_title<<" ";
+    //        std::cout<<"\n";
+    //    }
+    //}
+
 
 
     return 0;

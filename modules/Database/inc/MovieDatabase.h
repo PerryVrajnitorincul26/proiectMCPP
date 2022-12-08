@@ -29,6 +29,11 @@ private:
         std::cout << "database created" << std::endl;
     }
 
+    explicit MovieDatabase(const std::string &customPath) {
+        dbPtr = std::make_unique<Storage>(init_storage(customPath));
+        std::cout << "database created" << std::endl;
+    }
+
 public:
     /*!
      * This should make it impossible to create anything other than references to this class. As such we avoid duplicating
@@ -47,6 +52,11 @@ public:
 
     static MovieDatabase &instance() {
         static std::unique_ptr<MovieDatabase> md(new MovieDatabase);
+        return *md;
+    }
+
+    static MovieDatabase &instance(const std::string &path) {
+        static std::unique_ptr<MovieDatabase> md(new MovieDatabase(path));
         return *md;
     }
 
@@ -85,7 +95,11 @@ public:
 
     [[nodiscard]] std::unique_ptr<link_row> getLinkEntry(int m_id) const;
 
-    [[nodiscard]] std::unique_ptr<genome_tag_row> getTagEntry(int tag_id) const;
+    [[nodiscard]] std::unique_ptr<genome_tag_row> getTagName(int tag_id) const;
+
+//    [[nodiscard]] std::unique_ptr<genome_tag_row> getTagId(const std::string & tag_name) const;
+
+    [[nodiscard]] std::vector<std::unique_ptr<genome_tag_row>> getAllTags(const std::string &tag_name = "") const;
 
     [[nodiscard]] std::unique_ptr<genome_scores_row> getMovieTagRelevance(int tag_id, int movie_id) const;
 
@@ -95,10 +109,9 @@ public:
 
     [[nodiscard]] std::vector<std::unique_ptr<user_scores_row>> getUserTags(int user_id) const;
 
-    [[nodiscard]] std::unique_ptr<genome_scores_row> setMovieTagRelevance(const genome_scores_row &rhs);
+    [[nodiscard]] std::vector<std::vector<std::unique_ptr<genome_scores_row>>> getMovieTagsFromWatchlist(int user_id) const;
 
-    [[nodiscard]] std::vector<std::unique_ptr<user_scores_row>> setUserTagRelevance(
-            const std::vector<user_scores_row> &a);
+    [[nodiscard]] std::unique_ptr<genome_scores_row> setMovieTagRelevance(const genome_scores_row &rhs);
 
     [[nodiscard]] std::unique_ptr<user_scores_row> setUserTagRelevance(int user_id, int tag_id, double relevance);
 
@@ -106,6 +119,15 @@ public:
 
     [[nodiscard]] std::vector<std::unique_ptr<genome_scores_row>>
     setMovieTagRelevance(const std::vector<genome_scores_row> &a);
+
+    [[nodiscard]] std::vector<std::unique_ptr<user_scores_row>> setUserTagRelevance(
+            const std::vector<user_scores_row> &a);
+
+    [[nodiscard]] std::vector<std::unique_ptr<genome_scores_row>>
+    setMovieTagRelevance(const std::vector<std::unique_ptr<genome_scores_row>> &a);
+
+    [[nodiscard]] std::vector<std::unique_ptr<user_scores_row>> setUserTagRelevance(
+            const std::vector<std::unique_ptr<user_scores_row>> &a);
 
     [[nodiscard]] std::unique_ptr<user_scores_row> setUserTagRelevance(const user_scores_row &rhs);
 

@@ -208,7 +208,7 @@ std::unique_ptr<link_row> MovieDatabase::getLinkEntry(int m_id) const {
     return {nullptr};
 }
 
-std::unique_ptr<genome_tag_row> MovieDatabase::getTagEntry(int tag_id) const {
+std::unique_ptr<genome_tag_row> MovieDatabase::getTagName(int tag_id) const {
     try {
         dbPtr->get_pointer<genome_tag_row>(tag_id);
     }
@@ -299,21 +299,90 @@ std::unique_ptr<user_scores_row> MovieDatabase::setUserTagRelevance(int user_id,
     return this->setUserTagRelevance({user_id, tag_id, relevance});
 }
 
+/*!
+ * Note that this will replace the value of all scores currently in the vector, add them if they don't exist, and ignore them  if they were unmentioned.
+ * @param Vector of genome_scores_row
+ * @return Vector of uniq pointers to genome_scores_row
+ */
 std::vector<std::unique_ptr<genome_scores_row>>
 MovieDatabase::setMovieTagRelevance(const std::vector<genome_scores_row> &a) {
     std::vector<std::unique_ptr<genome_scores_row>> returnVector;
-    for (const auto &entry: a) {
-        returnVector.push_back(setMovieTagRelevance(entry));
+    dbPtr->transaction([&] {
+        for (const auto &entry: a) {
+            returnVector.push_back(setMovieTagRelevance(entry));
+        }
+        return true;
+    });
+    return returnVector;
+}
+
+/*!
+ * Note that this will replace the value of all scores currently in the vector, add them if they don't exist, and ignore them  if they were unmentioned.
+ * @param Vector of user_scores_row
+ * @return Vector of uniq pointers to user_scores_row
+ */
+std::vector<std::unique_ptr<user_scores_row>>
+MovieDatabase::setUserTagRelevance(const std::vector<user_scores_row> &a) {
+    std::vector<std::unique_ptr<user_scores_row>> returnVector;
+    dbPtr->transaction([&] {
+        for (const auto &entry: a) {
+            returnVector.push_back(setUserTagRelevance(entry));
+        }
+        return true;
+    });
+    return returnVector;
+}
+
+std::vector<std::unique_ptr<genome_tag_row>> MovieDatabase::getAllTags(const std::string &tag_name) const {
+    try {
+        return dbPtr->get_all_pointer<genome_tag_row>(where(like(&genome_tag_row::m_tag, "%" + tag_name + "%")));
     }
+    catch (std::system_error &e) {
+        std::cout << e.what() << std::endl;
+    }
+    return {};
+}
+
+std::vector<std::unique_ptr<genome_scores_row>>
+MovieDatabase::setMovieTagRelevance(const std::vector<std::unique_ptr<genome_scores_row>> &a) {
+    std::vector<std::unique_ptr<genome_scores_row>> returnVector;
+    dbPtr->transaction([&] {
+        for (const auto &entry: a) {
+            returnVector.push_back(setMovieTagRelevance(*entry));
+        }
+        return true;
+    });
     return returnVector;
 }
 
 std::vector<std::unique_ptr<user_scores_row>>
-MovieDatabase::setUserTagRelevance(const std::vector<user_scores_row> &a) {
+MovieDatabase::setUserTagRelevance(const std::vector<std::unique_ptr<user_scores_row>> &a) {
     std::vector<std::unique_ptr<user_scores_row>> returnVector;
-    for (const auto &entry: a) {
-        returnVector.push_back(setUserTagRelevance(entry));
-    }
+    dbPtr->transaction([&] {
+        for (const auto &entry: a) {
+            returnVector.push_back(setUserTagRelevance(*entry));
+        }
+        return true;
+    });
     return returnVector;
+}
+
+std::vector<std::vector<std::unique_ptr<genome_scores_row>>>
+MovieDatabase::getMovieTagsFromWatchlist(int user_id) const {
+    std::vector<std::vector<std::unique_ptr<genome_scores_row>>> returnVector;
+    try {
+        dbPtr->transaction([&] {
+            auto moviesToFetch = this->moviesRatedByUser(user_id);
+            for (const auto &i: moviesToFetch) {
+                returnVector.push_back(std::move(this->getMovieTags(i->m_movie_id)));
+            }
+            return true;
+        });
+        return returnVector;
+    }
+    catch (std::system_error &e) {
+        std::cout << e.what() << std::endl;
+    }
+    return {};
 }
 
