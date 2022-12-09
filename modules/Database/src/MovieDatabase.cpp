@@ -200,7 +200,7 @@ MovieDatabase::addCommunityTag(int user_id, int movie_id, const std::string &tag
 
 std::unique_ptr<link_row> MovieDatabase::getLinkEntry(int m_id) const {
     try {
-        dbPtr->get_pointer<link_row>(m_id);
+        return dbPtr->get_pointer<link_row>(m_id);
     }
     catch (std::system_error &e) {
         std::cout << e.what() << std::endl;
@@ -220,7 +220,7 @@ std::unique_ptr<genome_tag_row> MovieDatabase::getTagName(int tag_id) const {
 
 std::unique_ptr<genome_scores_row> MovieDatabase::getMovieTagRelevance(int tag_id, int movie_id) const {
     try {
-        dbPtr->get_pointer<genome_scores_row>(tag_id, movie_id);
+        return dbPtr->get_pointer<genome_scores_row>(tag_id, movie_id);
     }
     catch (std::system_error &e) {
         std::cout << e.what() << std::endl;

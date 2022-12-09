@@ -7,8 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>887</width>
-    <height>474</height>
+    <height>600</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MovieDetails</string>
@@ -19,7 +25,7 @@
      <x>120</x>
      <y>80</y>
      <width>221</width>
-     <height>61</height>
+     <height>63</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -49,10 +55,10 @@
   <widget class="QLabel" name="posterLabel">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>210</y>
-     <width>201</width>
-     <height>141</height>
+     <x>120</x>
+     <y>160</y>
+     <width>311</width>
+     <height>351</height>
     </rect>
    </property>
    <property name="text">

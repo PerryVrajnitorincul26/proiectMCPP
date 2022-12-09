@@ -10,9 +10,8 @@
 #include <QNetworkAccessManager>
 #include <QJsonValue>
 
-class TMDB : public QObject
-{
-    Q_OBJECT
+class TMDB : public QObject {
+Q_OBJECT
 
     const QString m_baseUrl = "https://api.themoviedb.org/3/movie/";
 
@@ -24,7 +23,7 @@ class TMDB : public QObject
 
     QString *tmdb_id = nullptr;
 
-    QNetworkAccessManager* m_naManager; //"naManager" stands for network access manager
+    QNetworkAccessManager *m_naManager; //"naManager" stands for network access manager
 
     //Movie Data JSON format
     //adult - boolean
@@ -45,16 +44,15 @@ class TMDB : public QObject
     double m_runtime = 0;
 
 
-
 public :
     //Movie's poster
     QPixmap *pixmap = nullptr;
 
     void setMovie();
 
-    void setImage();
-
     TMDB(const long long int &movieId); //here will be executed the connection with the APIs
+
+    ~TMDB() override;
 
     //this is a temporary setter written for testing
     void setPosterPath(const QString &mPosterPath) {
@@ -100,9 +98,16 @@ public :
 
 public slots:
 
-    void movieDataReceived(QNetworkReply *replyReceived);
-
     void imageDownloaded(QNetworkReply *replyReceived);
+
+    void dataFinished();
+
+    void imageFinished();
+
+
+signals:
+
+    void finishedLoading();
 };
 
 

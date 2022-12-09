@@ -30,6 +30,9 @@ public:
 
 private:
     Ui::MovieDetails *ui;
+
+public slots:
+    void loadImage();
 };
 
 

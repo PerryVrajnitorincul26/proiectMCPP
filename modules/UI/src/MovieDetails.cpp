@@ -13,16 +13,7 @@ MovieDetails::MovieDetails(QWidget *parent) :
         QWidget(parent), ui(new Ui::MovieDetails) {
     ui->setupUi(this);
 
-    TMDB *movie = new TMDB(862);
-    if (movie->pixmap == nullptr)
-        qDebug() << "Image not loaded...";
-    ui->posterLabel->setPixmap(*movie->pixmap);
-    //ui->posterLabel->setMask(movie->pixmap->mask());
-
-    ui->posterLabel->show();
-
     update();
-
 }
 
 MovieDetails::~MovieDetails() {
@@ -41,5 +32,20 @@ MovieDetails::MovieDetails(int mid, int cid, QWidget *parent) : MovieDetails(par
     this->reviewObj = ref.getWatchEntry(cid, mid);
     if (this->reviewObj == nullptr) {
         this->reviewObj = std::make_unique<user_rating_row>(user_rating_row(cid, mid, 0.0f));
+    }
+    auto a = ref.getLinkEntry(mid);
+    TMDB *movie = new TMDB(a->m_tmdb_id);
+    connect(movie, &TMDB::finishedLoading, this, &MovieDetails::loadImage);
+    qDebug() << "Instantiated MovieDetails";
+}
+
+void MovieDetails::loadImage() {
+    auto movie = qobject_cast<TMDB *>(sender());
+    if (movie->pixmap == nullptr)
+        qDebug() << "Image not loaded...";
+    else {
+        ui->posterLabel->setPixmap(*movie->pixmap);
+        //ui->posterLabel->setMask(movie->pixmap->mask());
+        ui->posterLabel->show();
     }
 }

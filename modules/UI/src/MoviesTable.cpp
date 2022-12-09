@@ -55,10 +55,13 @@ void MoviesTable::on_tableView_clicked(const QModelIndex &pos) {
     int movieId = model->data(pos, -1).toInt();
     auto tempDialog = new QDialog();
     auto myDialog = new MovieDetails(movieId,this->user_id);
-    auto myLayout = new QHBoxLayout();
+    auto myLayout = new QHBoxLayout(myDialog);
     tempDialog->setLayout(myLayout);
     myLayout->addWidget(myDialog);
     tempDialog->exec();
+    //myDialog->deleteLater();
+    delete myDialog;
+    tempDialog->deleteLater();
 }
 
 MoviesTable::MoviesTable(int uid, QWidget *parent) : MoviesTable(parent) {
