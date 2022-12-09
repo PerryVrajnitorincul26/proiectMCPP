@@ -22,8 +22,8 @@
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>80</y>
+     <x>20</x>
+     <y>480</y>
      <width>221</width>
      <height>63</height>
     </rect>
@@ -32,14 +32,14 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox"/>
+      </item>
+      <item>
        <widget class="QLabel" name="label">
         <property name="text">
          <string>Review:</string>
         </property>
        </widget>
-      </item>
-      <item>
-       <widget class="QDoubleSpinBox" name="doubleSpinBox"/>
       </item>
      </layout>
     </item>
@@ -55,8 +55,8 @@
   <widget class="QLabel" name="posterLabel">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>160</y>
+     <x>10</x>
+     <y>50</y>
      <width>311</width>
      <height>351</height>
     </rect>
@@ -64,6 +64,78 @@
    <property name="text">
     <string>POSTER MUST APPEAR HERE</string>
    </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>40</y>
+     <width>471</width>
+     <height>381</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>GroupBox</string>
+   </property>
+   <widget class="QLabel" name="titleLabel">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>441</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Title</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="descriptionLabel">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>100</y>
+      <width>441</width>
+      <height>251</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Yu Gothic UI Semibold</family>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Description</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="ratingLabel">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>360</y>
+      <width>151</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Noto Serif Georgian</family>
+     </font>
+    </property>
+    <property name="text">
+     <string>TMDB rating:</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

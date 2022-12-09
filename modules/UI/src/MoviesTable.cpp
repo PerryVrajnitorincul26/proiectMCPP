@@ -54,13 +54,13 @@ void MoviesTable::on_pushButton_clicked() {
 void MoviesTable::on_tableView_clicked(const QModelIndex &pos) {
     int movieId = model->data(pos, -1).toInt();
     auto tempDialog = new QDialog();
-    auto myDialog = new MovieDetails(movieId,this->user_id);
-    auto myLayout = new QHBoxLayout(myDialog);
+    auto movie = new MovieDetails(movieId,this->user_id);
+    auto myLayout = new QHBoxLayout(movie);
     tempDialog->setLayout(myLayout);
-    myLayout->addWidget(myDialog);
+    myLayout->addWidget(movie);
     tempDialog->exec();
     //myDialog->deleteLater();
-    delete myDialog;
+    delete movie;
     tempDialog->deleteLater();
 }
 

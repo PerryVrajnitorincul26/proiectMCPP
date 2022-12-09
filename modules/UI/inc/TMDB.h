@@ -43,7 +43,6 @@ Q_OBJECT
     //runtime - number (minutes)
     double m_runtime = 0;
 
-
 public :
     //Movie's poster
     QPixmap *pixmap = nullptr;
