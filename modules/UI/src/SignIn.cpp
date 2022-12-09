@@ -5,7 +5,7 @@
 #include "db_headers.h"
 #include "MovieDatabase.h"
 #include <QHBoxLayout>
-#include "moviestable.h"
+#include "MoviesTable.h"
 
 
 SignIn::SignIn(QWidget* parent)

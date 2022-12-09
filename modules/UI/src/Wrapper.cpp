@@ -1,5 +1,5 @@
-#include "wrapper.h"
-#include "ui_wrapper.h"
+#include "Wrapper.h"
+#include "ui_Wrapper.h"
 #include "TMDB.h"
 
 Wrapper::Wrapper(QWidget *parent) :
@@ -17,9 +17,6 @@ Wrapper::Wrapper(QWidget *parent) :
     connect(&_moviestable, SIGNAL(homeClicked()),this, SLOT(moveHome()));
     connect(&_signin, SIGNAL(HomeClicked()), this,SLOT(moveHome()));
 
-
-    TMDB *movie = new TMDB(862);
-    movie->setMovie();
 }
 
 Wrapper::~Wrapper()

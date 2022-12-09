@@ -1,5 +1,5 @@
-#include "moviestable.h"
-#include "ui_moviestable.h"
+#include "MoviesTable.h"
+#include "ui_MoviesTable.h"
 
 
 MoviesTable::MoviesTable(QWidget *parent) :

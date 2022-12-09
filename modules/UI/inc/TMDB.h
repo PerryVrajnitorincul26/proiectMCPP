@@ -44,8 +44,15 @@ class TMDB : public QObject
     //runtime - number (minutes)
     double m_runtime = 0;
 
+
+
 public :
+    //Movie's poster
+    QPixmap *pixmap = nullptr;
+
     void setMovie();
+
+    void setImage();
 
     TMDB(const long long int &movieId); //here will be executed the connection with the APIs
 
@@ -95,7 +102,7 @@ public slots:
 
     void movieDataReceived(QNetworkReply *replyReceived);
 
-    void imageDownloaded(QNetworkReply *reply);
+    void imageDownloaded(QNetworkReply *replyReceived);
 };
 
 
