@@ -8,6 +8,7 @@
 #include <sstream>
 #include <algorithm>
 #include <iostream>
+#include <MovieDatabase.h>
 
 ///CONSTRUCTORS
 Movie::Movie()  = default; //default constructor
@@ -41,6 +42,11 @@ Movie::Movie(const std::string &title, const std::string &genres) { //if the gen
             this->m_genres.push_back(word);
     }
 } //title and a string of genres delimited by '|'
+
+Movie::Movie(const uint16_t movieId) {
+    auto &ref = MovieDatabase::instance();
+    this->m_title= ref.getMovieById(movieId)->m_title;
+}
 
 ///GETTERS
 const std::string &Movie::getTitle() const {
@@ -94,5 +100,6 @@ double Movie::getUserReview() const {
 void Movie::setUserReview(const double &userReview) {
     m_userReview = userReview;
 }
+
 
 

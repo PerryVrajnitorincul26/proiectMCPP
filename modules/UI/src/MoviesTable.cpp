@@ -12,7 +12,6 @@ MoviesTable::~MoviesTable() {
     delete ui;
 }
 
-//NU VA ATINGETI DE FUNCTIA ASTA CA VA SPARG
 void MoviesTable::on_pushButton_clicked() {
     std::string titleToSearch = ui->titleInput->text().toStdString();
     std::string genreToSearch = ui->genreInput->text().toStdString();
@@ -39,7 +38,16 @@ void MoviesTable::on_pushButton_clicked() {
 
         ui->tableView->setModel(model);
 
+        int parentWidth = ui->tableView->parentWidget()->width();
+        int numColumns = ui->tableView->model()->columnCount();
+        int columnWidth = parentWidth / numColumns;
+
+        for (int i = 0; i < numColumns; ++i) {
+            ui->tableView->setColumnWidth(i, columnWidth);
+        }
+
         ui->tableView->horizontalHeader()->setVisible(true);
+        ui->tableView->setShowGrid(false);
         ui->tableView->show();
         std::string message("We found ");
         message.append(std::to_string(searchResult.size()));
@@ -53,15 +61,20 @@ void MoviesTable::on_pushButton_clicked() {
 
 void MoviesTable::on_tableView_clicked(const QModelIndex &pos) {
     int movieId = model->data(pos, -1).toInt();
-    auto tempDialog = new QDialog();
-    auto movie = new MovieDetails(movieId,this->user_id);
-    auto myLayout = new QHBoxLayout(movie);
-    tempDialog->setLayout(myLayout);
-    myLayout->addWidget(movie);
-    tempDialog->exec();
-    //myDialog->deleteLater();
-    delete movie;
-    tempDialog->deleteLater();
+
+    QDialog *moviePageDialog = new QDialog();
+    moviePageDialog->setMaximumSize(QSize(900, 600));
+
+    MovieDetails *movieDetails = new MovieDetails(movieId,this->user_id);
+
+    QHBoxLayout *giveRatingLayout = new QHBoxLayout(movieDetails);
+
+    moviePageDialog->setLayout(giveRatingLayout);
+    giveRatingLayout->addWidget(movieDetails);
+    moviePageDialog->exec();
+
+    delete movieDetails;
+    moviePageDialog->deleteLater();
 }
 
 MoviesTable::MoviesTable(int uid, QWidget *parent) : MoviesTable(parent) {
@@ -79,6 +92,8 @@ void MoviesTable::on_pushButton_details_clicked() {
     _showmovie= new ShowMovie(this);
 _showmovie->show();
 }
+
+
 
 
 

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>887</width>
+    <width>888</width>
     <height>600</height>
    </rect>
   </property>
@@ -19,71 +19,31 @@
   <property name="windowTitle">
    <string>MovieDetails</string>
   </property>
-  <widget class="QWidget" name="verticalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>480</y>
-     <width>221</width>
-     <height>63</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QDoubleSpinBox" name="doubleSpinBox"/>
-      </item>
-      <item>
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Review:</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <widget class="QPushButton" name="GiveRating">
-      <property name="text">
-       <string>Give</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QLabel" name="posterLabel">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>50</y>
-     <width>311</width>
-     <height>351</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>POSTER MUST APPEAR HERE</string>
-   </property>
-  </widget>
+  <property name="styleSheet">
+   <string notr="true">b</string>
+  </property>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>40</y>
-     <width>471</width>
-     <height>381</height>
+     <x>0</x>
+     <y>0</y>
+     <width>900</width>
+     <height>600</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: #000000</string>
+   </property>
    <property name="title">
-    <string>GroupBox</string>
+    <string/>
    </property>
    <widget class="QLabel" name="titleLabel">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>40</y>
+      <x>370</x>
+      <y>10</y>
       <width>441</width>
-      <height>51</height>
+      <height>101</height>
      </rect>
     </property>
     <property name="font">
@@ -92,6 +52,9 @@
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: white</string>
+    </property>
     <property name="text">
      <string>Title</string>
     </property>
@@ -99,10 +62,10 @@
    <widget class="QLabel" name="descriptionLabel">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>100</y>
-      <width>441</width>
-      <height>251</height>
+      <x>370</x>
+      <y>130</y>
+      <width>501</width>
+      <height>271</height>
      </rect>
     </property>
     <property name="font">
@@ -110,6 +73,9 @@
       <family>Yu Gothic UI Semibold</family>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #b7cece</string>
     </property>
     <property name="text">
      <string>Description</string>
@@ -135,6 +101,94 @@
     <property name="text">
      <string>TMDB rating:</string>
     </property>
+   </widget>
+   <widget class="QLabel" name="posterLabel">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>50</y>
+      <width>311</width>
+      <height>351</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:1px solid white; color: white; </string>
+    </property>
+    <property name="text">
+     <string>IMAGE NOT LOADED YET</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>480</y>
+      <width>221</width>
+      <height>63</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QDoubleSpinBox" name="doubleSpinBox">
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background: #e2e2e2</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::UpDownArrows</enum>
+         </property>
+         <property name="accelerated">
+          <bool>false</bool>
+         </property>
+         <property name="showGroupSeparator" stdset="0">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="styleSheet">
+          <string notr="true">color: white</string>
+         </property>
+         <property name="text">
+          <string>Review:</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QPushButton" name="GiveRating">
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background: #2da7f6; color: white;</string>
+       </property>
+       <property name="text">
+        <string>Send review</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
  </widget>

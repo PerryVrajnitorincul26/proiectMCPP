@@ -8,7 +8,7 @@
 #include "ui_MovieDetails.h"
 #include "TMDB.h"
 
-
+//CONSTRUCTORS
 MovieDetails::MovieDetails(QWidget *parent) :
         QWidget(parent), ui(new Ui::MovieDetails) {
     ui->setupUi(this);
@@ -19,6 +19,23 @@ MovieDetails::~MovieDetails() {
     delete ui;
 }
 
+MovieDetails::MovieDetails(int movieId, int userId, QWidget *parent) : MovieDetails(parent) {
+    auto &ref = MovieDatabase::instance();
+    this->reviewObj = ref.getWatchEntry(userId, movieId);
+
+    if (this->reviewObj == nullptr) {
+        this->reviewObj = std::make_unique<user_rating_row>(user_rating_row(userId, movieId, 0.0f));
+    }
+
+    this->interalMovieDetails = new Movie(movieId);
+    this->externalMovieDetals = new TMDB(ref.getLinkEntry(movieId)->m_tmdb_id);
+    connect(externalMovieDetals, &TMDB::finishedLoading, this, &MovieDetails::loadImage);
+    qDebug() << "Instantiated MovieDetails";
+}
+
+
+//TRIGGERS
+
 double MovieDetails::on_GiveRating_clicked() {
     auto &ref = MovieDatabase::instance();
     reviewObj->m_rating = ui->doubleSpinBox->value();
@@ -26,35 +43,31 @@ double MovieDetails::on_GiveRating_clicked() {
     return ui->doubleSpinBox->value();
 }
 
-MovieDetails::MovieDetails(int mid, int cid, QWidget *parent) : MovieDetails(parent) {
-    auto &ref = MovieDatabase::instance();
-    this->reviewObj = ref.getWatchEntry(cid, mid);
-    std::string title = ref.getMovieById(mid)->m_title;
-    ui->titleLabel->setText(QString::fromStdString(title));
-    if (this->reviewObj == nullptr) {
-        this->reviewObj = std::make_unique<user_rating_row>(user_rating_row(cid, mid, 0.0f));
-    }
-    auto a = ref.getLinkEntry(mid);
-    TMDB *movie = new TMDB(a->m_tmdb_id);
-    connect(movie, &TMDB::finishedLoading, this, &MovieDetails::loadImage);
-    qDebug() << "Instantiated MovieDetails";
-}
 
+//FUNCTIONS
 void MovieDetails::loadImage() {
     auto movie = qobject_cast<TMDB *>(sender());
-
-    ui->descriptionLabel->setWordWrap(true);
-    ui->descriptionLabel->setText(movie->getOverview());
-    ui->descriptionLabel->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-    ui->descriptionLabel->adjustSize();
-
 
     if (movie->pixmap == nullptr)
         qDebug() << "Image not loaded...";
     else {
-        ui->posterLabel->setPixmap(*movie->pixmap);
-        ui->posterLabel->setScaledContents(true);
-        //ui->posterLabel->setMask(movie->pixmap->mask());
-        ui->posterLabel->show();
+//        ui->posterLabel->setPixmap(*movie->pixmap);
+//        ui->posterLabel->setScaledContents(true);
+//        //ui->posterLabel->setMask(movie->pixmap->mask());
+//        ui->posterLabel->show();
+        setMovieLayoutDetails();
     }
+
+}
+
+void MovieDetails::setMovieLayoutDetails() {
+    ui->descriptionLabel->setWordWrap(true);
+    ui->descriptionLabel->setText(externalMovieDetals->getOverview());
+    ui->descriptionLabel->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+    ui->descriptionLabel->adjustSize();
+    ui->titleLabel->setText(QString::fromStdString(interalMovieDetails->getTitle()));
+    ui->posterLabel->setPixmap(*externalMovieDetals->pixmap);
+    ui->posterLabel->setScaledContents(true);
+    //ui->posterLabel->setMask(movie->pixmap->mask());
+    ui->posterLabel->show();
 }

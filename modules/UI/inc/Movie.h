@@ -20,6 +20,8 @@ public:
 
     Movie(const std::string &title, const std::string &str);
 
+    Movie(const uint16_t movieId);
+
     explicit Movie(const std::string &title);
 
     Movie();
