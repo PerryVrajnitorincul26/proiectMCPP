@@ -18,6 +18,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
       <widget class="QGroupBox" name="groupBox">
+       <property name="styleSheet">
+        <string notr="true">color: #c2c7d5</string>
+       </property>
        <property name="title">
         <string>Sign In</string>
        </property>
@@ -32,7 +35,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_user"/>
+           <widget class="QLineEdit" name="lineEdit_user">
+            <property name="styleSheet">
+             <string notr="true">color:rgb(0,0,0)</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -46,7 +53,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_pass"/>
+           <widget class="QLineEdit" name="lineEdit_pass">
+            <property name="styleSheet">
+             <string notr="true">color:rgb(0,0,0)</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
