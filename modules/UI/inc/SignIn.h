@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <db_headers.h>
 #include <MovieDatabase.h>
+#include <User.h>
 QT_BEGIN_NAMESPACE
 namespace Ui { class SignIn; }
 QT_END_NAMESPACE
@@ -11,7 +12,6 @@ QT_END_NAMESPACE
 class SignIn : public QWidget
 {
     Q_OBJECT
-
 public:
     SignIn(QWidget *parent = nullptr);
     ~SignIn();
@@ -29,6 +29,11 @@ private slots:
 
 private:
     Ui::SignIn *ui;
+    bool logged=false;
+public:
+    bool isLogged();
+
+private:
 
     void verifyInputFields();
     void verifyExistingUser();

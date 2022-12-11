@@ -10,6 +10,8 @@
 #include <db_headers.h>
 #include "TMDB.h"
 #include "Movie.h"
+#include "SignIn.h"
+#include "QMessageBox"
 
 
 QT_BEGIN_NAMESPACE
@@ -39,6 +41,7 @@ public:
 
 private:
     Ui::MovieDetails *ui;
+    SignIn _signin;
 
 public slots:
     void loadImage();

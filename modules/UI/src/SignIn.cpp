@@ -54,12 +54,18 @@ void SignIn::verifyInputFields() {
 }
 
 void SignIn::verifyExistingUser() {
+    logged=false;
     auto &dbRef = MovieDatabase::instance();
     auto response = dbRef.login(ui->lineEdit_user->text().toStdString(),ui->lineEdit_pass->text().toStdString());
 
     if(response == nullptr)
         QMessageBox::information(this, "Login Error", "Account not found - create one!");
-    else QMessageBox::information(this, "Login successful", "Account was found!");
+
+    else
+    { QMessageBox::information(this, "Login successful", "Account was found!");
+
+        logged=true;
+    }
 }
 
 void SignIn::on_searchDemo_clicked() {
@@ -72,3 +78,9 @@ void SignIn::on_pushButton_back_clicked() {
     emit HomeClicked();
 
 }
+
+bool SignIn::isLogged()  {
+    return logged;
+}
+
+

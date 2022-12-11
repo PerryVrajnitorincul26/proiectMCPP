@@ -37,10 +37,17 @@ MovieDetails::MovieDetails(int movieId, int userId, QWidget *parent) : MovieDeta
 //TRIGGERS
 
 double MovieDetails::on_GiveRating_clicked() {
-    auto &ref = MovieDatabase::instance();
-    reviewObj->m_rating = ui->doubleSpinBox->value();
-    ref.watch(*reviewObj);
-    return ui->doubleSpinBox->value();
+       bool logged=_signin.isLogged();
+    if (logged==true) {
+        auto &ref = MovieDatabase::instance();
+        reviewObj->m_rating = ui->doubleSpinBox->value();
+        ref.watch(*reviewObj);
+
+        return ui->doubleSpinBox->value();
+    }
+    else
+
+        QMessageBox::warning(this,"Acces denied!","Log in first!");
 }
 
 
