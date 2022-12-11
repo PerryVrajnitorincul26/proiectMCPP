@@ -96,10 +96,26 @@ void RecommenderSystem::populateUserScores(int uid) {
 }
 
 template<typename T>
-std::vector<std::unique_ptr<T>>
-RecommenderSystem::addUserMovieRating(const userRatingVec &ur, const movieRatingVec &mr, const int &index) {
-    auto result = ur;
+T
+RecommenderSystem::addUserMovieRating(userRatingVec ur, movieRatingVec mr, int index) {
+    userRatingVec result = ur;
     result[index]->m_relevance = ur[index]->m_relevance+mr[index]->m_relevance;
+
+    return result;
+}
+
+float RecommenderSystem::sumOfGenomes(userRatingVec ur, movieRatingVec mr) {
+    float result = 0;
+
+    auto &dbref = MovieDatabase::instance();
+
+    for(int i=0;i<ur.size();i++)
+    {
+        auto sum = addUserMovieRating<userRatingVec>(ur,mr,i);
+        auto relevance = sum[i]->m_relevance;
+        result += relevance;
+    }
+
 
     return result;
 }

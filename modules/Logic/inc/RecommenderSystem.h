@@ -24,7 +24,10 @@ public:
     //adding movieRatingVec with userRatingVec
     //for now, return for userid
     template <typename T>
-    std::vector<std::unique_ptr<T>> addUserMovieRating(const userRatingVec &ur, const movieRatingVec &mr, const int &index);
+    T addUserMovieRating(userRatingVec ur, movieRatingVec mr, int index);
+
+    //calculating the sum(k=1->n) of Wk*Xk*Yk
+    float sumOfGenomes(userRatingVec ur, movieRatingVec mr);
 
     void populateUserScores(int uid = -1);
 
