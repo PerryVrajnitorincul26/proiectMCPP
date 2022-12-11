@@ -21,6 +21,11 @@ public:
 
     RecommenderSystem(int uid);
 
+    //adding movieRatingVec with userRatingVec
+    //for now, return for userid
+    template <typename T>
+    std::vector<std::unique_ptr<T>> addUserMovieRating(const userRatingVec &ur, const movieRatingVec &mr, const int &index);
+
     void populateUserScores(int uid = -1);
 
     std::vector<std::string> GetUserLikedGenres() const;

@@ -94,3 +94,12 @@ void RecommenderSystem::populateUserScores(int uid) {
     }
     m_consideredMovies = std::move(dbref.getMovieTagsFromWatchlist(uid));
 }
+
+template<typename T>
+std::vector<std::unique_ptr<T>>
+RecommenderSystem::addUserMovieRating(const userRatingVec &ur, const movieRatingVec &mr, const int &index) {
+    auto result = ur;
+    result[index]->m_relevance = ur[index]->m_relevance+mr[index]->m_relevance;
+
+    return result;
+}
