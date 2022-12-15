@@ -24,6 +24,7 @@ private slots:
     void on_pushButton_goMovieList_clicked();
     void on_pushButton_back_clicked();
     void moveHome();
+    void showMovieList();
 
 
 private:

@@ -29,7 +29,7 @@ private slots:
 
 private:
     Ui::SignIn *ui;
-    bool logged=false;
+    bool logged;
 public:
     bool isLogged();
 
@@ -40,6 +40,7 @@ private:
 
 signals:
     void HomeClicked();
+    void Signed();
 
 };
 #endif // MAINWINDOW_H

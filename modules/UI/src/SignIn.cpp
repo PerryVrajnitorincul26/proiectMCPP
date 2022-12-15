@@ -66,6 +66,11 @@ void SignIn::verifyExistingUser() {
 
         logged=true;
     }
+
+    if(logged==true)
+    {
+        emit Signed();
+    }
 }
 
 void SignIn::on_searchDemo_clicked() {

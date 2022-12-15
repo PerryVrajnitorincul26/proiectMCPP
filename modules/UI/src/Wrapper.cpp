@@ -12,10 +12,11 @@ Wrapper::Wrapper(QWidget *parent) :
 
     ui->stackedWidget->insertWidget(2, & _dialog);
     ui->stackedWidget->insertWidget(3,& _moviestable);
-
+ui->pushButton_goMovieList->setDisabled(true);
     connect(&_dialog, SIGNAL(HomeClicked()),this,SLOT(moveHome()));
     connect(&_moviestable, SIGNAL(homeClicked()),this, SLOT(moveHome()));
     connect(&_signin, SIGNAL(HomeClicked()), this,SLOT(moveHome()));
+    connect(&_signin,SIGNAL(Signed()),this, SLOT(showMovieList()));
 
 }
 
@@ -48,3 +49,8 @@ void Wrapper::moveHome() {
     ui->stackedWidget->setCurrentIndex(0);
 
 }
+
+void Wrapper::showMovieList() {
+ui->pushButton_goMovieList->setEnabled(true);
+}
+
