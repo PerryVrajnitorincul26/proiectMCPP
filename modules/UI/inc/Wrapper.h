@@ -5,7 +5,7 @@
 #include "SignUp.h"
 #include "SignIn.h"
 #include "MoviesTable.h"
-
+#include "usermeniu.h"
 namespace Ui {
 class Wrapper;
 }
@@ -28,6 +28,8 @@ private slots:
     void disableSignUp();
     void UpToIn();
     void InToUp();
+    void toMeniu();
+    void reset();
 
 
 private:
@@ -35,6 +37,7 @@ private:
     SignUp _signup;
     MoviesTable _moviestable;
     SignIn _signin;
+    UserMeniu _usermeniu;
 };
 
 #endif // WRAPPER_H

@@ -12,6 +12,7 @@ Wrapper::Wrapper(QWidget *parent) :
 
     ui->stackedWidget->insertWidget(2, & _signup);
     ui->stackedWidget->insertWidget(3,& _moviestable);
+    ui->stackedWidget->insertWidget(4,&_usermeniu);
 ui->pushButton_goMovieList->setDisabled(true);
     connect(&_signup, SIGNAL(HomeClicked()),this,SLOT(moveHome()));
     connect(&_moviestable, SIGNAL(homeClicked()),this, SLOT(moveHome()));
@@ -20,7 +21,9 @@ ui->pushButton_goMovieList->setDisabled(true);
     connect(&_signin,SIGNAL(Signed()),this,SLOT(disableSignUp()));
     connect(&_signup,SIGNAL(SignUpClicked()),this,SLOT(UpToIn()));
     connect(&_signin, SIGNAL(AccountNotFound()),this,SLOT(InToUp()));
-    connect(&_signin,SIGNAL(Signed()),this,SLOT(moveHome()));
+   // connect(&_signin,SIGNAL(Signed()),this,SLOT(moveHome()));
+   connect(&_signin,SIGNAL(Signed()),this,SLOT(toMeniu()));
+   connect(&_usermeniu,SIGNAL(logout()),this,SLOT(reset()));
 
 }
 
@@ -71,4 +74,12 @@ void Wrapper::InToUp() {
 ui->stackedWidget->setCurrentIndex(2);
 }
 
+void Wrapper::toMeniu() {
+ui->stackedWidget->setCurrentIndex(4);
+}
+
+void Wrapper::reset(){
+    close();
+
+}
 
