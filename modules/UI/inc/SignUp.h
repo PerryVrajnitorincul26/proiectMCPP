@@ -26,5 +26,6 @@ private:
 signals:
 
     void HomeClicked();
+    void SignUpClicked();
 };
 

@@ -17,6 +17,8 @@ ui->pushButton_goMovieList->setDisabled(true);
     connect(&_moviestable, SIGNAL(homeClicked()),this, SLOT(moveHome()));
     connect(&_signin, SIGNAL(HomeClicked()), this,SLOT(moveHome()));
     connect(&_signin,SIGNAL(Signed()),this, SLOT(showMovieList()));
+    connect(&_signin,SIGNAL(Signed()),this,SLOT(disableSignUp()));
+    connect(&_dialog,SIGNAL(SignUpClicked()),this,SLOT(UpToIn()));
 
 }
 
@@ -52,5 +54,14 @@ void Wrapper::moveHome() {
 
 void Wrapper::showMovieList() {
 ui->pushButton_goMovieList->setEnabled(true);
+}
+
+void Wrapper::disableSignUp() {
+ui->pushButton_goSignUp->setDisabled(true);
+}
+
+void Wrapper::UpToIn() {
+    ui->stackedWidget->setCurrentIndex(1);
+
 }
 

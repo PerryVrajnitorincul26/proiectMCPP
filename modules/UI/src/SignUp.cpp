@@ -19,6 +19,7 @@ void SignUp::on_pushButton_SignUp_clicked() {
     dbRef.signup(ui->lineEdit_UsernameRegister->text().toStdString(),
                  ui->lineEdit_PasswordRegister->text().toStdString(),
                  ui->lineEdit_Region->text().toStdString());
+    emit SignUpClicked();
 
 }
 

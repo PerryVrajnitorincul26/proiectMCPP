@@ -25,6 +25,8 @@ private slots:
     void on_pushButton_back_clicked();
     void moveHome();
     void showMovieList();
+    void disableSignUp();
+    void UpToIn();
 
 
 private:
