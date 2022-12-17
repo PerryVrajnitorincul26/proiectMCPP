@@ -14,7 +14,6 @@ set(PROJECT_SOURCES
         src/SignIn.ui
         inc/User.h
         src/User.cpp
-        src/Movie.cpp inc/Movie.h
         inc/MoviesTable.h
         src/MoviesTable.cpp
         src/MoviesTable.ui
@@ -22,8 +21,6 @@ set(PROJECT_SOURCES
         src/MovieDetails.cpp inc/MovieDetails.h src/MovieDetails.ui
         src/ShowMovie.cpp src/ShowMovie.ui inc/ShowMovie.h
         src/Wrapper.cpp src/Wrapper.ui inc/Wrapper.h src/TMDB.cpp inc/TMDB.h src/TMDB.cpp inc/TMDB.h)
-
-add_executable(movietest inc/Movie.h src/Movie.cpp)
 
 
 if (${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -50,7 +47,7 @@ else ()
 endif ()
 
 target_link_directories(untitled4 PRIVATE ../Database)
-target_link_directories(movietest PRIVATE ../Database)
+#target_link_directories(movietest PRIVATE ../Database)
 target_include_directories(untitled4 PRIVATE inc)
 target_link_libraries(untitled4 PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network db_lib)
 

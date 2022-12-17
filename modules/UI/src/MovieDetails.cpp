@@ -27,8 +27,16 @@ MovieDetails::MovieDetails(int movieId, int userId, QWidget *parent) : MovieDeta
         this->reviewObj = std::make_unique<user_rating_row>(user_rating_row(userId, movieId, 0.0f));
     }
 
-    this->interalMovieDetails = new Movie(movieId);
+    auto fromDb = ref.getMovieById(movieId);
+
+    this->m_title = fromDb->m_title;
+    this->m_genres = fromDb->m_genres;
+    this->tmdb_id = ref.getLinkEntry(movieId)->m_tmdb_id;
+
+    //this->m_userReview = ?; TO DO
+
     this->externalMovieDetals = new TMDB(ref.getLinkEntry(movieId)->m_tmdb_id);
+
     connect(externalMovieDetals, &TMDB::finishedLoading, this, &MovieDetails::loadImage);
     qDebug() << "Instantiated MovieDetails";
 }
@@ -68,13 +76,20 @@ void MovieDetails::loadImage() {
 }
 
 void MovieDetails::setMovieLayoutDetails() {
+
     ui->descriptionLabel->setWordWrap(true);
     ui->descriptionLabel->setText(externalMovieDetals->getOverview());
     ui->descriptionLabel->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
     ui->descriptionLabel->adjustSize();
-    ui->titleLabel->setText(QString::fromStdString(interalMovieDetails->getTitle()));
+    ui->titleLabel->setText(QString::fromStdString(this->m_title));
     ui->posterLabel->setPixmap(*externalMovieDetals->pixmap);
     ui->posterLabel->setScaledContents(true);
     //ui->posterLabel->setMask(movie->pixmap->mask());
     ui->posterLabel->show();
 }
+
+void MovieDetails::setTMDBdetails() {
+
+}
+
+
