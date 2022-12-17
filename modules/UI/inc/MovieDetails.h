@@ -17,7 +17,7 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MovieDetails; }
 QT_END_NAMESPACE
 
-class MovieDetails : public QWidget {
+class MovieDetails : public QWidget{
 Q_OBJECT
 
     std::unique_ptr<user_rating_row> reviewObj;

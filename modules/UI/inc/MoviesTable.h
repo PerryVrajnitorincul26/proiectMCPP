@@ -10,6 +10,7 @@
 #include <QString>
 #include <QDebug>
 #include "ShowMovie.h"
+
 namespace Ui {
     class MoviesTable;
 }

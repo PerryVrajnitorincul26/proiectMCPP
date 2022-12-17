@@ -12,7 +12,10 @@ class User
 public:
 
 	User();
+
 	User(const std::string &username, const std::string &password, const std::string &region);
+
+    User(const std::string &username, const std::string &region);
 
 	std::string GetUsername() const;
 

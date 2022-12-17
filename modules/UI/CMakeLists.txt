@@ -20,7 +20,8 @@ set(PROJECT_SOURCES
         src/MoviesTableModel.cpp inc/MoviesTableModel.h
         src/MovieDetails.cpp inc/MovieDetails.h src/MovieDetails.ui
         src/ShowMovie.cpp src/ShowMovie.ui inc/ShowMovie.h
-        src/Wrapper.cpp src/Wrapper.ui inc/Wrapper.h src/TMDB.cpp inc/TMDB.h src/TMDB.cpp inc/TMDB.h)
+        src/Wrapper.cpp src/Wrapper.ui inc/Wrapper.h src/TMDB.cpp inc/TMDB.h src/TMDB.cpp inc/TMDB.h
+        inc/usermeniu.h src/usermeniu.cpp src/usermeniu.ui)
 
 
 if (${QT_VERSION_MAJOR} GREATER_EQUAL 6)

@@ -21,6 +21,10 @@ ui->pushButton_goMovieList->setDisabled(true);
     connect(&_signin,SIGNAL(Signed()),this,SLOT(disableSignUp()));
     connect(&_signup,SIGNAL(SignUpClicked()),this,SLOT(UpToIn()));
     connect(&_signin, SIGNAL(AccountNotFound()),this,SLOT(InToUp()));
+    connect(&_signin, &SignIn::AccountFound, this, [this](User &u){
+        setCurrentUser(u);
+        qDebug()<<QString::fromStdString(this->loggedInUser->GetUsername())<<" is logged in YEEEE";
+    });
    // connect(&_signin,SIGNAL(Signed()),this,SLOT(moveHome()));
    connect(&_signin,SIGNAL(Signed()),this,SLOT(toMeniu()));
    connect(&_usermeniu,SIGNAL(logout()),this,SLOT(reset()));
@@ -82,4 +86,9 @@ void Wrapper::reset(){
     close();
 
 }
+
+void Wrapper::setCurrentUser(User &u) {
+    this->loggedInUser = &u;
+}
+
 

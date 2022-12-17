@@ -18,11 +18,14 @@ public:
     explicit Wrapper(QWidget *parent = nullptr);
     ~Wrapper();
 
+    void setCurrentUser(const std::unique_ptr<User> &currentUser);
+
 private slots:
     void on_pushButton_goSignIn_clicked();
     void on_pushButton_goSignUp_clicked();
     void on_pushButton_goMovieList_clicked();
     void on_pushButton_back_clicked();
+    void setCurrentUser(User &u);
     void moveHome();
     void showMovieList();
     void disableSignUp();
@@ -38,6 +41,8 @@ private:
     MoviesTable _moviestable;
     SignIn _signin;
     UserMeniu _usermeniu;
+
+    User* loggedInUser = nullptr;
 };
 
 #endif // WRAPPER_H
