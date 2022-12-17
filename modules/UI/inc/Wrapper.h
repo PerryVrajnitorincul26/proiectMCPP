@@ -27,11 +27,12 @@ private slots:
     void showMovieList();
     void disableSignUp();
     void UpToIn();
+    void InToUp();
 
 
 private:
     Ui::Wrapper *ui;
-    SignUp _dialog;
+    SignUp _signup;
     MoviesTable _moviestable;
     SignIn _signin;
 };

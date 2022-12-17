@@ -31,12 +31,8 @@ void SignIn::on_pushButton_SignIn_clicked()
     verifyExistingUser();
 
     if(response == nullptr) {
-        auto tempDialog = new QDialog();
-        auto myDialog = new SignUp();
-        auto myLayout = new QHBoxLayout();
-        tempDialog->setLayout(myLayout);
-        myLayout->addWidget(myDialog);
-        tempDialog->exec();
+
+       emit AccountNotFound();
     }
     else{
         this->current_user = std::move(response);

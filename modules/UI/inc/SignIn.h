@@ -41,6 +41,7 @@ private:
 signals:
     void HomeClicked();
     void Signed();
+    void AccountNotFound();
 
 };
 #endif // MAINWINDOW_H
