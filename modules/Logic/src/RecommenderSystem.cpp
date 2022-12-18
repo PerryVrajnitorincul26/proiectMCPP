@@ -76,7 +76,7 @@ RecommenderSystem::RecommenderSystem(int uid) : RecommenderSystem() {
     m_uid = uid;
     m_userScores = std::move(dbref.getUserTags(uid));
     if (m_userScores.empty()) {
-        std::cout << "User does not have a score entry, Creden1ating one";
+        std::cout << "User does not have a score entry, Creating one";
         this->populateUserScores();
     }
 }
@@ -87,9 +87,12 @@ void RecommenderSystem::populateUserScores(int uid) {
         uid = this->m_uid;
     }
     //this will eventually be replaced by a "create average function"
+    auto WatchedMovies = dbref.getMovieTagsFromWatchlist(uid);
     for (const auto &i: tagNames) {
         m_userScores.emplace_back(std::make_unique<user_scores_row>(uid, i->m_tag_id, 0.0f));
     }
+    avgVec(m_userScores, WatchedMovies);
+
     auto tmp = dbref.setUserTagRelevance(m_userScores);
     if (tmp.empty()) {
         std::cout << "Something went wrong RecommenderSystem::populateUserScores";

@@ -81,6 +81,15 @@ public:
         return std::move(newcopy);
     }
 
+    void avgVec(userRatingVec &modified, const std::vector<movieRatingVec> &arg) {
+        for (const auto &i: arg) {
+            sumGenomeVect(modified, i);
+        }
+        for (auto &i: modified) {
+            i->m_relevance /= arg.size();
+        }
+    }
+
 
     userRatingVec deepCopyVector(const userRatingVec &arg) {
         userRatingVec newcopy;
