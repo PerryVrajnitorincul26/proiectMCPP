@@ -10,28 +10,42 @@ namespace Ui {
 class Wrapper;
 }
 
-class Wrapper : public QWidget
-{
-    Q_OBJECT
+class Wrapper : public QWidget {
+Q_OBJECT
+
 
 public:
     explicit Wrapper(QWidget *parent = nullptr);
+
+    User *getLoggedInUser() const;
+
+    void setLoggedInUser(User *loggedInUser);
+
     ~Wrapper();
 
-    void setCurrentUser(const std::unique_ptr<User> &currentUser);
 
 private slots:
+
     void on_pushButton_goSignIn_clicked();
+
     void on_pushButton_goSignUp_clicked();
+
     void on_pushButton_goMovieList_clicked();
+
     void on_pushButton_back_clicked();
-    void setCurrentUser(User &u);
+
     void moveHome();
+
     void showMovieList();
+
     void disableSignUp();
+
     void UpToIn();
+
     void InToUp();
+
     void toMeniu();
+
     void reset();
 
 
@@ -42,7 +56,7 @@ private:
     SignIn _signin;
     UserMeniu _usermeniu;
 
-    User* loggedInUser = nullptr;
+    User *loggedInUser = nullptr;
 };
 
 #endif // WRAPPER_H

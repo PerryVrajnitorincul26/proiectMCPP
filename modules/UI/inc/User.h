@@ -11,19 +11,19 @@ class User
 
 public:
 
-	User();
+    User();
 
 	User(const std::string &username, const std::string &password, const std::string &region);
 
     User(const std::string &username, const std::string &region);
 
-	std::string GetUsername() const;
+	std::string getUsername() const;
 
     bool operator==(const User &rhs) const;
 
     bool operator!=(const User &rhs) const;
 
-    std::string GetPassword() const;
+    std::string getPassword() const;
 
     void setMUsername(const std::string &mUsername);
 
@@ -33,8 +33,8 @@ public:
 
     void setMLikedGenres(const std::vector<std::string> &mLikedGenres);
 
-    std::string GetRegion() const;
-	std::vector<std::string> GetLikedGenres() const;
+    std::string getRegion() const;
+	std::vector<std::string> getLikedGenres() const;
 
 	~User();
 };
