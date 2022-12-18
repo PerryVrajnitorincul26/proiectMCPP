@@ -92,4 +92,36 @@ void MovieDetails::setTMDBdetails() {
 
 }
 
+const std::unique_ptr<user_rating_row> &MovieDetails::getReviewObj() const {
+    return reviewObj;
+}
+
+const std::string &MovieDetails::getMTitle() const {
+    return m_title;
+}
+
+const std::string &MovieDetails::getMGenres() const {
+    return m_genres;
+}
+
+void MovieDetails::setReviewObj(const std::unique_ptr<user_rating_row> &reviewObj) {
+    MovieDetails::reviewObj = reviewObj;
+}
+
+void MovieDetails::setMTitle(const std::string &mTitle) {
+    m_title = mTitle;
+}
+
+void MovieDetails::setMGenres(const std::string &mGenres) {
+    m_genres = mGenres;
+}
+
+void MovieDetails::setMUserReview(double mUserReview) {
+    m_userReview = mUserReview;
+}
+
+double MovieDetails::getMUserReview() const {
+    return m_userReview;
+}
+
 

@@ -60,7 +60,22 @@ public:
 
     double on_GiveRating_clicked();
 
+    const std::unique_ptr<user_rating_row> &getReviewObj() const;
+
+    const std::string &getMTitle() const;
+
+    const std::string &getMGenres() const;
+
+    double getMUserReview() const;
+
     void setMovieLayoutDetails(); //this functions displays the title and description in UI
+    void setReviewObj(const std::unique_ptr<user_rating_row> &reviewObj);
+
+    void setMTitle(const std::string &mTitle);
+
+    void setMGenres(const std::string &mGenres);
+
+    void setMUserReview(double mUserReview);
 
     ~MovieDetails() override;
 
