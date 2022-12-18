@@ -74,6 +74,10 @@ RecommenderSystem::RecommenderSystem() {
 RecommenderSystem::RecommenderSystem(int uid) : RecommenderSystem() {
     auto &dbref = MovieDatabase::instance();
     m_uid = uid;
+    if(dbref.getUserById(uid) == nullptr)
+    {
+        throw std::out_of_range("Invalid userID supplied to RecommenderSystem");
+    }
     m_userScores = std::move(dbref.getUserTags(uid));
     if (m_userScores.empty()) {
         std::cout << "User does not have a score entry, Creating one";

@@ -98,7 +98,11 @@ std::unique_ptr<user_row> MovieDatabase::signup(const user_row &user) const {
     try {
         auto testval = this->getUserByUsername(user.m_username);
         if (testval == nullptr) {
-            return (this->getUserById(dbPtr->insert(user)));
+            if (user.m_user_id == -99) {
+                return (this->getUserById(dbPtr->insert(user)));
+            }
+            dbPtr->replace(user);
+            return this->getUserById(user.m_user_id);
         }
     }
     catch (std::system_error &e) {
@@ -109,7 +113,7 @@ std::unique_ptr<user_row> MovieDatabase::signup(const user_row &user) const {
 
 std::unique_ptr<user_row>
 MovieDatabase::signup(const std::string &username, const std::string &password, const std::string &region) const {
-    user_row user(0, username, password, region);
+    user_row user(-99, username, password, region);
     return this->signup(user);
 }
 

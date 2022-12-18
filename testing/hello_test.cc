@@ -4,6 +4,7 @@
 #include <gtest/gtest.h>
 #include <db_headers.h>
 #include <MovieDatabase.h>
+#include <RecommenderSystem.h>
 
 // Demonstrate some basic assertions.
 TEST(HelloTest, BasicAssertions) {
@@ -13,27 +14,37 @@ TEST(HelloTest, BasicAssertions) {
     EXPECT_EQ(7 * 6, 42);
 }
 
-TEST(HeloTest,db_get_user){
+TEST(HeloTest, db_get_user) {
     auto &db = MovieDatabase::instance();
     db.dbPtr->remove_all<user_row>();
-    db.signup({1,"SchimbaAstaCand","StiSaFolosestiGtest","Visi"}); //inca nu stiu bro
+    db.signup({1, "SchimbaAstaCand", "StiSaFolosestiGtest", "Visi"}); //inca nu stiu bro
     auto z = db.getUserByUsername("SchimbaAstaCand");
-    EXPECT_EQ(db.getUserById(-1),nullptr);
+    EXPECT_EQ(db.getUserById(-1), nullptr);
     EXPECT_NE(z, nullptr);
 }
 
-TEST(HeloTest,User_creation){
+TEST(HeloTest, User_creation) {
     auto &db = MovieDatabase::instance();
     //This will have to changed at some point when we make dbPtr private.
     db.dbPtr->remove_all<user_row>();
-    db.signup({1,"VisiIncaNuStie","SaFoloseascaGtest","Aici"});
-    EXPECT_EQ(db.signup({1,"VisiIncaNuStie","SaFoloseascaGtest","Aici"}),nullptr);
-    db.signup("MateiAScris","AcestTest");
-    EXPECT_EQ(db.signup("MateiAScris","AcestTest"),nullptr);
+    db.signup({1, "VisiIncaNuStie", "SaFoloseascaGtest", "Aici"});
+    EXPECT_EQ(db.signup({1, "VisiIncaNuStie", "SaFoloseascaGtest", "Aici"}), nullptr);
+    db.signup("MateiAScris", "AcestTest");
+    EXPECT_EQ(db.signup("MateiAScris", "AcestTest"), nullptr);
 }
 
-TEST(HeloTest,MovieSearch){
+TEST(HeloTest, MovieSearch) {
     auto &db = MovieDatabase::instance();
     auto tmp = db.searchMovieTitles("at");
     EXPECT_FALSE(tmp.empty());
+}
+
+TEST(HeloTest, another_test) {
+    EXPECT_ANY_THROW(new RecommenderSystem(-1));
+}
+
+TEST(HeloTest, servus_test) {
+    auto &db = MovieDatabase::instance();
+    db.signup({-1, "TestUser", "IsATest", "Romania"});
+    EXPECT_NO_THROW(new RecommenderSystem(-1));
 }
