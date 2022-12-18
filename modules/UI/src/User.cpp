@@ -17,6 +17,11 @@ User::User(const std::string &username, const std::string &password, const std::
 	this->m_region = region;
 }
 
+User::User(const std::string &username, const std::string &region){
+    this->m_username=username;
+    this->m_region=region;
+}
+
 std::string User::GetUsername() const
 {
 	return m_username;

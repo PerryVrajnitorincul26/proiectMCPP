@@ -11,13 +11,17 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>MethFlix</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../../../resources/letter-m.ico</normaloff>../../../resources/letter-m.ico</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="1">
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="page">
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -70,6 +74,21 @@
         </widget>
        </item>
       </layout>
+     </widget>
+     <widget class="QWidget" name="page_5">
+      <widget class="QLabel" name="label_5">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>210</y>
+         <width>351</width>
+         <height>101</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>user meniu</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QWidget" name="page_2">
       <widget class="QLabel" name="label_2">

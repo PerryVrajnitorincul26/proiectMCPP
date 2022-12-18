@@ -5,6 +5,7 @@
 #include <db_headers.h>
 #include <MovieDatabase.h>
 #include <User.h>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class SignIn; }
 QT_END_NAMESPACE
@@ -30,6 +31,7 @@ private slots:
 private:
     Ui::SignIn *ui;
     bool logged;
+    User *found;
 public:
     bool isLogged();
 
@@ -41,6 +43,8 @@ private:
 signals:
     void HomeClicked();
     void Signed();
+    void AccountNotFound();
+    void AccountFound(User &account);
 
 };
 #endif // MAINWINDOW_H
