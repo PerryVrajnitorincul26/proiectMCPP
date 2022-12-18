@@ -48,3 +48,17 @@ TEST(HeloTest, servus_test) {
     db.signup({-1, "TestUser", "IsATest", "Romania"});
     EXPECT_NO_THROW(new RecommenderSystem(-1));
 }
+
+//verifies if there are at least 100 movies that respect the condition
+TEST(RecommenderSystemTest, ConstructorTest) {
+    RecommenderSystem *rs = new RecommenderSystem(1);
+    EXPECT_GE(rs->m_consideredMovies.size(), 100);
+}
+
+TEST(RecommenderSystemTest, RecommendedByLikedMoviesTest) {
+    RecommenderSystem *rs = new RecommenderSystem(1);
+    std::vector<std::string> likedMovies = {"Movie A", "Movie B", "Movie C"};
+    rs->setUserLikedMovies(likedMovies);
+    auto result = rs->recommendedByLikedMovies();
+    EXPECT_GE(result.size(), 1);
+}
