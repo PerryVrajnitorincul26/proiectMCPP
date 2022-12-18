@@ -18,7 +18,7 @@ using namespace sqlite_orm;
 //USER
 class user_row {
 public:
-    user_row(int mUserId, const std::string &mUsername, const std::string &mPassword, const std::string &mRegion);
+    user_row(int mUserId, std::string mUsername, std::string mPassword, std::string mRegion);
 
     bool operator==(const user_row &rhs) const;
 
@@ -46,7 +46,7 @@ inline auto user_table() {
 //MOVIE
 class movie_row {
 public:
-    movie_row(int mMovieId, const std::string &mTitle, const std::string &mGenres);
+    movie_row(int mMovieId, std::string mTitle, std::string mGenres);
 
     movie_row();
 
@@ -70,7 +70,7 @@ inline auto movie_table() {
 //WATCHLIST
 class watchlist_row {
 public:
-    watchlist_row(int mUserId, int mMovieId, double mRating, const std::string &mDateModified);
+    watchlist_row(int mUserId, int mMovieId, double mRating, std::string mDateModified);
 
     watchlist_row();
 
@@ -98,7 +98,7 @@ inline auto watchlist_table() {
 //COMMUNITY TAG
 class community_tag_row {
 public:
-    community_tag_row(int mUserId, int mMovieId, const std::string &mTag, const std::string &mTimestamp);
+    community_tag_row(int mUserId, int mMovieId, std::string mTag, std::string mTimestamp);
 
     community_tag_row();
 
@@ -126,7 +126,7 @@ inline auto community_tag_table() {
 //RATING
 class user_rating_row {
 public:
-    user_rating_row(int mUserId, int mMovieId, double mRating, const std::string &mTimestamp = "null");
+    user_rating_row(int mUserId, int mMovieId, double mRating, std::string mTimestamp = "null");
 
     user_rating_row();
 
@@ -181,7 +181,7 @@ inline auto link_table() {
 //GENOME TAG
 class genome_tag_row {
 public:
-    genome_tag_row(int mTagId, const std::string &mTag);
+    genome_tag_row(int mTagId, std::string mTag);
 
     genome_tag_row();
 
