@@ -59,9 +59,11 @@ RecommenderSystem::RecommenderSystem() {
 
     //We cannot do recommandations on the full dataset unless we somehow optimise the comparison process.
     //Likely through some form of dimensionality reduction like SVD see: https://en.wikipedia.org/wiki/Singular_value_decomposition
-    for (int i = 1; i < 100; ++i) {
+    for (int i = 1; i <= 100; ++i) {
         //Assumes movie ids 1-100 are valid.
-        m_consideredMovies.push_back(std::move(dbref.getMovieTags(i)));
+        auto temp = dbref.getMovieTags(i);
+        if (!temp.empty())
+            m_consideredMovies.push_back(std::move(temp));
     }
     //Weights will remain 1 until we figure out how to best use them.
     for (const auto &i: tagNames) {
@@ -74,7 +76,7 @@ RecommenderSystem::RecommenderSystem(int uid) : RecommenderSystem() {
     m_uid = uid;
     m_userScores = std::move(dbref.getUserTags(uid));
     if (m_userScores.empty()) {
-        std::cout << "User does not have a score entry, Creating one";
+        std::cout << "User does not have a score entry, Creden1ating one";
         this->populateUserScores();
     }
 }
@@ -97,25 +99,43 @@ void RecommenderSystem::populateUserScores(int uid) {
 
 template<typename T>
 T
-RecommenderSystem::addUserMovieRating(userRatingVec ur, movieRatingVec mr, int index) {
-    userRatingVec result = ur;
-    result[index]->m_relevance = ur[index]->m_relevance+mr[index]->m_relevance;
+RecommenderSystem::addUserMovieRating(const userRatingVec &ur, const movieRatingVec &mr, int index) {
+    userRatingVec result;
+    result[index]->m_relevance = ur[index]->m_relevance + mr[index]->m_relevance;
 
     return result;
 }
 
 float RecommenderSystem::sumOfGenomes(userRatingVec ur, movieRatingVec mr) {
     float result = 0;
-
     auto &dbref = MovieDatabase::instance();
 
-    for(int i=0;i<ur.size();i++)
-    {
-        auto sum = addUserMovieRating<userRatingVec>(ur,mr,i);
+    for (int i = 0; i < ur.size(); i++) {
+        auto sum = addUserMovieRating<userRatingVec>(ur, mr, i);
         auto relevance = sum[i]->m_relevance;
         result += relevance;
     }
 
-
     return result;
+}
+
+double RecommenderSystem::getDist(const userRatingVec &user, const movieRatingVec &movie) {
+    float result = 0;
+    auto nominator = this->deepCopyVector(user);
+    auto denom1 = this->deepCopyVector(movie);
+    auto denom2 = this->deepCopyVector(user);
+    //Caluclate Weights*Movie*User
+    ///Weights are currently all 1.0f re-enable them when we figure out how to correctly set them
+    prodGenomeVect(nominator, movie);
+    //prodGenomeVect(nominator, m_weights);
+
+    prodGenomeVect(denom1, movie);
+    //prodGenomeVect(denom1, m_weights);
+
+    prodGenomeVect(denom2, user);
+    //prodGenomeVect(denom2, m_weights);
+    auto term1 = sumVect(nominator);
+    auto term2 = sqrt(sumVect(denom1));
+    auto term3 = sqrt(sumVect(denom2));
+    return sumVect(nominator) / (sqrt(sumVect(denom1)) * sqrt(sumVect(denom2)));
 }
