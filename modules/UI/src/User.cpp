@@ -22,22 +22,22 @@ User::User(const std::string &username, const std::string &region){
     this->m_region=region;
 }
 
-std::string User::GetUsername() const
+std::string User::getUsername() const
 {
 	return m_username;
 }
 
-std::string User::GetPassword() const
+std::string User::getPassword() const
 {
 	return m_password;
 }
 
-std::string User::GetRegion() const
+std::string User::getRegion() const
 {
 	return m_region;
 }
 
-std::vector<std::string> User::GetLikedGenres() const
+std::vector<std::string> User::getLikedGenres() const
 {
 	return m_likedGenres;
 }
@@ -69,4 +69,8 @@ bool User::operator==(const User &rhs) const {
 
 bool User::operator!=(const User &rhs) const {
     return !(rhs == *this);
+}
+
+User::User() {
+
 };

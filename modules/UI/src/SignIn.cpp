@@ -6,6 +6,7 @@
 #include "MovieDatabase.h"
 #include <QHBoxLayout>
 #include "MoviesTable.h"
+#include "Wrapper.h"
 
 
 SignIn::SignIn(QWidget* parent)
@@ -27,8 +28,6 @@ void SignIn::on_pushButton_SignIn_clicked()
     auto &dbRef = MovieDatabase::instance();
     auto response = dbRef.login(ui->lineEdit_user->text().toStdString(),ui->lineEdit_pass->text().toStdString());
 
-    this->found = new User(response->m_username, response->m_region);
-
     verifyInputFields();
     verifyExistingUser();
 
@@ -37,6 +36,9 @@ void SignIn::on_pushButton_SignIn_clicked()
        emit AccountNotFound();
     }
     else{
+        this->found = new User(response->m_username, response->m_region);
+        auto wrapperParent = qobject_cast<Wrapper*>(parent());
+        wrapperParent->setLoggedInUser(new User(*found));
         emit AccountFound(*found);
         this->current_user = std::move(response);
     }
@@ -89,6 +91,5 @@ void SignIn::on_pushButton_back_clicked() {
 
 bool SignIn::isLogged()  {
     return logged;
-}
-
+};
 
