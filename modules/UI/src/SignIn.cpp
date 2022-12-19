@@ -36,10 +36,10 @@ void SignIn::on_pushButton_SignIn_clicked()
        emit AccountNotFound();
     }
     else{
-        this->found = new User(response->m_username, response->m_region);
+        /*this->found = new User(response->m_username, response->m_region);
         auto wrapperParent = qobject_cast<Wrapper*>(parent());
         wrapperParent->setLoggedInUser(new User(*found));
-        emit AccountFound(*found);
+        emit AccountFound(*found); THIS CODE DISTURBS!*/
         this->current_user = std::move(response);
     }
 

@@ -65,9 +65,9 @@ void MoviesTable::on_tableView_clicked(const QModelIndex &pos) {
     QDialog *moviePageDialog = new QDialog();
     moviePageDialog->setMaximumSize(QSize(900, 600));
 
-    MovieDetails *movieDetails = new MovieDetails(movieId,this->user_id);
+    MovieDetails *movieDetails = new MovieDetails(movieId, this->user_id);
 
-    QHBoxLayout *giveRatingLayout = new QHBoxLayout(movieDetails);
+    QHBoxLayout * giveRatingLayout = new QHBoxLayout(movieDetails);
 
     moviePageDialog->setLayout(giveRatingLayout);
     giveRatingLayout->addWidget(movieDetails);
@@ -81,16 +81,13 @@ MoviesTable::MoviesTable(int uid, QWidget *parent) : MoviesTable(parent) {
     this->user_id = uid;
 }
 
-
-
-
-void MoviesTable::on_pushButton_back_clicked() {
-    emit homeClicked();
+void MoviesTable::on_pushButton_details_clicked() {
+    _showmovie = new ShowMovie(this);
+    _showmovie->show();
 }
 
-void MoviesTable::on_pushButton_details_clicked() {
-    _showmovie= new ShowMovie(this);
-_showmovie->show();
+void MoviesTable::on_homeButton_clicked() {
+    emit homeClicked();
 }
 
 

@@ -2,6 +2,7 @@
 #define USERMENIU_H
 
 #include <QWidget>
+#include "MoviesTable.h"
 
 namespace Ui {
 class UserMeniu;
@@ -17,11 +18,15 @@ public:
 
 private:
     Ui::UserMeniu *ui;
+    MoviesTable _movies;
 
 private slots:
     void on_pushButton_LogOut_clicked();
+    void on_pushButton_showMovieList_clicked();
+    void on_backHome();
 signals:
     void logout();
+
 };
 
 #endif // USERMENIU_H

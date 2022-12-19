@@ -30,13 +30,9 @@ private slots:
 
     void on_pushButton_goSignUp_clicked();
 
-    void on_pushButton_goMovieList_clicked();
-
     void on_pushButton_back_clicked();
 
     void moveHome();
-
-    void showMovieList();
 
     void disableSignUp();
 
@@ -52,7 +48,6 @@ private slots:
 private:
     Ui::Wrapper *ui;
     SignUp _signup;
-    MoviesTable _moviestable;
     SignIn _signin;
     UserMeniu _usermeniu;
 

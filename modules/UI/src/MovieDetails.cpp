@@ -104,9 +104,9 @@ const std::string &MovieDetails::getMGenres() const {
     return m_genres;
 }
 
-void MovieDetails::setReviewObj(const std::unique_ptr<user_rating_row> &reviewObj) {
+/*void MovieDetails::setReviewObj(const std::unique_ptr<user_rating_row> &reviewObj) {
     MovieDetails::reviewObj = reviewObj;
-}
+}*/
 
 void MovieDetails::setMTitle(const std::string &mTitle) {
     m_title = mTitle;

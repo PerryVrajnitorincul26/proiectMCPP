@@ -16,8 +16,8 @@
   <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>10</y>
+     <x>0</x>
+     <y>30</y>
      <width>641</width>
      <height>541</height>
     </rect>
@@ -25,7 +25,7 @@
    <property name="currentIndex">
     <number>0</number>
    </property>
-   <widget class="QWidget" name="page">
+   <widget class="QWidget" name="homePage">
     <widget class="QLabel" name="usernameLabel">
      <property name="geometry">
       <rect>
@@ -37,45 +37,6 @@
      </property>
      <property name="text">
       <string>Hello, user!</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_recom">
-     <property name="geometry">
-      <rect>
-       <x>240</x>
-       <y>240</y>
-       <width>91</width>
-       <height>24</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>recomandation</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_sett">
-     <property name="geometry">
-      <rect>
-       <x>240</x>
-       <y>280</y>
-       <width>91</width>
-       <height>24</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>settings</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_LogOut">
-     <property name="geometry">
-      <rect>
-       <x>240</x>
-       <y>320</y>
-       <width>91</width>
-       <height>24</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Log out</string>
      </property>
     </widget>
     <widget class="QLabel" name="nameLabel">
@@ -90,6 +51,46 @@
      <property name="text">
       <string>some info</string>
      </property>
+    </widget>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>210</y>
+       <width>93</width>
+       <height>116</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QPushButton" name="pushButton_showMovieList">
+        <property name="text">
+         <string>Movie list</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QPushButton" name="pushButton_recom">
+        <property name="text">
+         <string>Recom.</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QPushButton" name="pushButton_sett">
+        <property name="text">
+         <string>settings</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QPushButton" name="pushButton_LogOut">
+        <property name="text">
+         <string>Log out</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </widget>
    <widget class="QWidget" name="page_2">
@@ -122,6 +123,7 @@
      </property>
     </widget>
    </widget>
+   <widget class="QWidget" name="page"/>
   </widget>
  </widget>
  <resources/>

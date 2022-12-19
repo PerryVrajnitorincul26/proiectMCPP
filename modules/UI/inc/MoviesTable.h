@@ -28,7 +28,7 @@ public:
 private slots:
 
     void on_pushButton_clicked();
-    void on_pushButton_back_clicked();
+    void on_homeButton_clicked();
     void on_pushButton_details_clicked();
     void on_tableView_clicked(const QModelIndex &pos);
 

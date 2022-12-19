@@ -21,7 +21,7 @@
    <item row="0" column="1">
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="page">
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -64,11 +64,6 @@
          <widget class="QPushButton" name="pushButton_goSignUp">
           <property name="text">
            <string>SignUp</string>
-          </property>
-         </widget>
-         <widget class="QPushButton" name="pushButton_goMovieList">
-          <property name="text">
-           <string>MovieList</string>
           </property>
          </widget>
         </widget>

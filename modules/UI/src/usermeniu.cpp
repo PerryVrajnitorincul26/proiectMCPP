@@ -7,7 +7,11 @@ UserMeniu::UserMeniu(QWidget *parent) :
     ui(new Ui::UserMeniu)
 {
     ui->setupUi(this);
-    auto wrapperParent = qobject_cast<Wrapper*>(this->parent());
+    ui->stackedWidget->setCurrentIndex(0);
+    //auto wrapperParent = qobject_cast<Wrapper*>(this->parent());
+    ui->stackedWidget->insertWidget(1, & _movies);
+    connect(&_movies, SIGNAL(homeClicked()),this,SLOT(on_backHome()));
+
 }
 
 UserMeniu::~UserMeniu()
@@ -19,5 +23,17 @@ void UserMeniu::on_pushButton_LogOut_clicked() {
   emit logout();
 
 }
+
+void UserMeniu::on_pushButton_showMovieList_clicked() {
+    ui->stackedWidget->setCurrentIndex(1);
+
+}
+
+void UserMeniu::on_backHome() {
+    ui->stackedWidget->setCurrentIndex(0);
+
+}
+
+
 
 
