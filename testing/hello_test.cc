@@ -50,15 +50,29 @@ TEST(HeloTest, servus_test) {
 }
 
 //verifies if there are at least 100 movies that respect the condition
-TEST(RecommenderSystemTest, ConstructorTest) {
+TEST(HeloTest, ConstructorTest) {
     RecommenderSystem *rs = new RecommenderSystem(1);
     EXPECT_GE(rs->m_consideredMovies.size(), 100);
 }
 
-TEST(RecommenderSystemTest, RecommendedByLikedMoviesTest) {
+TEST(HeloTest, RecommendedByLikedMoviesTest) {
     RecommenderSystem *rs = new RecommenderSystem(1);
     std::vector<std::string> likedMovies = {"Movie A", "Movie B", "Movie C"};
     rs->setUserLikedMovies(likedMovies);
     auto result = rs->recommendedByLikedMovies();
     EXPECT_GE(result.size(), 1);
+}
+
+//Test the GetUserLikedGenres function to ensure that it correctly returns the genres that the user has specified they like.
+TEST(HeloTest, TestGetUserLikedGenres) {
+    RecommenderSystem *rs = new RecommenderSystem(1);
+    rs->setUserLikedGenres({"Action", "Adventure", "Comedy"});
+    EXPECT_EQ(rs->GetUserLikedGenres(), std::vector<std::string>{"Action", "Adventure", "Comedy"});
+}
+
+//Test the GetUserLikedMovies function to ensure that it correctly returns the movies that the user has specified they like.
+TEST(HeloTest, TestGetUserLikedMovies) {
+    RecommenderSystem *rs = new RecommenderSystem(1);
+    rs->setUserLikedMovies({"The Shawshank Redemption", "The Godfather", "The Godfather: Part II"});
+    EXPECT_EQ(rs->GetUserLikedMovies(), std::vector<std::string>{"The Shawshank Redemption", "The Godfather", "The Godfather: Part II"});
 }
