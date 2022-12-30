@@ -83,3 +83,19 @@ TEST(HeloTest, TestSetUserLikedGenres) {
     EXPECT_EQ(result, likedGenres);
 }
 
+// Test that the MovieDatabase singleton can be correctly instantiated using the instance() method
+TEST(HeloTest, TestSingletonInstantiation) {
+    MovieDatabase& db1 = MovieDatabase::instance();
+    MovieDatabase& db2 = MovieDatabase::instance();
+    EXPECT_EQ(&db1, &db2);
+}
+
+// Test that the getMovieById function correctly retrieves a movie from the database by its ID
+TEST(HeloTest, TestGetMovieById) {
+    MovieDatabase& db = MovieDatabase::instance();
+    std::unique_ptr<movie_row> movie = db.getMovieById(1);
+    EXPECT_EQ(movie->m_movie_id, 1);
+    EXPECT_STREQ(movie->m_title.c_str(), "The Shawshank Redemption");
+    EXPECT_STREQ(movie->m_genres.c_str(), "Drama");
+}
+
