@@ -118,3 +118,21 @@ TEST(HeloTest, TestSearchMovieGenres) {
     EXPECT_STREQ(movies[0]->m_title.c_str(), "The Shawshank Redemption");
     EXPECT_STREQ(movies[0]->m_genres.c_str(), "Drama");
 }
+
+// Test that the getUserById function correctly retrieves a user from the database by their ID
+TEST(HeloTest, TestGetUserById) {
+    MovieDatabase& db = MovieDatabase::instance();
+    std::unique_ptr<user_row> user = db.getUserById(1);
+    EXPECT_EQ(user->m_user_id, 1);
+    EXPECT_STREQ(user->m_username.c_str(), "perry");
+    EXPECT_STREQ(user->m_password.c_str(), "password");
+}
+
+// Test that the getUserByUsername function correctly retrieves a user from the database by their username.
+TEST(HeloTest, TestGetUserByUsername) {
+    auto& db = MovieDatabase::instance();
+    auto user = db.getUserByUsername("user1");
+    EXPECT_EQ(user->m_user_id, 1);
+    EXPECT_EQ(user->m_username, "user1");
+    EXPECT_EQ(user->m_password, "password1");
+}
