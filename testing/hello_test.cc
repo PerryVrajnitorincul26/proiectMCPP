@@ -136,3 +136,14 @@ TEST(HeloTest, TestGetUserByUsername) {
     EXPECT_EQ(user->m_username, "user1");
     EXPECT_EQ(user->m_password, "password1");
 }
+
+// Test that the populateUserScores function correctly populates the m_userScores list with scores for each tag.
+TEST(HeloTest, TestPopulateUserScores) {
+    RecommenderSystem *rs = new RecommenderSystem(1);
+    rs->populateUserScores(1);
+    EXPECT_EQ(rs->m_userScores.size(), 2);
+    EXPECT_EQ(rs->m_userScores[0]->m_relevance, 3.5);
+    EXPECT_EQ(rs->m_userScores[1]->m_relevance, 2.5);
+}
+
+
