@@ -160,4 +160,27 @@ TEST(HeloTest, SetUserLikedGenres) {
     EXPECT_EQ(newExpectedLikedGenres, actualLikedGenres);
 }
 
+//Test searching for movies by title
+TEST(HeloTest, SearchMovieTitles) {
+    MovieDatabase &db = MovieDatabase::instance();
+
+    std::vector<std::unique_ptr<movie_row>> movies = db.searchMovieTitles("Movie");
+
+    ASSERT_TRUE(!movies.empty());
+    for (const auto &movie : movies) {
+        EXPECT_TRUE(movie->m_title.find("Movie") != std::string::npos);
+    }
+}
+
+//Test retrieving a user by id
+TEST(HeloTest, GetUserById) {
+    MovieDatabase &db = MovieDatabase::instance();
+
+    std::unique_ptr<user_row> user = db.getUserById(1);
+
+    ASSERT_TRUE(user != nullptr);
+    EXPECT_EQ(user->m_user_id, 1);
+    EXPECT_EQ(user->m_username, "user1");
+}
+
 
