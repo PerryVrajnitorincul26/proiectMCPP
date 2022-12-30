@@ -160,4 +160,57 @@ TEST(HeloTest, SetUserLikedGenres) {
     EXPECT_EQ(newExpectedLikedGenres, actualLikedGenres);
 }
 
+//Test searching for movies by title
+TEST(HeloTest, SearchMovieTitles) {
+    MovieDatabase &db = MovieDatabase::instance();
+
+    std::vector<std::unique_ptr<movie_row>> movies = db.searchMovieTitles("Movie");
+
+    ASSERT_TRUE(!movies.empty());
+    for (const auto &movie : movies) {
+        EXPECT_TRUE(movie->m_title.find("Movie") != std::string::npos);
+    }
+}
+
+//Test retrieving a user by id
+TEST(HeloTest, GetUserById) {
+    MovieDatabase &db = MovieDatabase::instance();
+
+    std::unique_ptr<user_row> user = db.getUserById(1);
+
+    ASSERT_TRUE(user != nullptr);
+    EXPECT_EQ(user->m_user_id, 1);
+    EXPECT_EQ(user->m_username, "user1");
+}
+
+//Test searching for users by username
+TEST(HeloTest, SearchUsersByUsername) {
+    // Arrange
+    MovieDatabase &db = MovieDatabase::instance();
+
+    // Act
+    std::unique_ptr<std::vector<user_row>> users = db.searchUsersByUsername("user");
+
+    // Assert
+    ASSERT_TRUE(!users->empty());
+    for (const auto &user : *users) {
+        EXPECT_TRUE(user.m_username.find("user") != std::string::npos);
+    }
+}
+
+//Test retrieving a user's watchlist
+TEST(HeloTest, GetWatchlist) {
+    // Arrange
+    MovieDatabase &db = MovieDatabase::instance();
+
+    // Act
+    std::unique_ptr<std::vector<watchlist_row>> watchlist = db.watchlistByUser(1);
+
+    // Assert
+    ASSERT_TRUE(!watchlist->empty());
+    for (const auto &entry : *watchlist) {
+        EXPECT_EQ(entry.m_user_id, 1);
+    }
+}
+
 

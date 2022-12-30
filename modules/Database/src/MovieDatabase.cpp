@@ -197,7 +197,7 @@ std::unique_ptr<community_tag_row> MovieDatabase::addCommunityTag(const communit
     return {nullptr};
 }
 
-std::unique_ptr<community_tag_row>
+void
 MovieDatabase::addCommunityTag(int user_id, int movie_id, const std::string &tag, const std::string &timestamp) const {
     addCommunityTag({user_id, movie_id, tag, timestamp});
 }
