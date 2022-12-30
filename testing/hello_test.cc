@@ -146,4 +146,18 @@ TEST(HeloTest, TestPopulateUserScores) {
     EXPECT_EQ(rs->m_userScores[1]->m_relevance, 2.5);
 }
 
+//Test that setUserLikedGenres correctly updates the user's liked genres.
+TEST(HeloTest, SetUserLikedGenres) {
+    RecommenderSystem *rs = new RecommenderSystem(1);
+    std::vector<std::string> expectedLikedGenres = {"Action", "Drama", "Comedy"};
+    rs->setUserLikedGenres(expectedLikedGenres);
+    std::vector<std::string> actualLikedGenres = rs->GetUserLikedGenres();
+    EXPECT_EQ(expectedLikedGenres, actualLikedGenres);
+
+    std::vector<std::string> newExpectedLikedGenres = {"Thriller", "Sci-Fi", "Adventure"};
+    rs->setUserLikedGenres(newExpectedLikedGenres);
+    actualLikedGenres = rs->GetUserLikedGenres();
+    EXPECT_EQ(newExpectedLikedGenres, actualLikedGenres);
+}
+
 
