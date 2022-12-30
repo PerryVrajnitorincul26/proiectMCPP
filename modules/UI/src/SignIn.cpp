@@ -9,33 +9,34 @@
 #include "Wrapper.h"
 
 
-SignIn::SignIn(QWidget* parent)
-	: QWidget(parent)
-	, ui(new Ui::SignIn)
-{
+SignIn::SignIn(QWidget *parent)
+        : QWidget(parent), ui(new Ui::SignIn) {
     ui->setupUi(this);
+    ui->lineEdit_pass->setEchoMode(QLineEdit::Password);
+    QIcon lineEdit_pass("password");
+    QIcon lineEdit_user("username");
+    ui->lineEdit_user->addAction(lineEdit_user,QLineEdit::LeadingPosition);
+    ui->lineEdit_pass->addAction(lineEdit_pass,QLineEdit::LeadingPosition);
+
 
 }
 
-SignIn::~SignIn()
-{
+SignIn::~SignIn() {
     delete ui;
 }
 
 
-void SignIn::on_pushButton_SignIn_clicked()
-{
+void SignIn::on_pushButton_SignIn_clicked() {
     auto &dbRef = MovieDatabase::instance();
-    auto response = dbRef.login(ui->lineEdit_user->text().toStdString(),ui->lineEdit_pass->text().toStdString());
+    auto response = dbRef.login(ui->lineEdit_user->text().toStdString(), ui->lineEdit_pass->text().toStdString());
 
     verifyInputFields();
     verifyExistingUser();
 
-    if(response == nullptr) {
+    if (response == nullptr) {
 
-       emit AccountNotFound();
-    }
-    else{
+        emit AccountNotFound();
+    } else {
         /*this->found = new User(response->m_username, response->m_region);
         auto wrapperParent = qobject_cast<Wrapper*>(parent());
         wrapperParent->setLoggedInUser(new User(*found));
@@ -46,32 +47,29 @@ void SignIn::on_pushButton_SignIn_clicked()
 }
 
 void SignIn::verifyInputFields() {
-    if(ui->lineEdit_user->text().toStdString().empty() && ui->lineEdit_pass->text().toStdString().empty())
+    if (ui->lineEdit_user->text().toStdString().empty() && ui->lineEdit_pass->text().toStdString().empty())
         QMessageBox::information(this, "Login Error", "Please insert username and password");
-    else if(ui->lineEdit_user->text().toStdString().empty())
+    else if (ui->lineEdit_user->text().toStdString().empty())
         QMessageBox::information(this, "Login Error", "Please insert username");
-    else if(ui->lineEdit_pass->text().toStdString().empty())
+    else if (ui->lineEdit_pass->text().toStdString().empty())
         QMessageBox::information(this, "Login Error", "Please insert password");
 }
 
 void SignIn::verifyExistingUser() {
-    logged=false;
+    logged = false;
     auto &dbRef = MovieDatabase::instance();
-    auto response = dbRef.login(ui->lineEdit_user->text().toStdString(),ui->lineEdit_pass->text().toStdString());
+    auto response = dbRef.login(ui->lineEdit_user->text().toStdString(), ui->lineEdit_pass->text().toStdString());
 
-    if(response == nullptr) {
+    if (response == nullptr) {
         QMessageBox::information(this, "Login Error", "Account not found - create one!");
 
+    } else {
+        QMessageBox::information(this, "Login successful", "Account was found!");
+
+        logged = true;
     }
 
-    else
-    { QMessageBox::information(this, "Login successful", "Account was found!");
-
-        logged=true;
-    }
-
-    if(logged==true)
-    {
+    if (logged == true) {
         emit Signed();
     }
 
@@ -89,7 +87,7 @@ void SignIn::on_pushButton_back_clicked() {
 
 }
 
-bool SignIn::isLogged()  {
+bool SignIn::isLogged() {
     return logged;
 };
 
