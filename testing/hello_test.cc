@@ -64,15 +64,22 @@ TEST(HeloTest, RecommendedByLikedMoviesTest) {
 }
 
 //Test the GetUserLikedGenres function to ensure that it correctly returns the genres that the user has specified they like.
-TEST(HeloTest, TestGetUserLikedGenres) {
-    RecommenderSystem *rs = new RecommenderSystem(1);
-    rs->setUserLikedGenres({"Action", "Adventure", "Comedy"});
-    EXPECT_EQ(rs->GetUserLikedGenres(), std::vector<std::string>{"Action", "Adventure", "Comedy"});
+TEST(HeloTest, GetUserLikedGenres) {
+    RecommenderSystem *recommender = new RecommenderSystem(1);
+    std::vector<std::string> expectedLikedGenres = {"Action", "Comedy", "Drama"};
+    recommender->setUserLikedGenres(expectedLikedGenres);
+
+    std::vector<std::string> actualLikedGenres = recommender->GetUserLikedGenres();
+
+    ASSERT_EQ(expectedLikedGenres, actualLikedGenres);
 }
 
-//Test the GetUserLikedMovies function to ensure that it correctly returns the movies that the user has specified they like.
-TEST(HeloTest, TestGetUserLikedMovies) {
+//Test that the setUserLikedMovies method correctly updates the user's list of liked movies.
+TEST(HeloTest, TestSetUserLikedGenres) {
     RecommenderSystem *rs = new RecommenderSystem(1);
-    rs->setUserLikedMovies({"The Shawshank Redemption", "The Godfather", "The Godfather: Part II"});
-    EXPECT_EQ(rs->GetUserLikedMovies(), std::vector<std::string>{"The Shawshank Redemption", "The Godfather", "The Godfather: Part II"});
+    std::vector<std::string> likedGenres = {"action", "comedy", "drama"};
+    rs->setUserLikedGenres(likedGenres);
+    std::vector<std::string> result = rs->GetUserLikedGenres();
+    EXPECT_EQ(result, likedGenres);
 }
+
