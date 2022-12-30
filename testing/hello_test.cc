@@ -99,3 +99,22 @@ TEST(HeloTest, TestGetMovieById) {
     EXPECT_STREQ(movie->m_genres.c_str(), "Drama");
 }
 
+// Test that the searchMovieTitles function correctly retrieves a list of movies from the database whose titles contain a specified search string
+TEST(HeloTest, TestSearchMovieTitles) {
+    MovieDatabase& db = MovieDatabase::instance();
+    std::vector<std::unique_ptr<movie_row>> movies = db.searchMovieTitles("The");
+    EXPECT_EQ(movies.size(), 1);
+    EXPECT_EQ(movies[0]->m_movie_id, 1);
+    EXPECT_STREQ(movies[0]->m_title.c_str(), "The Shawshank Redemption");
+    EXPECT_STREQ(movies[0]->m_genres.c_str(), "Drama");
+}
+
+// Test that the searchMovieGenres function correctly retrieves a list of movies from the database that belong to a specified genre
+TEST(HeloTest, TestSearchMovieGenres) {
+    MovieDatabase& db = MovieDatabase::instance();
+    std::vector<std::unique_ptr<movie_row>> movies = db.searchMovieGenres("Drama");
+    EXPECT_EQ(movies.size(), 1);
+    EXPECT_EQ(movies[0]->m_movie_id, 1);
+    EXPECT_STREQ(movies[0]->m_title.c_str(), "The Shawshank Redemption");
+    EXPECT_STREQ(movies[0]->m_genres.c_str(), "Drama");
+}
