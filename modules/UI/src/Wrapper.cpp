@@ -2,10 +2,17 @@
 #include "ui_Wrapper.h"
 #include "TMDB.h"
 
+
 Wrapper::Wrapper(QWidget *parent) :
     QWidget(parent), ui(new Ui::Wrapper)
 {
     ui->setupUi(this);
+
+    QIcon mlogo("M");
+    ui->minimize->setIcon(QIcon("minimize"));
+    ui->close->setIcon(QIcon("close"));
+    ui->mlogo->addAction(mlogo,QLineEdit::LeadingPosition);
+
     ui->stackedWidget->setCurrentIndex(0);
     ui->stackedWidget->insertWidget(1,&_signin);
 
@@ -79,6 +86,14 @@ User *Wrapper::getLoggedInUser() const {
 
 void Wrapper::setLoggedInUser(User *loggedInUser) {
     Wrapper::loggedInUser = loggedInUser;
+}
+
+void Wrapper::on_minimize_clicked() {
+showMinimized();
+}
+
+void Wrapper::on_close_clicked() {
+close();
 }
 
 

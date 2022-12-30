@@ -32,6 +32,10 @@ private slots:
 
     void on_pushButton_back_clicked();
 
+    void on_close_clicked();
+
+    void on_minimize_clicked();
+
     void moveHome();
 
     void disableSignUp();

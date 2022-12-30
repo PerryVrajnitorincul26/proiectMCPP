@@ -14,7 +14,10 @@ int main(int argc, char *argv[])
     data.append("param1=hello");
     data.append("&");
     data.append("param2=foo");
+
     Wrapper w;
+    w.setWindowFlags(Qt::Window|Qt::FramelessWindowHint);
     w.show();
+
     return a.exec();
 }
