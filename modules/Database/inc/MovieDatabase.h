@@ -83,7 +83,7 @@ public:
 
     [[nodiscard]] std::unique_ptr<std::vector<user_row>> searchUsersByUsername(const std::string &src) const;
 
-    [[nodiscard]] std::unique_ptr<std::vector<user_rating_row>> getUserReviews(int u_id) const;
+    [[maybe_unused]] [[nodiscard]] std::unique_ptr<std::vector<user_rating_row>> getUserReviews(int u_id) const;
 
     [[nodiscard]] std::unique_ptr<user_rating_row> getWatchEntry(int u_id, int m_id) const;
 
@@ -95,7 +95,7 @@ public:
 
     [[nodiscard]] std::unique_ptr<link_row> getLinkEntry(int m_id) const;
 
-    [[nodiscard]] std::unique_ptr<genome_tag_row> getTagName(int tag_id) const;
+    [[maybe_unused]] [[nodiscard]] std::unique_ptr<genome_tag_row> getTagName(int tag_id) const;
 
 //    [[nodiscard]] std::unique_ptr<genome_tag_row> getTagId(const std::string & tag_name) const;
 

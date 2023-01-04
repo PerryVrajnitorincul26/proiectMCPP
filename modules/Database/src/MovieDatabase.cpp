@@ -46,7 +46,7 @@ std::unique_ptr<std::vector<user_row>> MovieDatabase::searchUsersByUsername(cons
     return {nullptr};
 }
 
-std::unique_ptr<std::vector<user_rating_row>> MovieDatabase::getUserReviews(int u_id) const {
+[[maybe_unused]] std::unique_ptr<std::vector<user_rating_row>> MovieDatabase::getUserReviews(int u_id) const {
     try {
         return std::make_unique<std::vector<user_rating_row>>(std::move(
                 dbPtr->get_all<user_rating_row>(where(c(&user_rating_row::m_user_id) == u_id))));
@@ -197,8 +197,7 @@ std::unique_ptr<community_tag_row> MovieDatabase::addCommunityTag(const communit
     return {nullptr};
 }
 
-void
-MovieDatabase::addCommunityTag(int user_id, int movie_id, const std::string &tag, const std::string &timestamp) const {
+std::unique_ptr<community_tag_row> MovieDatabase::addCommunityTag(int user_id, int movie_id, const std::string &tag, const std::string &timestamp) const {
     addCommunityTag({user_id, movie_id, tag, timestamp});
 }
 
@@ -212,7 +211,7 @@ std::unique_ptr<link_row> MovieDatabase::getLinkEntry(int m_id) const {
     return {nullptr};
 }
 
-std::unique_ptr<genome_tag_row> MovieDatabase::getTagName(int tag_id) const {
+[[maybe_unused]] std::unique_ptr<genome_tag_row> MovieDatabase::getTagName(int tag_id) const {
     try {
         dbPtr->get_pointer<genome_tag_row>(tag_id);
     }
