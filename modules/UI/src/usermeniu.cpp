@@ -34,6 +34,14 @@ void UserMeniu::on_backHome() {
 
 }
 
+void UserMeniu::on_pushButton_sett_clicked() {
+ui->stackedWidget->setCurrentIndex(3);
+}
+
+void UserMeniu::on_pushButton_recom_clicked() {
+ui->stackedWidget->setCurrentIndex(2);
+}
+
 
 
 

@@ -24,6 +24,8 @@ private slots:
     void on_pushButton_LogOut_clicked();
     void on_pushButton_showMovieList_clicked();
     void on_backHome();
+    void on_pushButton_sett_clicked();
+    void on_pushButton_recom_clicked();
 signals:
     void logout();
 
