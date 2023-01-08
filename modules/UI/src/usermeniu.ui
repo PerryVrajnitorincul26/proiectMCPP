@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="homePage">
     <widget class="QLabel" name="usernameLabel">
@@ -36,7 +36,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Hello, user!</string>
+      <string/>
      </property>
     </widget>
     <widget class="QLabel" name="nameLabel">
@@ -49,7 +49,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>some info</string>
+      <string/>
      </property>
     </widget>
     <widget class="QWidget" name="layoutWidget">
@@ -107,11 +107,11 @@
       <string>recomandation page</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="recomBackButt">
+    <widget class="QPushButton" name="backButtRec">
      <property name="geometry">
       <rect>
        <x>240</x>
-       <y>280</y>
+       <y>340</y>
        <width>75</width>
        <height>24</height>
       </rect>
