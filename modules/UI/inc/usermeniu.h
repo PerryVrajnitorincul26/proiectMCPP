@@ -26,8 +26,13 @@ private slots:
     void on_backHome();
     void on_pushButton_sett_clicked();
     void on_pushButton_recom_clicked();
+    void on_settingsBackButt_clicked();
+    void on_deleteButton_clicked();
+    void on_recomBackButt_clicled();
 signals:
     void logout();
+    void deleteAcc();
+    void backHome();
 
 };
 

@@ -42,6 +42,22 @@ void UserMeniu::on_pushButton_recom_clicked() {
 ui->stackedWidget->setCurrentIndex(2);
 }
 
+void UserMeniu::on_settingsBackButt_clicked() {
+    ui->stackedWidget->setCurrentIndex(0);
+
+}
+
+void UserMeniu::on_deleteButton_clicked() {
+    emit deleteAcc();
+
+}
+
+void UserMeniu::on_recomBackButt_clicled() {
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+
+
 
 
 
