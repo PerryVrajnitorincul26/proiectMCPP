@@ -42,7 +42,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Hello, user!</string>
+      <string/>
      </property>
     </widget>
     <widget class="QLabel" name="nameLabel">
@@ -55,7 +55,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>some info</string>
+      <string/>
      </property>
     </widget>
     <widget class="QWidget" name="layoutWidget">
@@ -116,19 +116,45 @@
       <string>recomandation page</string>
      </property>
     </widget>
-   </widget>
-   <widget class="QWidget" name="page_3">
-    <widget class="QLabel" name="label_4">
+    <widget class="QPushButton" name="backButtRec">
      <property name="geometry">
       <rect>
-       <x>220</x>
-       <y>180</y>
-       <width>251</width>
-       <height>71</height>
+       <x>240</x>
+       <y>340</y>
+       <width>75</width>
+       <height>24</height>
       </rect>
      </property>
      <property name="text">
-      <string>settings page</string>
+      <string>Back</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="page_3">
+    <widget class="QPushButton" name="deleteButton">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>140</y>
+       <width>91</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Delete account</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="settingsBackButt">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>170</y>
+       <width>91</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Back</string>
      </property>
     </widget>
    </widget>

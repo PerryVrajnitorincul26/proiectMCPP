@@ -3,7 +3,8 @@
 
 #include <QWidget>
 #include "MoviesTable.h"
-
+#include "MovieDatabase.h"
+#include "SignIn.h"
 namespace Ui {
 class UserMeniu;
 }
@@ -19,13 +20,22 @@ public:
 private:
     Ui::UserMeniu *ui;
     MoviesTable _movies;
+    SignIn _signin;
 
 private slots:
     void on_pushButton_LogOut_clicked();
     void on_pushButton_showMovieList_clicked();
     void on_backHome();
+    void on_pushButton_sett_clicked();
+    void on_pushButton_recom_clicked();
+    void on_settingsBackButt_clicked();
+    void on_deleteButton_clicked();
+    void on_backButtRec_clicked();
+    void showUser();
 signals:
     void logout();
+    void deleteAcc();
+    void backHome();
 
 };
 

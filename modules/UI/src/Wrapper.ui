@@ -20,14 +20,14 @@
   <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>110</y>
+     <x>60</x>
+     <y>40</y>
      <width>781</width>
      <height>551</height>
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>3</number>
    </property>
    <widget class="QWidget" name="page">
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -179,10 +179,10 @@
   <widget class="QFrame" name="frame">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>10</y>
-     <width>759</width>
-     <height>61</height>
+     <x>-2</x>
+     <y>0</y>
+     <width>891</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="minimumSize">
@@ -207,9 +207,9 @@
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>0</y>
+      <y>-20</y>
       <width>171</width>
-      <height>51</height>
+      <height>61</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -234,19 +234,19 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
+      <y>-10</y>
       <width>61</width>
-      <height>31</height>
+      <height>41</height>
      </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="minimize">
     <property name="geometry">
      <rect>
-      <x>660</x>
-      <y>0</y>
+      <x>820</x>
+      <y>-10</y>
       <width>41</width>
-      <height>29</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -259,15 +259,19 @@ background-color:#5c5c5c}
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../../build/minimize.png</normaloff>../../../build/minimize.png</iconset>
     </property>
    </widget>
    <widget class="QPushButton" name="close">
     <property name="geometry">
      <rect>
-      <x>712</x>
-      <y>0</y>
+      <x>850</x>
+      <y>-10</y>
       <width>41</width>
-      <height>29</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -280,6 +284,10 @@ background-color:#5c5c5c}
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../../build/close.png</normaloff>../../../build/close.png</iconset>
     </property>
    </widget>
   </widget>
