@@ -19,8 +19,6 @@ public:
 
     User *getLoggedInUser() const;
 
-    void setLoggedInUser(User *loggedInUser);
-
     ~Wrapper();
 
 
@@ -44,7 +42,7 @@ private slots:
 
     void InToUp();
 
-    void toMeniu();
+    void toMeniu(User u);
 
     void reset();
 

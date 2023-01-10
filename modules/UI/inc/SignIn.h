@@ -42,7 +42,7 @@ private:
 
 signals:
     void HomeClicked();
-    void Signed();
+    void Signed(User u);
     void AccountNotFound();
     void AccountFound(User &account);
 

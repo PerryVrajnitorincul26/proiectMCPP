@@ -10,8 +10,8 @@ UserMeniu::UserMeniu(QWidget *parent) :
     ui->stackedWidget->setCurrentIndex(0);
     //auto wrapperParent = qobject_cast<Wrapper*>(this->parent());
     ui->stackedWidget->insertWidget(1, & _movies);
-    connect(&_movies, SIGNAL(homeClicked()),this,SLOT(on_backHome()));
-connect(&_signin,SIGNAL(Signed()),this,SLOT(showUser()));
+    connect(&_movies, &MoviesTable::homeClicked,this,&UserMeniu::on_backHome);
+    connect(&_signin,&SignIn::Signed,this,&UserMeniu::showUser);
 
 }
 
@@ -60,7 +60,11 @@ void UserMeniu::on_backButtRec_clicked() {
 
 void UserMeniu::showUser() {
     auto &dbRef = MovieDatabase::instance();
-    ui->usernameLabel->setText("Hello (USERname)");
+}
+
+void UserMeniu::setCurrentUser(User *currentUser) {
+    UserMeniu::currentUser = currentUser;
+    ui->msgLabel->setText("Hello " + QString::fromStdString(this->currentUser->getUsername()) + "!");
 }
 
 

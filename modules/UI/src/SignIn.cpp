@@ -70,7 +70,8 @@ void SignIn::verifyExistingUser() {
     }
 
     if (logged == true) {
-        emit Signed();
+        User u(response->m_username, response->m_region);
+        emit Signed(u);
     }
 
 

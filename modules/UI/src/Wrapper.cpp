@@ -67,21 +67,18 @@ void Wrapper::InToUp() {
 ui->stackedWidget->setCurrentIndex(2);
 }
 
-void Wrapper::toMeniu() {
-ui->stackedWidget->setCurrentIndex(4);
+void Wrapper::toMeniu(User u) {
+    this->loggedInUser=&u;
+    this->_usermeniu.setCurrentUser(&u);
+    ui->stackedWidget->setCurrentIndex(4);
 }
 
 void Wrapper::reset(){
     close();
-
 }
 
 User *Wrapper::getLoggedInUser() const {
     return loggedInUser;
-}
-
-void Wrapper::setLoggedInUser(User *loggedInUser) {
-    Wrapper::loggedInUser = loggedInUser;
 }
 
 void Wrapper::on_minimize_clicked() {

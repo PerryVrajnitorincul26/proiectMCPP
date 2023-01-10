@@ -17,10 +17,13 @@ public:
     explicit UserMeniu(QWidget *parent = nullptr);
     ~UserMeniu();
 
+    void setCurrentUser(User *currentUser);
+
 private:
     Ui::UserMeniu *ui;
     MoviesTable _movies;
     SignIn _signin;
+    User* currentUser;
 
 private slots:
     void on_pushButton_LogOut_clicked();

@@ -26,38 +26,6 @@
     <number>0</number>
    </property>
    <widget class="QWidget" name="homePage">
-    <widget class="QLabel" name="usernameLabel">
-     <property name="geometry">
-      <rect>
-       <x>220</x>
-       <y>20</y>
-       <width>261</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Bahnschrift SemiBold SemiConden</family>
-       <pointsize>30</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="nameLabel">
-     <property name="geometry">
-      <rect>
-       <x>170</x>
-       <y>90</y>
-       <width>131</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
@@ -100,6 +68,29 @@
        </widget>
       </item>
      </layout>
+    </widget>
+    <widget class="QLabel" name="msgLabel">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>80</y>
+       <width>221</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Bahnschrift SemiBold</family>
+       <pointsize>15</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">text-align: center;</string>
+     </property>
+     <property name="text">
+      <string>USERNAME</string>
+     </property>
     </widget>
    </widget>
    <widget class="QWidget" name="page_2">
