@@ -18,18 +18,14 @@ Wrapper::Wrapper(QWidget *parent) :
 
     ui->stackedWidget->insertWidget(2, & _signup);
     ui->stackedWidget->insertWidget(4,&_usermeniu);
-    connect(&_signup, SIGNAL(HomeClicked()),this,SLOT(moveHome()));
-    connect(&_signin, SIGNAL(HomeClicked()), this,SLOT(moveHome()));
-    connect(&_signin,SIGNAL(Signed()),this,SLOT(disableSignUp()));
-    connect(&_signup,SIGNAL(SignUpClicked()),this,SLOT(UpToIn()));
-    connect(&_signin, SIGNAL(AccountNotFound()),this,SLOT(InToUp()));
-//    connect(&_signin, &SignIn::AccountFound, this, [this](User &u){
-//        setLoggedInUser(u);
-//        qDebug()<<QString::fromStdString(this->loggedInUser.GetUsername())<<" is logged in YEEEE";
-//    });
-//    connect(&_signin,SIGNAL(Signed()),this,SLOT(moveHome()));
-   connect(&_signin,SIGNAL(Signed()),this,SLOT(toMeniu()));
-   connect(&_usermeniu,SIGNAL(logout()),this,SLOT(reset()));
+
+    connect(&_signup, &SignUp::HomeClicked, this, &Wrapper::moveHome);
+    connect(&_signin, &SignIn::HomeClicked, this,&Wrapper::moveHome);
+    connect(&_signin,&SignIn::Signed,this,&Wrapper::disableSignUp);
+    connect(&_signup,&SignUp::SignUpClicked,this,&Wrapper::UpToIn);
+    connect(&_signin, &SignIn::AccountNotFound,this,&Wrapper::InToUp);
+    connect(&_signin,&SignIn::Signed,this,&Wrapper::toMeniu);
+    connect(&_usermeniu,&UserMeniu::logout,this,&Wrapper::reset);
 
 }
 
@@ -89,11 +85,11 @@ void Wrapper::setLoggedInUser(User *loggedInUser) {
 }
 
 void Wrapper::on_minimize_clicked() {
-showMinimized();
+    showMinimized();
 }
 
 void Wrapper::on_close_clicked() {
-close();
+    close();
 }
 
 
