@@ -20,6 +20,10 @@ QT_END_NAMESPACE
 class MovieDetails : public QWidget{
 Q_OBJECT
 
+private:
+    Ui::MovieDetails *ui;
+    SignIn _signin;
+
     std::unique_ptr<user_rating_row> reviewObj;
 
 public:
@@ -34,57 +38,52 @@ public:
     TMDB *externalMovieDetals; //this points to the TMDB class which stores the details received from TMDB Api
 
     int tmdb_id;
-    //Movie Data JSON format
-    //adult - boolean
-    bool m_adult = true; //In Qt, boolean values are represented using the bool type from the C++ standard library. The bool type can have one of two values: true or false.
-    //budget - floating number
+
+    bool m_adult = true;
+
     double m_budget = 0;
-    //overview - string
+
     QString m_overview = "This is supposed to be a description";
-    //popularity - floating number
+
     double m_popularity = 0;
-    //poster_path - string
+
     QString m_posterPath = "/thePosterPathOfTheMovie";
-    //release_date - dateformat yyyy-mm-dd
-    QDate m_releaseDate; //documentation here: https://doc.qt.io/qt-6/qdate.html#QDate-6
-    //revenue - floating number
+
+    QDate m_releaseDate;
+
     double m_revenue = 0;
-    //runtime - number (minutes)
+
     double m_runtime = 0;
-    //Movie's poster
+
     QPixmap *pixmap = nullptr;
 
+    //CONSTRUCTORS
     explicit MovieDetails(QWidget *parent = nullptr);
 
     explicit MovieDetails(int movieId, int userId, QWidget *parent = nullptr);
 
     double on_GiveRating_clicked();
 
+    //GETTERS
     const std::unique_ptr<user_rating_row> &getReviewObj() const;
 
-    const std::string &getMTitle() const;
+    const std::string &getTitle() const;
 
-    const std::string &getMGenres() const;
+    const std::string &getGenres() const;
 
-    double getMUserReview() const;
+    double getUserReview() const;
 
+    //SETTERS
     void setMovieLayoutDetails(); //this functions displays the title and description in UI
-    void setReviewObj(const std::unique_ptr<user_rating_row> &reviewObj);
 
-    void setMTitle(const std::string &mTitle);
+    void setTitle(const std::string &mTitle);
 
-    void setMGenres(const std::string &mGenres);
+    void setGenres(const std::string &mGenres);
 
-    void setMUserReview(double mUserReview);
+    void setUserReview(double mUserReview);
 
+    //DESTRUCTOR
     ~MovieDetails() override;
-
-    void setTMDBdetails();
-
-private:
-    Ui::MovieDetails *ui;
-    SignIn _signin;
-
 
 public slots:
     void loadImage();

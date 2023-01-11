@@ -42,24 +42,51 @@ MovieDetails::MovieDetails(int movieId, int userId, QWidget *parent) : MovieDeta
 }
 
 
-//TRIGGERS
+//GETTERS
+const std::string &MovieDetails::getTitle() const {
+    return m_title;
+}
 
-double MovieDetails::on_GiveRating_clicked() {
-       bool logged=_signin.isLogged();
-    if (logged==true) {
-        auto &ref = MovieDatabase::instance();
-        reviewObj->m_rating = ui->doubleSpinBox->value();
-        ref.watch(*reviewObj);
+const std::string &MovieDetails::getGenres() const {
+    return m_genres;
+}
 
-        return ui->doubleSpinBox->value();
-    }
-    else
+const std::unique_ptr<user_rating_row> &MovieDetails::getReviewObj() const {
+    return reviewObj;
+}
 
-        QMessageBox::warning(this,"Acces denied!","Log in first!");
+double MovieDetails::getUserReview() const {
+    return m_userReview;
+}
+
+//SETTERS
+
+void MovieDetails::setTitle(const std::string &mTitle) {
+    m_title = mTitle;
+}
+
+void MovieDetails::setGenres(const std::string &mGenres) {
+    m_genres = mGenres;
+}
+
+void MovieDetails::setUserReview(double mUserReview) {
+    m_userReview = mUserReview;
+}
+
+void MovieDetails::setMovieLayoutDetails() {
+
+    ui->descriptionLabel->setWordWrap(true);
+    ui->descriptionLabel->setText(externalMovieDetals->getOverview());
+    ui->descriptionLabel->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+    ui->descriptionLabel->adjustSize();
+    ui->titleLabel->setText(QString::fromStdString(this->m_title));
+    ui->posterLabel->setPixmap(*externalMovieDetals->pixmap);
+    ui->posterLabel->setScaledContents(true);
+    ui->posterLabel->show();
 }
 
 
-//FUNCTIONS
+//OTHER METHODS - SLOTS
 void MovieDetails::loadImage() {
     auto movie = qobject_cast<TMDB *>(sender());
 
@@ -75,53 +102,17 @@ void MovieDetails::loadImage() {
 
 }
 
-void MovieDetails::setMovieLayoutDetails() {
 
-    ui->descriptionLabel->setWordWrap(true);
-    ui->descriptionLabel->setText(externalMovieDetals->getOverview());
-    ui->descriptionLabel->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-    ui->descriptionLabel->adjustSize();
-    ui->titleLabel->setText(QString::fromStdString(this->m_title));
-    ui->posterLabel->setPixmap(*externalMovieDetals->pixmap);
-    ui->posterLabel->setScaledContents(true);
-    //ui->posterLabel->setMask(movie->pixmap->mask());
-    ui->posterLabel->show();
+//BUTTONS CLICKED
+double MovieDetails::on_GiveRating_clicked() {
+    if (_signin.isLogged()) {
+        auto &ref = MovieDatabase::instance();
+        reviewObj->m_rating = ui->doubleSpinBox->value();
+        ref.watch(*reviewObj);
+
+        return ui->doubleSpinBox->value();
+    }
+    else
+
+        QMessageBox::warning(this,"Acces denied!","Log in first!");
 }
-
-void MovieDetails::setTMDBdetails() {
-
-}
-
-const std::unique_ptr<user_rating_row> &MovieDetails::getReviewObj() const {
-    return reviewObj;
-}
-
-const std::string &MovieDetails::getMTitle() const {
-    return m_title;
-}
-
-const std::string &MovieDetails::getMGenres() const {
-    return m_genres;
-}
-
-/*void MovieDetails::setReviewObj(const std::unique_ptr<user_rating_row> &reviewObj) {
-    MovieDetails::reviewObj = reviewObj;
-}*/
-
-void MovieDetails::setMTitle(const std::string &mTitle) {
-    m_title = mTitle;
-}
-
-void MovieDetails::setMGenres(const std::string &mGenres) {
-    m_genres = mGenres;
-}
-
-void MovieDetails::setMUserReview(double mUserReview) {
-    m_userReview = mUserReview;
-}
-
-double MovieDetails::getMUserReview() const {
-    return m_userReview;
-}
-
-
