@@ -133,6 +133,8 @@ public:
 
     [[nodiscard]] std::unique_ptr<user_row> signup(const user_row &user) const;
 
+    [[nodiscard]] bool deleteAccountById(int id);
+
     [[nodiscard]] std::unique_ptr<user_row>
     signup(const std::string &username, const std::string &password, const std::string &region = "Romania") const;
 

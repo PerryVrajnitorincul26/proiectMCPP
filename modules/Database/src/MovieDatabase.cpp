@@ -197,7 +197,8 @@ std::unique_ptr<community_tag_row> MovieDatabase::addCommunityTag(const communit
     return {nullptr};
 }
 
-std::unique_ptr<community_tag_row> MovieDatabase::addCommunityTag(int user_id, int movie_id, const std::string &tag, const std::string &timestamp) const {
+std::unique_ptr<community_tag_row>
+MovieDatabase::addCommunityTag(int user_id, int movie_id, const std::string &tag, const std::string &timestamp) const {
     addCommunityTag({user_id, movie_id, tag, timestamp});
 }
 
@@ -387,5 +388,18 @@ MovieDatabase::getMovieTagsFromWatchlist(int user_id) const {
         std::cout << e.what() << std::endl;
     }
     return {};
+}
+
+bool MovieDatabase::deleteAccountById(int id) {
+    auto storage = make_storage("database.sqlite", user_table(), movie_table(), watchlist_table(),
+                                community_tag_table());
+    try {
+        storage.remove_all<user_row>(where(is_equal(&user_row::m_user_id, id)));
+    }
+    catch (std::system_error &e) {
+        std::cout << e.what() << std::endl;
+        return false;
+    }
+    return true;
 }
 

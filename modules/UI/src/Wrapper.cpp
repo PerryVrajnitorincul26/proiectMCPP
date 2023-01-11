@@ -19,6 +19,7 @@ Wrapper::Wrapper(QWidget *parent) :
     ui->stackedWidget->insertWidget(2, & _signup);
     ui->stackedWidget->insertWidget(4,&_usermeniu);
 
+
     connect(&_signup, &SignUp::HomeClicked, this, &Wrapper::moveHome);
     connect(&_signin, &SignIn::HomeClicked, this,&Wrapper::moveHome);
     connect(&_signin,&SignIn::Signed,this,&Wrapper::disableSignUp);
