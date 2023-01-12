@@ -34,7 +34,7 @@ private slots:
 
 private:
     Ui::MoviesTable *ui;
-    ShowMovie *_showmovie;
+    ShowMovie* _showmovie = nullptr;
 
 signals:
     void homeClicked();

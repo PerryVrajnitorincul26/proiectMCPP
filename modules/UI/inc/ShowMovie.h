@@ -19,7 +19,7 @@ private:
     Ui::ShowMovie *ui;
 
 private slots:
-    void on_pushButton_close_clicked();
+  /*  void on_pushButton_close_clicked();*/
 
 };
 

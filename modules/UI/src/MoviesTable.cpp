@@ -82,9 +82,15 @@ MoviesTable::MoviesTable(int uid, QWidget *parent) : MoviesTable(parent) {
 }
 
 void MoviesTable::on_pushButton_details_clicked() {
-    _showmovie = new ShowMovie(this);
-    _showmovie->show();
+    if (_showmovie == nullptr) {
+        _showmovie = new ShowMovie(this);
+        _showmovie->show();
+    } else {
+        _showmovie->close();
+        _showmovie = nullptr;
+    }
 }
+
 
 void MoviesTable::on_homeButton_clicked() {
     emit homeClicked();

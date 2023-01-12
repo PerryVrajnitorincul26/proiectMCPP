@@ -5,9 +5,9 @@
 ShowMovie::ShowMovie(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ShowMovie)
-{
+{  resize(100,100);
     ui->setupUi(this);
-    QPixmap pix("C:/Users/Bulibas/Documents/GitHub/proiectMCPP/modules/UI/moviedatabase.jpg");
+    QPixmap pix("moviedatabase");
     ui->label_Image->setPixmap(pix.scaled(200,200,Qt::KeepAspectRatio));
     ui->label_movieTitle->setText("Title");
     ui->label_Genre->setText("All genre");
@@ -19,7 +19,7 @@ ShowMovie::~ShowMovie()
     delete ui;
 }
 
-void ShowMovie::on_pushButton_close_clicked() {
+/*void ShowMovie::on_pushButton_close_clicked() {
     close();
 
-}
+}*/
