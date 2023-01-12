@@ -49,55 +49,34 @@ public :
 
     void setMovie();
 
-    TMDB(const long long int &movieId); //here will be executed the connection with the APIs
+    explicit TMDB(const long long int &movieId); //here will be executed the connection with the APIs
 
     ~TMDB() override;
 
-    //this is a temporary setter written for testing
-    void setPosterPath(const QString &mPosterPath) {
-        m_posterPath = mPosterPath;
-    }
+    [[maybe_unused]] void setPosterPath(const QString &mPosterPath);
 
-    const QString &getApiKey() const {
-        return m_apiKey;
-    }
+    [[maybe_unused]] const QString &getApiKey() const;
 
-    QNetworkAccessManager *getNaManager() const {
-        return m_naManager;
-    }
+    [[maybe_unused]] QNetworkAccessManager *getNaManager() const;
 
-    bool isAdult() const {
-        return m_adult;
-    }
+    [[maybe_unused]] bool isAdult() const;
 
-    double getBudget() const {
-        return m_budget;
-    }
+    [[maybe_unused]] double getBudget() const;
 
-    const QString &getOverview() const {
-        return m_overview;
-    }
+    const QString &getOverview();
 
-    double getPopularity() const {
-        return m_popularity;
-    }
+    [[maybe_unused]] double getPopularity() const;
 
-    const QString &getPosterPath() const {
-        return m_posterPath;
-    }
+    [[maybe_unused]] const QString &getPosterPath();
 
 
-    double getRevenue() const {
-        return m_revenue;
-    }
+    [[maybe_unused]] double getRevenue() const;
 
-    double getRuntime() const {
-        return m_runtime;
-    }
+    [[maybe_unused]] double getRuntime() const;
 
 public slots:
 
-    void imageDownloaded(QNetworkReply *replyReceived);
+    [[maybe_unused]] void imageDownloaded(QNetworkReply *replyReceived);
 
     void dataFinished();
 

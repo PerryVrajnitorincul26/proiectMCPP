@@ -8,44 +8,24 @@
 #include "MoviesTable.h"
 #include "Wrapper.h"
 
-
+//CONSTRUCTORS
 SignIn::SignIn(QWidget *parent)
         : QWidget(parent), ui(new Ui::SignIn) {
     ui->setupUi(this);
     ui->lineEdit_pass->setEchoMode(QLineEdit::Password);
     QIcon lineEdit_pass("password");
     QIcon lineEdit_user("username");
-    ui->lineEdit_user->addAction(lineEdit_user,QLineEdit::LeadingPosition);
-    ui->lineEdit_pass->addAction(lineEdit_pass,QLineEdit::LeadingPosition);
+    ui->lineEdit_user->addAction(lineEdit_user, QLineEdit::LeadingPosition);
+    ui->lineEdit_pass->addAction(lineEdit_pass, QLineEdit::LeadingPosition);
 
 
 }
 
-SignIn::~SignIn() {
-    delete ui;
-}
+//GETTERS
 
+//SETTERS
 
-void SignIn::on_pushButton_SignIn_clicked() {
-    auto &dbRef = MovieDatabase::instance();
-    auto response = dbRef.login(ui->lineEdit_user->text().toStdString(), ui->lineEdit_pass->text().toStdString());
-
-    verifyInputFields();
-    verifyExistingUser();
-
-    if (response == nullptr) {
-
-        emit AccountNotFound();
-    } else {
-        /*this->found = new User(response->m_username, response->m_region);
-        auto wrapperParent = qobject_cast<Wrapper*>(parent());
-        wrapperParent->setLoggedInUser(new User(*found));
-        emit AccountFound(*found); THIS CODE DISTURBS!*/
-        this->current_user = std::move(response);
-    }
-
-}
-
+//OTHER METHODS
 void SignIn::verifyInputFields() {
     if (ui->lineEdit_user->text().toStdString().empty() && ui->lineEdit_pass->text().toStdString().empty())
         QMessageBox::information(this, "Login Error", "Please insert username and password");
@@ -77,6 +57,31 @@ void SignIn::verifyExistingUser() {
 
 }
 
+bool SignIn::isLogged() {
+    return logged;
+};
+
+//BUTTONS
+void SignIn::on_pushButton_SignIn_clicked() {
+    auto &dbRef = MovieDatabase::instance();
+    auto response = dbRef.login(ui->lineEdit_user->text().toStdString(), ui->lineEdit_pass->text().toStdString());
+
+    verifyInputFields();
+    verifyExistingUser();
+
+    if (response == nullptr) {
+
+        emit AccountNotFound();
+    } else {
+        /*this->found = new User(response->m_username, response->m_region);
+        auto wrapperParent = qobject_cast<Wrapper*>(parent());
+        wrapperParent->setLoggedInUser(new User(*found));
+        emit AccountFound(*found); THIS CODE DISTURBS!*/
+        this->current_user = std::move(response);
+    }
+
+}
+
 void SignIn::on_searchDemo_clicked() {
     MoviesTable moviesTable(this);
     moviesTable.setModal(true);
@@ -88,7 +93,7 @@ void SignIn::on_pushButton_back_clicked() {
 
 }
 
-bool SignIn::isLogged() {
-    return logged;
-};
-
+//DESTRUCTOR
+SignIn::~SignIn() {
+    delete ui;
+}

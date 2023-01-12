@@ -3,25 +3,28 @@
 #include "QMessageBox"
 #include "MovieDatabase.h"
 
+//CONSTRUCTORS
 SignUp::SignUp(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::SignUp) {
-        ui->setupUi(this);
+    ui->setupUi(this);
 
     ui->lineEdit_PasswordRegister->setEchoMode(QLineEdit::Password);
     QIcon lineEdit_PasswordRegister("password");
     QIcon lineEdit_UsernameRegister("username");
     QIcon lineEdit_Region("region");
-    ui->lineEdit_UsernameRegister->addAction(lineEdit_UsernameRegister,QLineEdit::LeadingPosition);
-    ui->lineEdit_PasswordRegister->addAction(lineEdit_PasswordRegister,QLineEdit::LeadingPosition);
-    ui->lineEdit_Region->addAction(lineEdit_Region,QLineEdit::LeadingPosition);
+    ui->lineEdit_UsernameRegister->addAction(lineEdit_UsernameRegister, QLineEdit::LeadingPosition);
+    ui->lineEdit_PasswordRegister->addAction(lineEdit_PasswordRegister, QLineEdit::LeadingPosition);
+    ui->lineEdit_Region->addAction(lineEdit_Region, QLineEdit::LeadingPosition);
 }
 
-SignUp::~SignUp() {
-    delete ui;
+//GETTERS
 
-}
+//SETTERS
 
+//OTHER METHODS
+
+//BUTTONS
 void SignUp::on_pushButton_SignUp_clicked() {
     auto &dbRef = MovieDatabase::instance();
     dbRef.signup(ui->lineEdit_UsernameRegister->text().toStdString(),
@@ -36,6 +39,10 @@ void SignUp::on_pushButton_home_clicked() {
 
 }
 
+//DESTRUCTORS
+SignUp::~SignUp() {
+    delete ui;
 
+}
 
 

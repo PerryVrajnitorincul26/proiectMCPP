@@ -49,8 +49,11 @@ void UserMeniu::on_settingsBackButt_clicked() {
 }
 
 void UserMeniu::on_deleteButton_clicked() {
-    emit deleteAcc();
-
+    auto username = this->currentUser->getUsername();
+    auto &db = MovieDatabase::instance();
+    auto U = db.getUserByUsername(username);
+    int id = U->m_user_id;
+    db.deleteAccountById(id);
 }
 
 void UserMeniu::on_backButtRec_clicked() {
