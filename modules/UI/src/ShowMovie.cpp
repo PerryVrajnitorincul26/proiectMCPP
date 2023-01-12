@@ -2,6 +2,8 @@
 #include "ui_ShowMovie.h"
 #include "QPixmap"
 #include "MovieDetails.h"
+
+//CONSTRUCTORS
 ShowMovie::ShowMovie(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ShowMovie)
@@ -13,13 +15,18 @@ ShowMovie::ShowMovie(QWidget *parent) :
     ui->label_Genre->setText("All genre");
     ui->label_rating->setText("Rating from 1 to 5");
 }
+//GETTERS
 
-ShowMovie::~ShowMovie()
-{
-    delete ui;
-}
+//SETTERS
 
+//BUTTONS
 void ShowMovie::on_pushButton_close_clicked() {
     close();
 
+}
+
+//DESTRUCTOR
+ShowMovie::~ShowMovie()
+{
+    delete ui;
 }

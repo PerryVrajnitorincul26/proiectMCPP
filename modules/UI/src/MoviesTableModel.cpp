@@ -3,10 +3,16 @@
 //
 #include "MoviesTableModel.h"
 
+//CONSTRUCTORS
 MoviesTableModel::MoviesTableModel(QObject *parent) : QAbstractTableModel(parent) {
 
 }
 
+//GETTERS
+
+//SETTERS
+
+//OTHER METHODS
 void MoviesTableModel::populateData(const QList<QString> &movieTitle, const QList<QString> &movieGenres,
                                     const QList<int> movieID) {
     m_movie_title.clear();
@@ -55,4 +61,7 @@ QVariant MoviesTableModel::headerData(int section, Qt::Orientation orientation, 
     return QVariant();
 }
 
+//BUTTONS
+
+//SIGNALS
 

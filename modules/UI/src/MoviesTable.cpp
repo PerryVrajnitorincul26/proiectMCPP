@@ -1,7 +1,7 @@
 #include "MoviesTable.h"
 #include "ui_MoviesTable.h"
 
-
+//CONSTRUCTORS
 MoviesTable::MoviesTable(QWidget *parent) :
         QDialog(parent),
         ui(new Ui::MoviesTable) {
@@ -12,6 +12,17 @@ MoviesTable::~MoviesTable() {
     delete ui;
 }
 
+MoviesTable::MoviesTable(int uid, QWidget *parent) : MoviesTable(parent) {
+    this->userId = uid;
+}
+
+//GETTERS
+
+//SETTERS
+
+//OTHER METHODS
+
+//BUTTONS - slots
 void MoviesTable::on_pushButton_clicked() {
     std::string titleToSearch = ui->titleInput->text().toStdString();
     std::string genreToSearch = ui->genreInput->text().toStdString();
@@ -65,7 +76,7 @@ void MoviesTable::on_tableView_clicked(const QModelIndex &pos) {
     QDialog *moviePageDialog = new QDialog();
     moviePageDialog->setMaximumSize(QSize(900, 600));
 
-    MovieDetails *movieDetails = new MovieDetails(movieId, this->user_id);
+    MovieDetails *movieDetails = new MovieDetails(movieId, this->userId);
 
     QHBoxLayout * giveRatingLayout = new QHBoxLayout(movieDetails);
 
@@ -77,13 +88,9 @@ void MoviesTable::on_tableView_clicked(const QModelIndex &pos) {
     moviePageDialog->deleteLater();
 }
 
-MoviesTable::MoviesTable(int uid, QWidget *parent) : MoviesTable(parent) {
-    this->user_id = uid;
-}
-
 void MoviesTable::on_pushButton_details_clicked() {
-    _showmovie = new ShowMovie(this);
-    _showmovie->show();
+    _showMovie = new ShowMovie(this);
+    _showMovie->show();
 }
 
 void MoviesTable::on_homeButton_clicked() {

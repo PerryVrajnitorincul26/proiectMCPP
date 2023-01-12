@@ -60,7 +60,6 @@ double MovieDetails::getUserReview() const {
 }
 
 //SETTERS
-
 void MovieDetails::setTitle(const std::string &mTitle) {
     m_title = mTitle;
 }
@@ -93,10 +92,6 @@ void MovieDetails::loadImage() {
     if (movie->pixmap == nullptr)
         qDebug() << "Image not loaded...";
     else {
-//        ui->posterLabel->setPixmap(*movie->pixmap);
-//        ui->posterLabel->setScaledContents(true);
-//        //ui->posterLabel->setMask(movie->pixmap->mask());
-//        ui->posterLabel->show();
         setMovieLayoutDetails();
     }
 
