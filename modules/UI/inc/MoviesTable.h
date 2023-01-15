@@ -20,7 +20,8 @@ Q_OBJECT
     MoviesTableModel *model= nullptr;
     int userId = 0;
     Ui::MoviesTable *ui;
-    ShowMovie *_showMovie;
+    ShowMovie *_showMovie=nullptr;
+
 
 
 public:

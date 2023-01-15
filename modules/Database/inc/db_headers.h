@@ -34,7 +34,7 @@ public:
 
 inline auto user_table() {
     return make_table("user",
-                      make_column("userId", &user_row::m_user_id),
+                      make_column("user_id", &user_row::m_user_id),
                       make_column("username", &user_row::m_username),
                       make_column("password", &user_row::m_password),
                       make_column("region", &user_row::m_region),
@@ -86,7 +86,7 @@ public:
 
 inline auto watchlist_table() {
     return make_table("watchlist",
-                      make_column("userId", &watchlist_row::m_user_id),
+                      make_column("user_id", &watchlist_row::m_user_id),
                       make_column("movie_id", &watchlist_row::m_movie_id),
                       make_column("rating", &watchlist_row::m_rating),
                       make_column("date_modified", &watchlist_row::m_date_modified),
@@ -114,7 +114,7 @@ public:
 
 inline auto community_tag_table() {
     return make_table("community_tag",
-                      make_column("userId", &community_tag_row::m_user_id),
+                      make_column("user_id", &community_tag_row::m_user_id),
                       make_column("movie_id", &community_tag_row::m_movie_id),
                       make_column("tag", &community_tag_row::m_tag),
                       make_column("timestamp", &community_tag_row::m_timestamp),
@@ -143,7 +143,7 @@ public:
 inline auto rating_table() {
     return make_table(
             "rating", //TODO: this is a name mismatch and i'd like it fixed in the DB since user_rating is clearer.
-            make_column("userId", &user_rating_row::m_user_id),
+            make_column("user_id", &user_rating_row::m_user_id),
             make_column("movie_id", &user_rating_row::m_movie_id),
             make_column("rating", &user_rating_row::m_rating),
             make_column("timestamp", &user_rating_row::m_timestamp),
@@ -244,7 +244,7 @@ public:
 
 inline auto user_scores_table() {
     return make_table("user_scores",
-                      make_column("userId", &user_scores_row::m_user_id),
+                      make_column("user_id", &user_scores_row::m_user_id),
                       make_column("tag_id", &user_scores_row::m_tag_id),
                       make_column("relevance", &user_scores_row::m_relevance),
                       primary_key(&user_scores_row::m_user_id, &user_scores_row::m_tag_id),

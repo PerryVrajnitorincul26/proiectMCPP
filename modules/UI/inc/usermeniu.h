@@ -24,6 +24,7 @@ private:
     MoviesTable _movies;
     SignIn _signin;
     User* currentUser;
+    ShowMovie *_showMovie=nullptr;
 
 private slots:
     void on_pushButton_LogOut_clicked();

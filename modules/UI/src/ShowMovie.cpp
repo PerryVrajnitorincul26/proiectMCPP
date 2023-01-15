@@ -20,10 +20,7 @@ ShowMovie::ShowMovie(QWidget *parent) :
 //SETTERS
 
 //BUTTONS
-void ShowMovie::on_pushButton_close_clicked() {
-    close();
 
-}
 
 //DESTRUCTOR
 ShowMovie::~ShowMovie()

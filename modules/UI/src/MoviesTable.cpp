@@ -89,8 +89,13 @@ void MoviesTable::on_tableView_clicked(const QModelIndex &pos) {
 }
 
 void MoviesTable::on_pushButton_details_clicked() {
-    _showMovie = new ShowMovie(this);
-    _showMovie->show();
+    if (_showMovie == nullptr) {
+        _showMovie = new ShowMovie(this);
+        _showMovie->show();
+    } else {
+        _showMovie->close();
+        _showMovie = nullptr;
+    }
 }
 
 void MoviesTable::on_homeButton_clicked() {
