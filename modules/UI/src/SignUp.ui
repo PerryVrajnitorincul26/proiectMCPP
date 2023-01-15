@@ -28,9 +28,9 @@
      <property name="title">
       <string>Register</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0">
-       <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout">
         <property name="leftMargin">
          <number>50</number>
         </property>
@@ -38,100 +38,127 @@
          <number>50</number>
         </property>
         <item>
-         <widget class="QLabel" name="label_Username">
-          <property name="minimumSize">
-           <size>
-            <width>100</width>
-            <height>0</height>
-           </size>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <property name="leftMargin">
+           <number>50</number>
           </property>
+          <property name="rightMargin">
+           <number>50</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_Username">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Username</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_UsernameRegister">
+            <property name="styleSheet">
+             <string notr="true">color: rgb(0, 0, 0);</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <property name="leftMargin">
+           <number>50</number>
+          </property>
+          <property name="rightMargin">
+           <number>50</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_Password">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Password</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_PasswordRegister">
+            <property name="styleSheet">
+             <string notr="true">color: rgb(0, 0, 0)</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <property name="leftMargin">
+           <number>50</number>
+          </property>
+          <property name="rightMargin">
+           <number>50</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_Region">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Region</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_Region">
+            <property name="styleSheet">
+             <string notr="true">color:rgb(0,0,0)</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="maximumSize">
+             <size>
+              <width>500</width>
+              <height>150</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;Username: more than 6 characters &lt;br/&gt;Password must contain at least one uppercase letter, one special character, one digit, and be at least 8 characters long.&lt;br/&gt;Region: The first letter must be an uppercae letter, the following letters must be lowercase.&lt;br/&gt;The country name can be composed of one or more word, each starts with an uppercase &lt;br/&gt;letter, and the following letters are lowercase.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_SignUp">
           <property name="text">
-           <string>Username</string>
+           <string>SignUp</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_UsernameRegister">
-          <property name="styleSheet">
-           <string notr="true">color: rgb(0, 0, 0);</string>
+         <widget class="QPushButton" name="pushButton_home">
+          <property name="text">
+           <string>Back</string>
           </property>
          </widget>
         </item>
        </layout>
-      </item>
-      <item row="4" column="0">
-       <widget class="QPushButton" name="pushButton_home">
-        <property name="text">
-         <string>Back</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <property name="leftMargin">
-         <number>50</number>
-        </property>
-        <property name="rightMargin">
-         <number>50</number>
-        </property>
-        <item>
-         <widget class="QLabel" name="label_Region">
-          <property name="minimumSize">
-           <size>
-            <width>100</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Region</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit_Region">
-          <property name="styleSheet">
-           <string notr="true">color:rgb(0,0,0)</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item row="1" column="0">
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
-        <property name="leftMargin">
-         <number>50</number>
-        </property>
-        <property name="rightMargin">
-         <number>50</number>
-        </property>
-        <item>
-         <widget class="QLabel" name="label_Password">
-          <property name="minimumSize">
-           <size>
-            <width>100</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Password</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit_PasswordRegister">
-          <property name="styleSheet">
-           <string notr="true">color: rgb(0, 0, 0)</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item row="3" column="0">
-       <widget class="QPushButton" name="pushButton_SignUp">
-        <property name="text">
-         <string>SignUp</string>
-        </property>
-       </widget>
       </item>
      </layout>
     </widget>
