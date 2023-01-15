@@ -26,22 +26,35 @@ SignUp::SignUp(QWidget *parent) :
 
 //BUTTONS
 void SignUp::on_pushButton_SignUp_clicked() {
-    std::regex rx("^[a-zA-Z][a-zA-Z0-9_]{7,}$");
+    std::regex password_rx("^(?=.*[A-Z])(?=.*[!@#\\$%\\^&\\*])(?=.*\\d)[A-Za-z0-9!@#\\$%\\^&\\*]{8,}$");
+    std::regex username_rx("^.{6,}$");
+    std::regex country_rx("^[A-Z][a-z]+(?: [A-Z][a-z]+)*$");
+
     std::string username = ui->lineEdit_UsernameRegister->text().toStdString();
-    std::string password= ui->lineEdit_PasswordRegister->text().toStdString();
-    std::string region=ui->lineEdit_Region->text().toStdString();
+    std::string password = ui->lineEdit_PasswordRegister->text().toStdString();
+    std::string region = ui->lineEdit_Region->text().toStdString();
 
-    if (ui->lineEdit_UsernameRegister->text().trimmed().isEmpty() || ui->lineEdit_PasswordRegister->text().trimmed().isEmpty() || ui->lineEdit_Region->text().trimmed().isEmpty())
-    {QMessageBox::information(this, "Sign Up", "Please fill in all the boxes!");
-        emit noCredential();}
-
-    if (!std::regex_match(username, rx) || !std::regex_match(password, rx) ) {
-        QMessageBox::warning(this, "Warning", "Invalid input, must start with letter, have at least 8 characters, only letter,numbers and underscore are allowed.");        emit usedSymbols();
+    if (ui->lineEdit_UsernameRegister->text().trimmed().isEmpty() ||
+        ui->lineEdit_PasswordRegister->text().trimmed().isEmpty() || ui->lineEdit_Region->text().trimmed().isEmpty()) {
+        QMessageBox::information(this, "Sign Up", "Please fill in all the boxes!");
+        emit noCredential();
     }
 
+    if (!std::regex_match(username, username_rx)) {
+        QMessageBox::warning(this, "Warning", "Invalid username, it must contain more than 5 characters");
+        emit usedSymbols();
+    } else if (!std::regex_match(password, password_rx)) {
+        QMessageBox::warning(this, "Warning",
+                             "Invalid password: it must be at least 8 characters length, contain 1 uppercase, 1 special character, 1 digit");
+        emit usedSymbols();
+    }
+    else if (!std::regex_match(region, country_rx)) {
+        QMessageBox::warning(this, "Warning", "Invalid country - every word must start with an uppercase.");
+        emit usedSymbols();
+    }
     else {
         auto &dbRef = MovieDatabase::instance();
-        dbRef.signup(username,password,region);
+        dbRef.signup(username, password, region);
         emit SignUpClicked();
     }
     ui->lineEdit_UsernameRegister->clear();
