@@ -108,7 +108,6 @@ void UserMeniu::on_likedGenres_pushButton_clicked() {
         userLikedGenres.push_back("Horror");
     if(ui->Western->isChecked())
         userLikedGenres.push_back("Western");
-
 }
 
 

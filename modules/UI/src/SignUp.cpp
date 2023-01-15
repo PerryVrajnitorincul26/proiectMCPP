@@ -26,14 +26,22 @@ SignUp::SignUp(QWidget *parent) :
 
 //BUTTONS
 void SignUp::on_pushButton_SignUp_clicked() {
+    std::regex rx("^[a-zA-Z][a-zA-Z0-9_]{7,}$");
+    std::string username = ui->lineEdit_UsernameRegister->text().toStdString();
+    std::string password= ui->lineEdit_PasswordRegister->text().toStdString();
+    std::string region=ui->lineEdit_Region->text().toStdString();
+
     if (ui->lineEdit_UsernameRegister->text().trimmed().isEmpty() || ui->lineEdit_PasswordRegister->text().trimmed().isEmpty() || ui->lineEdit_Region->text().trimmed().isEmpty())
     {QMessageBox::information(this, "Sign Up", "Please fill in all the boxes!");
         emit noCredential();}
+
+    if (!std::regex_match(username, rx) || !std::regex_match(password, rx) ) {
+        QMessageBox::warning(this, "Warning", "Invalid input, must start with letter, have at least 8 characters, only letter,numbers and underscore are allowed.");        emit usedSymbols();
+    }
+
     else {
         auto &dbRef = MovieDatabase::instance();
-        dbRef.signup(ui->lineEdit_UsernameRegister->text().toStdString(),
-                     ui->lineEdit_PasswordRegister->text().toStdString(),
-                     ui->lineEdit_Region->text().toStdString());
+        dbRef.signup(username,password,region);
         emit SignUpClicked();
     }
     ui->lineEdit_UsernameRegister->clear();

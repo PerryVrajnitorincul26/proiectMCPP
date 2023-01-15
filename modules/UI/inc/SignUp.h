@@ -1,6 +1,8 @@
 #pragma once
 
 #include <QWidget>
+#include <regex>
+
 
 
 namespace Ui {
@@ -30,5 +32,7 @@ signals:
     void SignUpClicked();
 
     void noCredential();
+
+    void usedSymbols();
 };
 
