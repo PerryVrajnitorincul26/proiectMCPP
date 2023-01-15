@@ -48,9 +48,9 @@ else ()
 endif ()
 
 target_link_directories(untitled4 PRIVATE ../Database)
-#target_link_directories(movietest PRIVATE ../Database)
+target_link_directories(untitled4 PRIVATE ../Logic)
 target_include_directories(untitled4 PRIVATE inc)
-target_link_libraries(untitled4 PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network db_lib)
+target_link_libraries(untitled4 PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network db_lib RecSys)
 
 set_target_properties(untitled4 PROPERTIES
         MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com

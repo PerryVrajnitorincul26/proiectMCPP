@@ -4,6 +4,7 @@
 
 #include "MovieDatabase.h"
 
+
 std::unique_ptr<movie_row> MovieDatabase::getMovieById(int m_id) const {
     try {
         return (dbPtr->get_pointer<movie_row>(m_id));
@@ -199,7 +200,7 @@ std::unique_ptr<community_tag_row> MovieDatabase::addCommunityTag(const communit
 
 std::unique_ptr<community_tag_row>
 MovieDatabase::addCommunityTag(int user_id, int movie_id, const std::string &tag, const std::string &timestamp) const {
-    addCommunityTag({user_id, movie_id, tag, timestamp});
+    return addCommunityTag({user_id, movie_id, tag, timestamp});
 }
 
 std::unique_ptr<link_row> MovieDatabase::getLinkEntry(int m_id) const {
