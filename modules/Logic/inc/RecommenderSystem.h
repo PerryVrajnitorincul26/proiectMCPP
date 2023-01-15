@@ -11,9 +11,9 @@ using tagNameVec = decltype(std::vector<std::unique_ptr<genome_tag_row>>());
 class RecommenderSystem {
     int m_uid;
 
+public:
     RecommenderSystem();
 
-public:
     RecommenderSystem(const std::vector<std::string> &userLikedGenres, const std::vector<std::string> &userLikedMovies);
 
     userRatingVec m_userScores, m_weights;

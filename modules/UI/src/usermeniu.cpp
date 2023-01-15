@@ -1,6 +1,7 @@
 #include "usermeniu.h"
 #include "ui_usermeniu.h"
 #include "RecommenderSystem.h"
+#include <random>
 
 UserMeniu::UserMeniu(QWidget *parent) :
     QWidget(parent),
@@ -55,6 +56,23 @@ void UserMeniu::on_pushButton_Wish_clicked() {
 }
 
 void UserMeniu::on_pushButton_Recommended_clicked() {
+
+    RecommenderSystem recSyst;
+    std::set<MovieRecInfo> recommendedMovies;
+    for(auto &genre: this->userLikedGenres){
+        auto response = recSyst.recommendedByLikedGenres(genre);
+        std::mt19937 rng(std::random_device{}());
+        std::uniform_int_distribution<int> dist(0, response.size());
+        int indexMovie = dist(rng);
+
+        MovieRecInfo m;
+        m.id = response[indexMovie]->m_movie_id;
+        m.title = response[indexMovie]->m_title;
+        m.genres = response[indexMovie]->m_genres;
+
+        recommendedMovies.insert(m);
+    }
+
     ui->stackedWidget->setCurrentIndex(5);
 }
 

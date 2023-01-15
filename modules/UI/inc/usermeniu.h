@@ -9,6 +9,13 @@ namespace Ui {
 class UserMeniu;
 }
 
+class MovieRecInfo : public std::monostate {
+public:
+    int id;
+    std::string title;
+    std::string genres;
+};
+
 class UserMeniu : public QWidget
 {
     Q_OBJECT
