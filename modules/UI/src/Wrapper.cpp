@@ -27,6 +27,7 @@ Wrapper::Wrapper(QWidget *parent) :
     connect(&_signin, &SignIn::AccountNotFound,this,&Wrapper::InToUp);
     connect(&_signin,&SignIn::Signed,this,&Wrapper::toMeniu);
     connect(&_usermeniu,&UserMeniu::logout,this,&Wrapper::reset);
+    connect(&_signin, SIGNAL(wrongInput()),this,SLOT(UpToIn()));
 
 }
 
@@ -89,6 +90,8 @@ void Wrapper::on_minimize_clicked() {
 void Wrapper::on_close_clicked() {
     close();
 }
+
+
 
 
 

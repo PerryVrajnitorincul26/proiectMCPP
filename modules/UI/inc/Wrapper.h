@@ -47,6 +47,8 @@ private slots:
     void reset();
 
 
+
+
 private:
     Ui::Wrapper *ui;
     SignUp _signup;

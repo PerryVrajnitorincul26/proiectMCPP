@@ -16,7 +16,7 @@ Q_OBJECT
     Ui::SignIn *ui;
     bool logged;
     User *found;
-
+    SignIn *_signin;
 public:
     std::unique_ptr<user_row> current_user = nullptr;
 
@@ -28,7 +28,6 @@ public:
 
 private:
 
-    void verifyInputFields();
 
     void verifyExistingUser();
 
@@ -50,6 +49,8 @@ signals:
     void AccountNotFound();
 
     void AccountFound(User &account);
+
+    void wrongInput();
 
 };
 

@@ -26,17 +26,13 @@ SignIn::SignIn(QWidget *parent)
 //SETTERS
 
 //OTHER METHODS
-void SignIn::verifyInputFields() {
-    if (ui->lineEdit_user->text().toStdString().empty() && ui->lineEdit_pass->text().toStdString().empty())
-        QMessageBox::information(this, "Login Error", "Please insert username and password");
-    else if (ui->lineEdit_user->text().toStdString().empty())
-        QMessageBox::information(this, "Login Error", "Please insert username");
-    else if (ui->lineEdit_pass->text().toStdString().empty())
-        QMessageBox::information(this, "Login Error", "Please insert password");
-}
+
+
 
 void SignIn::verifyExistingUser() {
+
     logged = false;
+
     auto &dbRef = MovieDatabase::instance();
     auto response = dbRef.login(ui->lineEdit_user->text().toStdString(), ui->lineEdit_pass->text().toStdString());
 
@@ -44,7 +40,7 @@ void SignIn::verifyExistingUser() {
         QMessageBox::information(this, "Login Error", "Account not found - create one!");
 
     } else {
-        QMessageBox::information(this, "Login successful", "Account was found!");
+        /*QMessageBox::information(this, "Login successful", "Account was found!");*/
 
         logged = true;
     }
@@ -63,23 +59,31 @@ bool SignIn::isLogged() {
 
 //BUTTONS
 void SignIn::on_pushButton_SignIn_clicked() {
-    auto &dbRef = MovieDatabase::instance();
-    auto response = dbRef.login(ui->lineEdit_user->text().toStdString(), ui->lineEdit_pass->text().toStdString());
 
-    verifyInputFields();
-    verifyExistingUser();
+    if (ui->lineEdit_user->text().trimmed().isEmpty() && ui->lineEdit_pass->text().trimmed().isEmpty())
+    {  QMessageBox::information(this, "Login Error", "Please insert username and password");
+        emit wrongInput();}
+    else {
 
-    if (response == nullptr) {
+        auto &dbRef = MovieDatabase::instance();
 
-        emit AccountNotFound();
-    } else {
-        /*this->found = new User(response->m_username, response->m_region);
-        auto wrapperParent = qobject_cast<Wrapper*>(parent());
-        wrapperParent->setLoggedInUser(new User(*found));
-        emit AccountFound(*found); THIS CODE DISTURBS!*/
-        this->current_user = std::move(response);
+        auto response = dbRef.login(ui->lineEdit_user->text().toStdString(), ui->lineEdit_pass->text().toStdString());
+
+
+        verifyExistingUser();
+
+        if (response == nullptr) {
+
+            emit AccountNotFound();
+        } else {
+            /*this->found = new User(response->m_username, response->m_region);
+            auto wrapperParent = qobject_cast<Wrapper*>(parent());
+            wrapperParent->setLoggedInUser(new User(*found));
+            emit AccountFound(*found); THIS CODE DISTURBS!*/
+            this->current_user = std::move(response);
+        }
+
     }
-
 }
 
 void SignIn::on_searchDemo_clicked() {
