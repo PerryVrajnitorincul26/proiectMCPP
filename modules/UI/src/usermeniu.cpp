@@ -12,6 +12,7 @@ UserMeniu::UserMeniu(QWidget *parent) :
     ui->stackedWidget->insertWidget(1, & _movies);
     connect(&_movies, &MoviesTable::homeClicked,this,&UserMeniu::on_backHome);
     connect(&_signin,&SignIn::Signed,this,&UserMeniu::showUser);
+    std::vector<std::string> userLikedGenres;
 
 }
 
@@ -68,6 +69,15 @@ void UserMeniu::showUser() {
 void UserMeniu::setCurrentUser(User *currentUser) {
     UserMeniu::currentUser = currentUser;
     ui->msgLabel->setText("Hello " + QString::fromStdString(this->currentUser->getUsername()) + "!");
+}
+
+void UserMeniu::on_likedGenres_pushButton_clicked(std::vector<std::string> userLikedGenres) {
+
+    if(ui->War->isChecked())
+        userLikedGenres.push_back("War");
+    if(ui->Action->isChecked())
+        userLikedGenres.push_back("Action");
+
 }
 
 

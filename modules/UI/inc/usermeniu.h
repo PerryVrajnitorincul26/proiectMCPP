@@ -36,6 +36,7 @@ private slots:
     void on_deleteButton_clicked();
     void on_backButtRec_clicked();
     void showUser();
+    void on_likedGenres_pushButton_clicked(std::vector<std::string> userLikedGenres);
 signals:
     void logout();
     void deleteAcc();

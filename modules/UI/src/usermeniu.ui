@@ -16,14 +16,14 @@
   <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>30</y>
+     <x>10</x>
+     <y>20</y>
      <width>641</width>
      <height>541</height>
     </rect>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="homePage">
     <widget class="QWidget" name="layoutWidget">
@@ -94,24 +94,11 @@
     </widget>
    </widget>
    <widget class="QWidget" name="page_2">
-    <widget class="QLabel" name="label_3">
-     <property name="geometry">
-      <rect>
-       <x>220</x>
-       <y>170</y>
-       <width>151</width>
-       <height>111</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>recomandation page</string>
-     </property>
-    </widget>
     <widget class="QPushButton" name="backButtRec">
      <property name="geometry">
       <rect>
-       <x>240</x>
-       <y>340</y>
+       <x>250</x>
+       <y>400</y>
        <width>75</width>
        <height>24</height>
       </rect>
@@ -119,6 +106,269 @@
      <property name="text">
       <string>Back</string>
      </property>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>120</y>
+       <width>411</width>
+       <height>191</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:white</string>
+     </property>
+     <property name="title">
+      <string>Genres</string>
+     </property>
+     <widget class="QCheckBox" name="Adventure">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>75</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Adventure</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="Children">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>100</y>
+        <width>75</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Children</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="Animation">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>75</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Animation</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="Comedy">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>120</y>
+        <width>75</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Comedy</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="Action">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>120</y>
+        <width>75</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Action</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="Drama">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>40</y>
+        <width>75</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Drama</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="Romance">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>40</y>
+        <width>75</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Romance</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="Fantasy">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>140</y>
+        <width>75</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Fantasy</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="Thriller">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>100</y>
+        <width>75</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Thriller</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="Horror">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>60</y>
+        <width>75</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Horror</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="Crime">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>120</y>
+        <width>75</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Crime</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="SciFi">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>140</y>
+        <width>75</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Sci-Fi</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="Musical">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>140</y>
+        <width>75</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Musical</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="IMAX">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>60</y>
+        <width>75</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>IMAX</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="Mystery">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>80</y>
+        <width>75</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Mystery</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="War">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>75</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>War</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="Western">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>80</y>
+        <width>75</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Western</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="FilmNoir">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>100</y>
+        <width>75</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Film-Noir</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="likedGenres_pushButton">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>160</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Liked genres</string>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="QWidget" name="page_3">
