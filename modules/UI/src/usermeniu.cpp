@@ -84,20 +84,20 @@ void UserMeniu::on_pushButton_Recommended_clicked() {
 
     MoviesTableModel *model = new MoviesTableModel(this);
     model->populateData(titles, genres, ids);
-    ui->recTableView_2->setModel(model);
+    ui->recTableView->setModel(model);
 
-    int parentWidth = ui->recTableView_2->parentWidget()->width();
-    int numColumns = ui->recTableView_2->model()->columnCount();
+    int parentWidth = ui->recTableView->parentWidget()->width();
+    int numColumns = ui->recTableView->model()->columnCount();
 
     int columnWidth = parentWidth / numColumns;
 
     for (int i = 0; i < numColumns; ++i) {
-        ui->recTableView_2->setColumnWidth(i, columnWidth);
+        ui->recTableView->setColumnWidth(i, columnWidth);
     }
 
-    ui->recTableView_2->horizontalHeader()->setVisible(true);
-    ui->recTableView_2->setShowGrid(false);
-    ui->recTableView_2->show();
+    ui->recTableView->horizontalHeader()->setVisible(true);
+    ui->recTableView->setShowGrid(false);
+    ui->recTableView->show();
     ui->stackedWidget->setCurrentIndex(5);
 }
 
