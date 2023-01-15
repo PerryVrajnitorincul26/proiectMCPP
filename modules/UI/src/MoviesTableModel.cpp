@@ -61,6 +61,16 @@ QVariant MoviesTableModel::headerData(int section, Qt::Orientation orientation, 
     return QVariant();
 }
 
+void MoviesTableModel::clearAll()
+{
+    beginResetModel();
+    m_movie_title.clear();
+    m_movie_genres.clear();
+    m_movie_id.clear();
+    endResetModel();
+}
+
+
 //BUTTONS
 
 //SIGNALS

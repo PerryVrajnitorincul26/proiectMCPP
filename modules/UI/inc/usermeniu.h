@@ -26,6 +26,9 @@ private:
     User* currentUser;
     ShowMovie *_showMovie=nullptr;
 
+    std::vector<std::string> userLikedGenres;
+
+
 private slots:
     void on_pushButton_LogOut_clicked();
     void on_pushButton_showMovieList_clicked();
@@ -36,7 +39,7 @@ private slots:
     void on_deleteButton_clicked();
     void on_backButtRec_clicked();
     void showUser();
-    void on_likedGenres_pushButton_clicked(std::vector<std::string> userLikedGenres);
+    void on_likedGenres_pushButton_clicked();
 signals:
     void logout();
     void deleteAcc();

@@ -56,7 +56,6 @@ void Wrapper::moveHome() {
 
 }
 
-
 void Wrapper::disableSignUp() {
 ui->pushButton_goSignUp->setDisabled(true);
 }

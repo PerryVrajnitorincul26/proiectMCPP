@@ -31,7 +31,14 @@ void MoviesTable::on_pushButton_clicked() {
     QList<int> moviesId;
 
     auto &dbRef = MovieDatabase::instance();
-    auto searchResult = dbRef.searchMovieTitles(titleToSearch);
+    std::vector<std::unique_ptr<movie_row>> searchResult;
+
+    if(!titleToSearch.empty())
+    {
+        searchResult = dbRef.searchMovieTitles(titleToSearch);
+        ui->genreInput->clear();
+    }
+    else searchResult = dbRef.searchMovieGenres(genreToSearch);
 
     if (!searchResult.empty()) {
         for (auto &item: searchResult) {
@@ -42,7 +49,7 @@ void MoviesTable::on_pushButton_clicked() {
             moviesGenres.append(genres);
             moviesId.append(id);
         }
-        ///Note that delete on nullptr does nothing. This is not undefined behaviour.
+
         delete model;
         model = new MoviesTableModel(this);
         model->populateData(moviesTitles, moviesGenres, moviesId);
@@ -65,7 +72,8 @@ void MoviesTable::on_pushButton_clicked() {
         message.append(" results");
 
         ui->msgLabel->setText(QString::fromStdString(message));
-    } else {
+    }
+    else {
         ui->msgLabel->setText("No results have been found!");
     }
 }
@@ -88,18 +96,15 @@ void MoviesTable::on_tableView_clicked(const QModelIndex &pos) {
     moviePageDialog->deleteLater();
 }
 
-void MoviesTable::on_pushButton_details_clicked() {
-    if (_showMovie == nullptr) {
-        _showMovie = new ShowMovie(this);
-        _showMovie->show();
-    } else {
-        _showMovie->close();
-        _showMovie = nullptr;
-    }
-}
-
 void MoviesTable::on_homeButton_clicked() {
     emit homeClicked();
+}
+
+void MoviesTable::on_clearButton_clicked() {
+    model->clearAll();
+    ui->genreInput->clear();
+    ui->titleInput->clear();
+    ui->msgLabel->setText("Type in the title or the genre!!");
 }
 
 

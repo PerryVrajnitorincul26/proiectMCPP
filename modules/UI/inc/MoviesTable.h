@@ -22,8 +22,6 @@ Q_OBJECT
     Ui::MoviesTable *ui;
     ShowMovie *_showMovie=nullptr;
 
-
-
 public:
     explicit MoviesTable(QWidget *parent = nullptr);
     explicit MoviesTable(int uid, QWidget *parent = nullptr);
@@ -33,10 +31,9 @@ public:
 private slots:
 
     void on_pushButton_clicked();
+    void on_clearButton_clicked();
     void on_homeButton_clicked();
-    void on_pushButton_details_clicked();
     void on_tableView_clicked(const QModelIndex &pos);
-
 
 signals:
     void homeClicked();

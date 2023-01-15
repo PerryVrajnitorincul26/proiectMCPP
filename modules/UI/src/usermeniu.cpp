@@ -1,6 +1,5 @@
 #include "usermeniu.h"
 #include "ui_usermeniu.h"
-#include "Wrapper.h"
 
 UserMeniu::UserMeniu(QWidget *parent) :
     QWidget(parent),
@@ -71,7 +70,7 @@ void UserMeniu::setCurrentUser(User *currentUser) {
     ui->msgLabel->setText("Hello " + QString::fromStdString(this->currentUser->getUsername()) + "!");
 }
 
-void UserMeniu::on_likedGenres_pushButton_clicked(std::vector<std::string> userLikedGenres) {
+void UserMeniu::on_likedGenres_pushButton_clicked() {
 
     if(ui->War->isChecked())
         userLikedGenres.push_back("War");
