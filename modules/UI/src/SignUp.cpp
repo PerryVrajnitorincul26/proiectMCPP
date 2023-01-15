@@ -26,10 +26,10 @@ SignUp::SignUp(QWidget *parent) :
 
 //BUTTONS
 void SignUp::on_pushButton_SignUp_clicked() {
-    std::regex password_rx("^(?=.*[A-Z])(?=.*[!@#\\$%\\^&\\*])(?=.*\\d)[A-Za-z0-9!@#\\$%\\^&\\*]{8,}$");
     std::regex username_rx("^.{6,}$");
-    std::regex country_rx("^[A-Z][a-z]+(?: [A-Z][a-z]+)*$");
+    std::regex password_rx("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$");
 
+    std::regex country_rx("^[A-Z][a-z]+(?: [A-Z][a-z]+)*$");
     std::string username = ui->lineEdit_UsernameRegister->text().toStdString();
     std::string password = ui->lineEdit_PasswordRegister->text().toStdString();
     std::string region = ui->lineEdit_Region->text().toStdString();
@@ -41,18 +41,19 @@ void SignUp::on_pushButton_SignUp_clicked() {
     }
 
     if (!std::regex_match(username, username_rx)) {
-        QMessageBox::warning(this, "Warning", "Invalid username, it must contain more than 5 characters");
+        QMessageBox::warning(this, "Warning",
+                             "Invalid username, please type in more than 6 characters");
         emit usedSymbols();
     } else if (!std::regex_match(password, password_rx)) {
         QMessageBox::warning(this, "Warning",
-                             "Invalid password: it must be at least 8 characters length, contain 1 uppercase, 1 special character, 1 digit");
+                             "Password must contain at least one uppercase letter, one special character, one digit, and be at least 8 characters long.");
         emit usedSymbols();
-    }
-    else if (!std::regex_match(region, country_rx)) {
-        QMessageBox::warning(this, "Warning", "Invalid country - every word must start with an uppercase.");
+    } else if (!std::regex_match(region, country_rx)) {
+        QMessageBox::warning(this, "Warning",
+                             "Please enter a valid country! The first letter must be an uppercase, the following letters must be lowercase. The country name can be composed of one"
+                             "or more words, each starts with an uppercase letter, and the following letters are lowercase");
         emit usedSymbols();
-    }
-    else {
+    } else {
         auto &dbRef = MovieDatabase::instance();
         dbRef.signup(username, password, region);
         emit SignUpClicked();
