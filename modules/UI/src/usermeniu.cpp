@@ -11,6 +11,7 @@ UserMeniu::UserMeniu(QWidget *parent) :
     ui->stackedWidget->insertWidget(1, & _movies);
     connect(&_movies, &MoviesTable::homeClicked,this,&UserMeniu::on_backHome);
     connect(&_signin,&SignIn::Signed,this,&UserMeniu::showUser);
+
     std::vector<std::string> userLikedGenres;
 
 }
@@ -46,6 +47,10 @@ ui->stackedWidget->setCurrentIndex(2);
 void UserMeniu::on_settingsBackButt_clicked() {
     ui->stackedWidget->setCurrentIndex(0);
 
+}
+
+void UserMeniu::on_pushButton_Wish_clicked() {
+    ui->stackedWidget->setCurrentIndex(4);
 }
 
 void UserMeniu::on_deleteButton_clicked() {
@@ -109,6 +114,7 @@ void UserMeniu::on_likedGenres_pushButton_clicked() {
     if(ui->Western->isChecked())
         userLikedGenres.push_back("Western");
 }
+
 
 
 
