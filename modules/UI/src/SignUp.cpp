@@ -26,12 +26,16 @@ SignUp::SignUp(QWidget *parent) :
 
 //BUTTONS
 void SignUp::on_pushButton_SignUp_clicked() {
-    auto &dbRef = MovieDatabase::instance();
-    dbRef.signup(ui->lineEdit_UsernameRegister->text().toStdString(),
-                 ui->lineEdit_PasswordRegister->text().toStdString(),
-                 ui->lineEdit_Region->text().toStdString());
-    emit SignUpClicked();
-
+    if (ui->lineEdit_UsernameRegister->text().trimmed().isEmpty() || ui->lineEdit_PasswordRegister->text().trimmed().isEmpty() || ui->lineEdit_Region->text().trimmed().isEmpty())
+    {QMessageBox::information(this, "Sign Up", "Please fill in all the boxes!");
+        emit noCredential();}
+    else {
+        auto &dbRef = MovieDatabase::instance();
+        dbRef.signup(ui->lineEdit_UsernameRegister->text().toStdString(),
+                     ui->lineEdit_PasswordRegister->text().toStdString(),
+                     ui->lineEdit_Region->text().toStdString());
+        emit SignUpClicked();
+    }
 }
 
 void SignUp::on_pushButton_home_clicked() {

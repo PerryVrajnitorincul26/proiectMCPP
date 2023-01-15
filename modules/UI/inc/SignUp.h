@@ -28,5 +28,7 @@ signals:
     void HomeClicked();
 
     void SignUpClicked();
+
+    void noCredential();
 };
 
