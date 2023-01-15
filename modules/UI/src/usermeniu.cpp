@@ -163,9 +163,10 @@ void UserMeniu::on_likedGenres_pushButton_clicked() {
         userLikedGenres.push_back("Western");
 }
 
-void UserMeniu::on_recBackButton_clicked() {
-    emit backHome();
+void UserMeniu::on_recBackButton_1_clicked() {
+emit backHome();
 }
+
 
 
 
