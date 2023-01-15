@@ -42,6 +42,8 @@ private slots:
     void showUser();
     void on_likedGenres_pushButton_clicked();
     void on_pushButton_Wish_clicked();
+    void on_pushButton_Recommended_clicked();
+    void on_recBackButton_clicked();
 signals:
     void logout();
     void deleteAcc();

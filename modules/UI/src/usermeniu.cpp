@@ -1,5 +1,6 @@
 #include "usermeniu.h"
 #include "ui_usermeniu.h"
+#include "RecommenderSystem.h"
 
 UserMeniu::UserMeniu(QWidget *parent) :
     QWidget(parent),
@@ -11,6 +12,7 @@ UserMeniu::UserMeniu(QWidget *parent) :
     ui->stackedWidget->insertWidget(1, & _movies);
     connect(&_movies, &MoviesTable::homeClicked,this,&UserMeniu::on_backHome);
     connect(&_signin,&SignIn::Signed,this,&UserMeniu::showUser);
+    connect(this, SIGNAL(backHome()),this, SLOT(on_backHome()));
 
     std::vector<std::string> userLikedGenres;
 
@@ -46,11 +48,14 @@ ui->stackedWidget->setCurrentIndex(2);
 
 void UserMeniu::on_settingsBackButt_clicked() {
     ui->stackedWidget->setCurrentIndex(0);
-
 }
 
 void UserMeniu::on_pushButton_Wish_clicked() {
     ui->stackedWidget->setCurrentIndex(4);
+}
+
+void UserMeniu::on_pushButton_Recommended_clicked() {
+    ui->stackedWidget->setCurrentIndex(5);
 }
 
 void UserMeniu::on_deleteButton_clicked() {
@@ -113,6 +118,10 @@ void UserMeniu::on_likedGenres_pushButton_clicked() {
         userLikedGenres.push_back("Horror");
     if(ui->Western->isChecked())
         userLikedGenres.push_back("Western");
+}
+
+void UserMeniu::on_recBackButton_clicked() {
+    emit backHome();
 }
 
 
