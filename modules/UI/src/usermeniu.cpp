@@ -9,7 +9,6 @@ UserMeniu::UserMeniu(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
-    //auto wrapperParent = qobject_cast<Wrapper*>(this->parent());
     ui->stackedWidget->insertWidget(1, & _movies);
     connect(&_movies, &MoviesTable::homeClicked,this,&UserMeniu::on_backHome);
     connect(&_signin,&SignIn::Signed,this,&UserMeniu::showUser);
@@ -58,7 +57,7 @@ void UserMeniu::on_pushButton_Wish_clicked() {
 void UserMeniu::on_pushButton_Recommended_clicked() {
 
     RecommenderSystem recSyst;
-    std::set<MovieRecInfo> recommendedMovies;
+    std::vector<MovieRecInfo> recommendedMovies;
     for(auto &genre: this->userLikedGenres){
         auto response = recSyst.recommendedByLikedGenres(genre);
         std::mt19937 rng(std::random_device{}());
@@ -70,9 +69,35 @@ void UserMeniu::on_pushButton_Recommended_clicked() {
         m.title = response[indexMovie]->m_title;
         m.genres = response[indexMovie]->m_genres;
 
-        recommendedMovies.insert(m);
+        recommendedMovies.push_back(m);
     }
 
+    QList<QString> titles;
+    QList<QString> genres;
+    QList<int> ids;
+
+    for (auto item: recommendedMovies){
+        titles.append(QString::fromStdString(item.title));
+        genres.append(QString::fromStdString(item.genres));
+        ids.append(item.id);
+    }
+
+    MoviesTableModel *model = new MoviesTableModel(this);
+    model->populateData(titles, genres, ids);
+    ui->recTableView_2->setModel(model);
+
+    int parentWidth = ui->recTableView_2->parentWidget()->width();
+    int numColumns = ui->recTableView_2->model()->columnCount();
+
+    int columnWidth = parentWidth / numColumns;
+
+    for (int i = 0; i < numColumns; ++i) {
+        ui->recTableView_2->setColumnWidth(i, columnWidth);
+    }
+
+    ui->recTableView_2->horizontalHeader()->setVisible(true);
+    ui->recTableView_2->setShowGrid(false);
+    ui->recTableView_2->show();
     ui->stackedWidget->setCurrentIndex(5);
 }
 

@@ -29,6 +29,7 @@ public:
 private:
     Ui::UserMeniu *ui;
     MoviesTable _movies;
+
     SignIn _signin;
     User* currentUser;
     ShowMovie *_showMovie=nullptr;

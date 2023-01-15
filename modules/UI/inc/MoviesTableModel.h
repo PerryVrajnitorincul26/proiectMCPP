@@ -23,6 +23,8 @@ public:
     void populateData(const QList<QString> &movieTitle, const QList<QString> &movieGenres,
                       const QList<int> movieID);
 
+    void populateData(const QList<QString> &movieTitle, const QList<QString> &movieGenres);
+
     int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
 
     int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;

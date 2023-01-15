@@ -70,6 +70,14 @@ void MoviesTableModel::clearAll()
     endResetModel();
 }
 
+void MoviesTableModel::populateData(const QList<QString> &movieTitle, const QList<QString> &movieGenres) {
+    m_movie_title.clear();
+    m_movie_title = movieTitle;
+    m_movie_genres.clear();
+    m_movie_genres = movieGenres;
+    m_movie_id.clear();
+}
+
 
 //BUTTONS
 
