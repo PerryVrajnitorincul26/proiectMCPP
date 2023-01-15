@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>4</number>
+    <number>3</number>
    </property>
    <widget class="QWidget" name="homePage">
     <widget class="QWidget" name="layoutWidget">
@@ -413,7 +413,21 @@
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="page_4"/>
+   <widget class="QWidget" name="page_4">
+    <widget class="QPushButton" name="recBackButton_1">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>340</y>
+       <width>75</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Back</string>
+     </property>
+    </widget>
+   </widget>
    <widget class="QWidget" name="page">
     <widget class="QPushButton" name="recBackButton">
      <property name="geometry">
@@ -429,21 +443,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="page_5">
-    <widget class="QPushButton" name="recBackButton_1">
-     <property name="geometry">
-      <rect>
-       <x>280</x>
-       <y>350</y>
-       <width>75</width>
-       <height>24</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Back</string>
-     </property>
-    </widget>
-   </widget>
+   <widget class="QWidget" name="page_5"/>
   </widget>
  </widget>
  <resources/>
