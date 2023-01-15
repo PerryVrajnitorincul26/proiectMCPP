@@ -77,6 +77,38 @@ void UserMeniu::on_likedGenres_pushButton_clicked(std::vector<std::string> userL
         userLikedGenres.push_back("War");
     if(ui->Action->isChecked())
         userLikedGenres.push_back("Action");
+    if(ui->Adventure->isChecked())
+        userLikedGenres.push_back("Adventure");
+    if(ui->Animation->isChecked())
+        userLikedGenres.push_back("Animation");
+    if(ui->Children->isChecked())
+        userLikedGenres.push_back("Children");
+    if(ui->Comedy->isChecked())
+        userLikedGenres.push_back("Comedy");
+    if(ui->Fantasy->isChecked())
+        userLikedGenres.push_back("Fantasy");
+    if(ui->Romance->isChecked())
+        userLikedGenres.push_back("Romance");
+    if(ui->IMAX->isChecked())
+        userLikedGenres.push_back("IMAX");
+    if(ui->Mystery->isChecked())
+        userLikedGenres.push_back("Mystery");
+    if(ui->Thriller->isChecked())
+        userLikedGenres.push_back("Thriller");
+    if(ui->Crime->isChecked())
+        userLikedGenres.push_back("Crime");
+    if(ui->SciFi->isChecked())
+        userLikedGenres.push_back("Sci-Fi");
+    if(ui->FilmNoir->isChecked())
+        userLikedGenres.push_back("Film-Noir");
+    if(ui->Musical->isChecked())
+        userLikedGenres.push_back("Musical");
+    if(ui->Drama->isChecked())
+        userLikedGenres.push_back("Drama");
+    if(ui->Horror->isChecked())
+        userLikedGenres.push_back("Horror");
+    if(ui->Western->isChecked())
+        userLikedGenres.push_back("Western");
 
 }
 
