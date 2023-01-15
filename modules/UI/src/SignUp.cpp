@@ -36,6 +36,9 @@ void SignUp::on_pushButton_SignUp_clicked() {
                      ui->lineEdit_Region->text().toStdString());
         emit SignUpClicked();
     }
+    ui->lineEdit_UsernameRegister->clear();
+    ui->lineEdit_PasswordRegister->clear();
+    ui->lineEdit_Region->clear();
 }
 
 void SignUp::on_pushButton_home_clicked() {

@@ -84,6 +84,8 @@ void SignIn::on_pushButton_SignIn_clicked() {
         }
 
     }
+    ui->lineEdit_pass->clear();
+    ui->lineEdit_user->clear();
 }
 
 void SignIn::on_searchDemo_clicked() {
