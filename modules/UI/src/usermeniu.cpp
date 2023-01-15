@@ -167,6 +167,11 @@ void UserMeniu::on_recBackButton_1_clicked() {
 emit backHome();
 }
 
+void UserMeniu::on_recBackButton_clicked() {
+    emit backHome();
+
+}
+
 
 
 
